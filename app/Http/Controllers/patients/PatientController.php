@@ -3,19 +3,36 @@
 namespace App\Http\Controllers\patients;
 
 use App\Http\Controllers\Controller;
-use App\patients\PatientBodyChart;
-use App\patients\PatientFamilyMember;
-use App\patients\PatientFamilyTree;
-use App\patients\PatientDifficulty;
-use App\patients\PatientOtherDetail;
-use App\patients\Patient;
-
+use App\Model\patients\PatientBodyChart;
+use App\Model\patients\PatientFamilyMember;
+use App\Model\patients\PatientFamilyTree;
+use App\Model\patients\PatientDifficulty;
+use App\Model\patients\PatientOtherDetail;
+use App\Model\patients\Patient;
+use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
-    function listall()
+    function listall(Request $request)
     {
+        if ($request->ajax()) {
+
+            $data = Patient::latest()->get();
+
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($data) {
+                    $btn = '<a href="patient/view/' . $data->id . '" class="btn btn-primary" style="margin:1px">  <i class="fa fa-eye"></i></span></a>';
+                    $btn .= '<a href="patient/create/' . $data->id . '" class="btn btn-success" style="margin:1px"><span><i class="fa fa-edit"></i></span></a>';
+                    $btn .= '<a href="patient/delete/' . $data->id . ' "class="btn btn-danger" style="margin:1px" onclick="';
+                    $btn .= "return confirm('Do You Want to Delete') ";
+                    $btn .= ' "><span><i class="fa  fa-remove"></i></a></span>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
         return view('patient.listall');
     }
 
@@ -29,7 +46,7 @@ class PatientController extends Controller
         $body_chart_item = 0;
         $family_members = 0;
         $family_tree = 0;
-        $patient_difficulties=0;
+        $patient_difficulties = 0;
 
         if ($request->body_part) {
 
@@ -130,7 +147,7 @@ class PatientController extends Controller
 
 
 
-            
+
 
             $patient_other_details = [
 
@@ -145,11 +162,20 @@ class PatientController extends Controller
             PatientOtherDetail::create($patient_other_details);
 
             return redirect('patients')->with('Success', 'Created Successfully');
-
-            
         } catch (\Exception $e) {
 
             return redirect('patients')->with('Error', 'Oops Something Went Wrong');
+        }
+    }
+    public function delete($id)
+    {
+        try {
+            Patient::find($id)->delete();
+            return redirect('patients')->with('Success', 'Deleted Successfully');
+
+        } catch (\Exception $e) {
+            return redirect('patients')->with('Error', 'Oops Something Went Wrong');
+
         }
     }
 }

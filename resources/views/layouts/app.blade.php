@@ -56,13 +56,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
           }
           body{
             font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+            font-size: 16px;
 
           }
            .sidebar-menu{
             font-size: 16px;
             
           }
-          td{
+          td,li{
             font-size: 16px;
             
           }
@@ -206,19 +207,20 @@ desired effect
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
         <!-- Optionally, you can add icons to the links -->
-      <li class="active"><a href="{{url('/patients')}}"><i class="fa fa-user"></i> <span>Patients</span></a></li>
-      <li><a href="{{url('/')}}"><i class="fa fa-edit"></i> <span>Daily Visits</span></a></li>
+        
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+          <a href="#"><i class="fa fa-home"></i> <span>Home Visit</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
+          <ul class="treeview-menu active">
+            <li class="active"><a href="{{url('/addvisit')}}"><i class="fa fa-edit"></i> <span>Add Visit</span></a></li>
+            <li class="active"><a href="{{url('/patients')}}"><i class="fa fa-home"></i> <span>Home Visit</span></a></li>
           </ul>
         </li>
+        <li class="active"><a href="{{url('/patients')}}"><i class="fa fa-user"></i> <span>Patients</span></a></li>
+
       </ul>
       <!-- /.sidebar-menu -->
     </section>

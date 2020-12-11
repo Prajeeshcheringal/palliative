@@ -19,9 +19,13 @@ Route::get('/' , function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/patients', 'patients\PatientController@listall')->name('patients');
-Route::get('/patient/create', 'patients\PatientController@create');
+Route::get('/patient/create/{id}', 'patients\PatientController@create');
 Route::post('/patient/save', 'patients\PatientController@save');
+Route::get('/patient/view/{id}', 'patients\PatientController@view');
+Route::get('/patient/delete/{id}', 'patients\PatientController@delete');
 
 
+Route::get('/addvisit', 'home_visit\HomeVisitController@listall')->name('addvisit');
 
