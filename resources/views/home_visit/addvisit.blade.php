@@ -45,11 +45,12 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                    <form role="form">
+                    <form role="form" method="POST" action="{{ url('booking/save') }}">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <input type="hidden" class="form-control" id="pat_id" name="pat_id" readonly>
                                         <label>Reg No</label>
                                         <input type="text" class="form-control" id="reg_no" readonly>
                                     </div>
@@ -61,7 +62,6 @@
                                         <input type="text" class="form-control" id="name" readonly>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -74,7 +74,7 @@
 
                                     <div class="form-group">
                                         <label for="">Date</label>
-                                        <input type="date" class="form-control" id="date" name="date">
+                                        <input type="date" class="form-control" id="date" name="date" required>
 
                                     </div>
                                 </div>
@@ -88,20 +88,18 @@
 
                         </div>
                         <!-- /.box-body -->
-
                         {{-- <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div> --}}
-                    </form>
-                    </p>
+                        </p>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
 
-                    {{-- <button type="button" class="btn btn-default"
-                        data-dismiss="modal">Close</button> --}}
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
+            </form>
 
         </div>
     </div>
@@ -151,7 +149,8 @@
 
     </script>
     <script>
-        function showModal(name, care_of, reg_no) {
+        function showModal(pat_id, name, care_of, reg_no) {
+            $('#pat_id').val(pat_id);
             $('#name').val(name);
             $('#care_of').val(care_of);
             $('#reg_no').val(reg_no);

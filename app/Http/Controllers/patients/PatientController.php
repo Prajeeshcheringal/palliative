@@ -19,15 +19,14 @@ class PatientController extends Controller
         if ($request->ajax()) {
 
             $data = Patient::latest()->get();
-
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
+                    $message = "'Do You Want to Delete'";
                     $btn = '<a href="patient/view/' . $data->id . '" class="btn btn-primary" style="margin:1px">  <i class="fa fa-eye"></i></span></a>';
                     $btn .= '<a href="patient/create/' . $data->id . '" class="btn btn-success" style="margin:1px"><span><i class="fa fa-edit"></i></span></a>';
-                    $btn .= '<a href="patient/delete/' . $data->id . ' "class="btn btn-danger" style="margin:1px" onclick="';
-                    $btn .= "return confirm('Do You Want to Delete') ";
-                    $btn .= ' "><span><i class="fa  fa-remove"></i></a></span>';
+                    $btn .= '<a href="patient/delete/' . $data->id . ' "class="btn btn-danger" style="margin:1px" onclick="return confirm(' . $message . ')"><span><i class="fa  fa-remove"></i></a></span>';
+
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -38,9 +37,32 @@ class PatientController extends Controller
 
     function create($id = 0)
     {
+        $data['id'] = $id;
+        $data['view'] = "create";
+        if ($id > 0) {
 
-        return view('patient.create');
+            $data['view'] = "update";
+            $data['patient'] = Patient::where('id', $id)->first();
+            $data['patientotherdetail']= PatientOtherDetail::where('pat_id', $id)->first();
+            $data['family_tree']= PatientFamilyTree::where('pat_id', $id)->get();
+        }
+
+        return view('patient.create', $data);
     }
+
+    function view($id = 0)
+    {
+
+        $data['id'] = $id;
+        $data['view'] = "view";
+        $data['patient'] = Patient::where('id', $id)->first();
+        $data['patientotherdetail']= PatientOtherDetail::where('pat_id', $id)->first();
+        $data['family_tree']= PatientFamilyTree::where('pat_id', $id)->get();
+
+
+        return view('patient.create', $data);
+    }
+
     function save(Request $request)
     {
         $body_chart_item = 0;
@@ -82,7 +104,23 @@ class PatientController extends Controller
                 'location' => $request->location,
             ];
 
-            $pat_id = Patient::create($data)->id;
+            if (!$request->id) {
+
+                $pat_id = Patient::create($data)->id;
+            }
+             else {
+
+                $pat_id =$request->id;
+                 Patient::find($pat_id)->update($data);
+
+            }
+
+            PatientBodyChart::where('pat_id',$pat_id)->delete();
+            PatientFamilyMember::where('pat_id',$pat_id)->delete();
+            PatientFamilyTree::where('pat_id',$pat_id)->delete();
+            PatientDifficulty::where('pat_id',$pat_id)->delete();
+            PatientOtherDetail::where('pat_id',$pat_id)->delete();
+
 
 
             for ($i = 0; $i < $body_chart_item; $i++) {
@@ -150,7 +188,7 @@ class PatientController extends Controller
 
 
             $patient_other_details = [
-
+                'pat_id'=>$pat_id,
                 'need_food' => $request->need_food,
                 'report_of_person' => $request->report_of_person,
                 'patient_assumptiom' => $request->patient_assumptiom,
@@ -172,10 +210,8 @@ class PatientController extends Controller
         try {
             Patient::find($id)->delete();
             return redirect('patients')->with('Success', 'Deleted Successfully');
-
         } catch (\Exception $e) {
             return redirect('patients')->with('Error', 'Oops Something Went Wrong');
-
         }
     }
 }
