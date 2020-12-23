@@ -30,5 +30,5 @@ Route::get('/patient/delete/{id}', 'patients\PatientController@delete');
 Route::get('/addvisit', 'home_visit\HomeVisitController@listall')->name('addvisit');
 Route::post('/booking/save', 'home_visit\HomeVisitController@save');
 Route::get('/bookings', 'home_visit\HomeVisitController@bookings')->name('bookings');
-Route::get('/bookings/add_data', 'home_visit\HomeVisitController@bookingsAddData');
+Route::get('/bookings/add_data/{bid}/{pid}', 'home_visit\HomeVisitController@bookingsAddData');
 

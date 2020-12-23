@@ -30,7 +30,8 @@
     <script src="{{ url('/public') }}/bower_components/PACE/pace.min.js"></script>
     <script src="{{ url('/public') }}/plugins/ckeditor/ckeditor.js"></script>
     <script src="{{ url('/public') }}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  
     <!-- Google Font -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -213,7 +214,7 @@ desired effect
                                 <img src="{{ url('/public') }}/dist/img/user2-160x160.jpg" class="user-image"
                                     alt="User Image">
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">Alexander Pierce</span>
+                                <span class="hidden-xs">Admin</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
@@ -222,7 +223,7 @@ desired effect
                                         alt="User Image">
 
                                     <p>
-                                        Alexander Pierce - Web Developer
+                                        Admin - Web Developer
                                         <small>Member since Nov. 2012</small>
                                     </p>
                                 </li>
@@ -254,7 +255,8 @@ desired effect
                         </li>
                         <!-- Control Sidebar Toggle Button -->
                         <li>
-                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                            <a href="" > <!-- data-toggle="control-sidebar"-->
+                           <i class="fa fa-gears"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -266,19 +268,19 @@ desired effect
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
 
-                <!-- Sidebar user panel (optional) -->
+                <!-- Sidebar user panel (optional)
                 <div class="user-panel">
                     <div class="pull-left image">
                         <img src="{{ url('/public') }}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>Alexander Pierce</p>
-                        <!-- Status -->
-                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        <p>Admin</p>  -->
+                        <!-- Status 
+                        <a href="#"><i class="fa fa-circle text-success"></i> </a>
                     </div>
-                </div>
+                </div>-->
 
-                <!-- search form (Optional) -->
+                <!-- search form (Optional) 
                 <form action="#" method="get" class="sidebar-form">
                     <div class="input-group">
                         <input type="text" name="q" class="form-control" placeholder="Search...">
@@ -288,7 +290,7 @@ desired effect
                             </button>
                         </span>
                     </div>
-                </form>
+                </form>-->
                 <!-- /.search form -->
 
                 <!-- Sidebar Menu -->
@@ -436,7 +438,9 @@ desired effect
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.js"></script>
-
+<script>
+    
+    </script>
 <script>
     $(document).ajaxStart(function() {
         Pace.restart()

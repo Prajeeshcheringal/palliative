@@ -8,7 +8,7 @@
                 <div class="col-md-3">
                     <div class="box box-solid">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Patient</h3>
+                            <h3 class="box-title">Patient : <b> &nbsp;&nbsp; {{ $patient->name ?? '' }} </b> </h3>
 
                             <div class="box-tools">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -19,9 +19,10 @@
                         <div class="box-body no-padding">
                             <ul class="nav nav-pills nav-stacked">
                                 <li class="active"><a href="#activity" data-toggle="tab" id="pat_name"
-                                        name="pat_name">Doctor Prescription</a></li>
+                                        name="pat_name">Patient Details</a></li>
+                                <li><a href="#disease_details" data-toggle="tab">Disease Details</a></li>
                                 <li><a href="#doctornote" data-toggle="tab">Doctor's Notes</a></li>
-                                <li><a href="#observations" data-toggle="tab">Repertorial Analysiss </a></li>
+                                
                                 <li><a href="#labnote" data-toggle="tab">Lab Notes</a></li>
                                 <li><a href="#diagnosis" data-toggle="tab">Medical Diagnosis </a></li>
                                 <li><a href="#prescription" data-toggle="tab">Prescription</a></li>
@@ -68,47 +69,27 @@
                     <!-- /.box-body -->
                     <!-- /.box -->
 
-                    <!-- About Me Box -->
-                    <!--                <div class="box box-primary">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title">Todays Notes</h3>
-                                        </div>
-                                         /.box-header 
-                                        <div class="box-body">
-                                            <strong><i class="fa fa-book margin-r-5"></i> Patients Note</strong>
-                    
-                                            <p class="text-muted">
-                 
-                                            </p>
-                                            <strong><i class="fa fa-book margin-r-5"></i> Reception Note</strong>
-                    
-                                            <p class="text-muted">
-                  
-                                            </p>
-                                        </div>
-                                         /.box-body 
-                                    </div>-->
-                    <!-- /.box -->
                 </div>
                 <!-- /.col -->
                 <div class="col-md-9">
 
                     <div class="nav-tabs-custom">
                         <div class="tab-content">
+
                             <div class="box-header with-border">
                                 <span class="pull-left">
-                                    <a role="button" back="" class="btn  btn-success align-bottom" href="">
+                                    <a role="button" back="" class="btn  btn-success align-bottom"
+                                        href="{{ url('bookings') }}">
                                         <span class="glyphicon glyphicon-arrow-left" title="back"></span>
                                     </a>
                                 </span>
                                 <div class="pull-right">
-                                    <button type='submit' data-toggle="tooltip" title='Save' class='btn bg-orange btn-flat'>
+                                    <button type='submit' data-toggle="tooltip" title='Save' class='btn btn-info  btn-flat'>
                                         <i class="glyphicon glyphicon-hdd"></i></button>
                                 </div>
                             </div>
 
-                            <div class="active tab-pane" id="activity">
-
+                            <div class="active tab-pane" style="margin-top:20px ; margin-bottom:20px " id="activity">
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <div class="box-header with-border mailbox-controls">
@@ -121,159 +102,135 @@
                                             </div>
                                         </div>
                                         <div class="box-body">
-                                            <div class="col-sm-12 form-group" id="name_field_box">
-                                                <label class="col-sm-2 control-label" id="name_display_as_box">
-                                                    Name*<span class="required"></span> :
-                                                </label>
-                                                <div class="col-sm-4" id="name_input_box">
-                                                    <input id="patid" type="hidden" class="form-control" name="patid"
-                                                        type="text" value="" data-validation="required" maxlength="50">
-                                                    <input id="patname" class="form-control" name="patname" type="text"
-                                                        value="" data-validation="required" maxlength="50">
-                                                </div>
-                                                <label class="col-sm-2 control-label" id="name_display_as_box">
-                                                    Phone<span class="required"></span> :
-                                                </label>
-                                                <div class="col-sm-4" id="name_input_box">
-                                                    <input id="patphone" class="form-control" name="patphone" type="text"
-                                                        value="" maxlength="50">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 form-group" id="name_field_box">
-                                                <label class="col-sm-2 control-label" id="name_display_as_box">
-                                                    Email<span class="required"></span> :
-                                                </label>
-                                                <div class="col-sm-4" id="name_input_box">
-                                                    <input id="patemail" class="form-control" name="patemail" type="text"
-                                                        value="" maxlength="50">
-                                                </div>
-                                                <label class="col-sm-2 control-label" id="name_display_as_box">
-                                                    Gender<span class="required"></span> :
-                                                </label>
-                                                <div class="col-sm-4" id="name_input_box">
-                                                    <select name="patgender" id="patgender" class="form-control">
-                                                        <option value="">Select</option>
-                                                        <option value="Male">Male</option>
-                                                        <option value="Female">Female</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 form-group" id="name_field_box">
-                                                <label class="col-sm-2 control-label" id="name_display_as_box">
-                                                    Date of Birth<span class="required"></span> :
-                                                </label>
-                                                <div class="col-sm-2" id="name_input_box">
-                                                    <input name="patdob" type="text" id="patdob" data-validation="required"
-                                                        class="form-control date" placeholder="Date">
-                                                </div>
-                                                <div class="col-sm-2" id="name_input_box">
-                                                    <input name="patage" type="text" id="patage" data-validation="required"
-                                                        class="form-control" placeholder="Age">
-                                                </div>
-                                                <label class="col-sm-2 control-label" id="name_display_as_box">
-                                                    Blood Group<span class="required"></span> :
-                                                </label>
-                                                <div class="col-sm-4" id="name_input_box">
-                                                    <select name="patbloodgrp" id="patbloodgrp" class="form-control">
-                                                        <option value="">Select</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 form-group" id="name_field_box">
-                                                <label class="col-sm-2 control-label" id="name_display_as_box">
-                                                    Occupation<span class="required"></span> :
-                                                </label>
-                                                <div class="col-sm-4" id="name_input_box">
-                                                    <input id="patoccupation" class="form-control" name="patoccupation"
-                                                        type="text" value="" maxlength="50">
-                                                </div>
-                                                <label class="col-sm-2 control-label" id="name_display_as_box">
-                                                    Referred by<span class="required"></span> :
-                                                </label>
-                                                <div class="col-sm-4" id="name_input_box">
-                                                    <input id="patreference" class="form-control" name="patreference"
-                                                        type="text" value="" maxlength="50">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 form-group" id="name_field_box">
-                                                <label class="col-sm-2 control-label" id="name_display_as_box">
-                                                    Address*<span class="required"></span> :
-                                                </label>
-                                                <div class="col-sm-4" id="name_input_box">
-                                                    <input id="pataddress_line1" class="form-control"
-                                                        name="pataddress_line1" type="text" value="" maxlength="50">
-                                                </div>
-                                                <label class="col-sm-2 control-label" id="name_display_as_box">
-                                                    Groups<span class="required"></span> :
-                                                </label>
-                                                <div class="col-sm-4" id="name_input_box">
-                                                    <input id="pat_grp" class="form-control" name="pat_grp" type="text"
-                                                        maxlength="50">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 form-group" id="name_field_box">
-                                                <label class="col-sm-2 control-label" id="name_display_as_box">
-                                                    Notes<span class="required"></span> :
-                                                </label>
-                                                <div class="col-sm-4" id="name_input_box">
-                                                    <textarea rows="4" cols="50" id="notes" name="notes"
-                                                        class="form-control"></textarea>
-                                                    <!-- <input id="notes" class="form-control" name="notes" type="text" value="" maxlength="50">  -->
-                                                </div>
-                                                <!-- <label class="col-sm-2 control-label" id="name_display_as_box">
-                                                    Family Member<span class="required"></span>  :
-                                                </label>
-                                                <div class="col-sm-4" id="name_input_box">
-                                                    <input id="fmly" class="form-control" name="fmly" type="text" value="" maxlength="50">             
-                                                </div>  -->
-                                            </div>
-                                            <div class="col-sm-12 form-group" id="name_field_box">
-                                                <label class="col-sm-2 control-label" id="name_display_as_box">
-                                                    Add Family Member<span class="required"></span>:
-                                                </label>
-                                                <div class="col-sm-9" id="name_input_box">
-                                                    <table class="table">
-                                                        <tbody id="rowp">
-                                                            <tr id="add">
-                                                                <td class="col-sm-3">
-                                                                    <select name="relation" id="relation"
-                                                                        class="form-control">
-                                                                        <option value="Child">Child</option>
-                                                                        <option value="Parent">Parent</option>
-                                                                        <option value="Brother/Sister">Brother/Sister
-                                                                        </option>
-                                                                        <option value="Husband/Wife">Husband/Wife</option>
-                                                                        <option value="Grandchild">Grandchild</option>
-                                                                        <option value="GrandParent">GrandParent</option>
-                                                                        <option value="Uncle/Aunt">Uncle/Aunt</option>
-                                                                        <option value="Nephew/Niece">Nephew/Niece</option>
-                                                                        <option value="Cousin">Cousin</option>
-                                                                    </select>
-                                                                </td>
-                                                                <td class="col-sm-4">
-                                                                    <input id="member_name" placeholder="Name"
-                                                                        class="form-control" name="member_name" type="text"
-                                                                        value="">
-                                                                </td>
-                                                                <td class="col-sm-4">
-                                                                    <input id="member_phone" placeholder="phone"
-                                                                        class="form-control phone" name="member_phone"
-                                                                        type="text" value="">
-                                                                </td>
-                                                                <td>
-                                                                    <a data-toggle="tooltip" style="float: left"
-                                                                        title="Add More" id="addmore"
-                                                                        class="btn btn-success" href="#"> <span
-                                                                            class="glyphicon glyphicon-plus"></span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                    </table>
+
+                                            <div class="row">
+
+                                                <div class="col-sm-6">
+
+                                                    <div class="row">
+
+                                                        <div class="col-sm-3"> <label>Reg no :</label></div>
+                                                        <div class="col-sm-8">
+                                                            <input type="hidden" name="id" id="id" class="form-control"
+                                                                value="{{ $patient->id ?? '' }}">
+                                                            <input type="text" name="reg_no" id="reg_no"
+                                                                class=" form-control" value="{{ $patient->reg_no ?? '' }}"
+                                                                placeholder="Enter ..." required>
+                                                        </div>
+                                                        {{-- <div> <label class="col-sm-2">
+                                                                Date :</label></div>
+                                                        <div class="col-sm-3">
+                                                            <input type="date" name="date" id="date" class=" form-control"
+                                                                value="{{ $patient->date ?? '' }}" placeholder="Enter ..."
+                                                                required>
+                                                        </div> --}}
+
+                                                        <div style="padding-top: 20px;" class="col-sm-3"> <label>Name
+                                                                :</label></div>
+                                                        <div style="padding-top: 20px;" class="col-sm-8">
+                                                            <input type="text" name="name" id="name" class="form-control"
+                                                                value="{{ $patient->name ?? '' }}" placeholder="Enter ..."
+                                                                required maxlength="40">
+                                                        </div>
+
+                                                        <div style="padding-top: 20px;" class="col-sm-3"> <label>Age
+                                                                :</label></div>
+                                                        <div style="padding-top: 20px;" class="col-sm-8">
+                                                            <input type="text" name="age" id="age" class="form-control "
+                                                                value="{{ $patient->age ?? '' }}" placeholder="Enter ..."
+                                                                required maxlength="3">
+                                                        </div>
+
+                                                        <div style="padding-top: 20px;" class="col-sm-3"> <label>Phone
+                                                                :</label></div>
+                                                        <div style="padding-top: 20px;" class="col-sm-8">
+                                                            <input type="text" name="phone" id="phone"
+                                                                value="{{ $patient->phone ?? '' }}" class="form-control"
+                                                                placeholder="Enter ..." required minlength="10"
+                                                                maxlength="10">
+                                                        </div>
+                                                        <div style="padding-top: 20px;" class="col-sm-3"> <label>Care of
+                                                                :</label></div>
+                                                        <div style="padding-top: 20px;" class="col-sm-8">
+                                                            <input type="text" name="care_of"
+                                                                value="{{ $patient->care_of ?? '' }}" id="care_of"
+                                                                class="form-control" placeholder="Enter ..." required
+                                                                maxlength="40">
+                                                        </div>
+
+                                                        <div style="padding-top: 20px;" class="col-sm-3"> <label>Address
+                                                                :</label></div>
+                                                        <div style="padding-top: 20px;" class="col-sm-8">
+                                                            <textarea type="text" name="address" id="address"
+                                                                class="form-control" placeholder="Enter ..."
+                                                                required>{{ $patient->address ?? '' }} </textarea>
+                                                        </div>
+
+
+
+                                                    </div>
                                                 </div>
 
+                                                <div class="col-sm-6">
+
+                                                    <div class="row">
+
+                                                        <div class="col-sm-3"> <label>Ref No :</label></div>
+                                                        <div class="col-sm-8">
+                                                            <input type="text" name="ref_no" id="ref_no"
+                                                                class=" form-control" value="{{ $patient->ref_no ?? '' }}"
+                                                                placeholder="Enter ...">
+                                                        </div>
+
+                                                        <div style="padding-top: 20px;" class="col-sm-3">
+                                                            <label>Organization :</label></div>
+                                                        <div style="padding-top: 20px;" class="col-sm-8">
+                                                            <input type="text" name="organization" id="organization"
+                                                                value="{{ $patient->organization ?? '' }}"
+                                                                class="form-control" placeholder="Enter ...">
+                                                        </div>
+
+                                                        <div style="padding-top: 20px;" class="col-sm-3"> <label>Panchayath
+                                                                :</label></div>
+                                                        <div style="padding-top: 20px;" class="col-sm-8">
+                                                            <input type="text" name="panchayath" id="panchayath"
+                                                                value="{{ $patient->panchayath ?? '' }}"
+                                                                class="form-control " placeholder="Enter ..." required>
+                                                        </div>
+
+                                                        <div style="padding-top: 20px;" class="col-sm-3"> <label>Pincode
+                                                                :</label></div>
+                                                        <div style="padding-top: 20px;" class="col-sm-8">
+                                                            <input type="text" name="pincode" id="pincode"
+                                                                value="{{ $patient->pincode ?? '' }}" class="form-control"
+                                                                placeholder="Enter ..." required>
+                                                        </div>
+                                                        <div style="padding-top: 20px;" class="col-sm-3"> <label>Volunteer
+                                                                :</label></div>
+                                                        <div style="padding-top: 20px;" class="col-sm-8">
+                                                            <input type="text" name="volunteer" id="volunteer"
+                                                                value="{{ $patient->volunteer ?? '' }}" class="form-control"
+                                                                placeholder="Enter ...">
+                                                        </div>
+
+                                                        <div style="padding-top: 20px;" class="col-sm-3"> <label>Location
+                                                                :</label></div>
+                                                        <div style="padding-top: 20px;" class="col-sm-8">
+                                                            <textarea type="text" name="location" id="location"
+                                                                class="form-control" placeholder="Enter ..." required>
+                                                            {{ $patient->location ?? '' }} </textarea>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+
                                             </div>
+
+
                                         </div>
-                                        <div class="box-header with-border mailbox-controls">
+                                        <div class="box-footer with-border mailbox-controls">
                                             <div class="btn-group pull-right">
                                                 <button type="button" class="btn btnPrevious btn-default btn-sm"><i
                                                         class="fa fa-chevron-left"></i></button>
@@ -284,6 +241,12 @@
                                     </div>
                                 </div>
                             </div>
+
+
+
+
+
+
                             <div class="tab-pane" id="prescription">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -421,29 +384,29 @@
                             <div class="tab-pane" id="doctornote">
                                 <div class="col-md-6">
                                     <!--                                <div class="box-header">
-                                                                        <h3 class="box-title">Patients Note</h3>
-                                                                    </div>
-                                                                    <div class="box-body"> 
-                                                                        <div class="form-group">
+                                                                            <h3 class="box-title">Patients Note</h3>
                                                                         </div>
-                                                                    </div>-->
+                                                                        <div class="box-body"> 
+                                                                            <div class="form-group">
+                                                                            </div>
+                                                                        </div>-->
                                     <!-- /.box-body -->
                                     <!-- /.box -->
 
                                 </div>
                                 <!--                            <div class="col-md-6">
-                                
-                                                                <div class="box-header">
-                                                                    <h3 class="box-title">Reception Note</h3>
-                                                                </div>
-                                                                <div class="box-body"> 
-                                                                    <div class="form-group">
+                                    
+                                                                    <div class="box-header">
+                                                                        <h3 class="box-title">Reception Note</h3>
                                                                     </div>
-                                                                </div>
-                                                                 /.box-body 
-                                                                 /.box 
-                                
-                                                            </div>-->
+                                                                    <div class="box-body"> 
+                                                                        <div class="form-group">
+                                                                        </div>
+                                                                    </div>
+                                                                     /.box-body 
+                                                                     /.box 
+                                    
+                                                                </div>-->
                                 <div class="box-header with-border mailbox-controls">
                                     <h3 class="box-title">Doctor's Notes</h3>
                                     <div class="btn-group pull-right">
@@ -458,7 +421,7 @@
                                 <div class="box-body no-padding">
                                     <div class="table-responsive mailbox-messages">
                                         <textarea id="editor1" name="doc_notes" rows="10" cols="80">
-                                        </textarea>
+                                            </textarea>
                                     </div>
                                     <div class="mailbox-controls">
                                         <div class="pull-right">
@@ -489,7 +452,7 @@
                                 <div class="box-body no-padding">
                                     <div class="table-responsive mailbox-messages">
                                         <textarea id="editor2" name="lab_note" rows="10" cols="80">
-                                        </textarea>
+                                            </textarea>
                                     </div>
                                     <div class="mailbox-controls">
                                         <div class="pull-right">
@@ -562,9 +525,9 @@
 
                             </div>
 
-                            <div class="tab-pane" id="observations">
+                            <div class="tab-pane" id="disease_details">
                                 <div class="box-header with-border mailbox-controls">
-                                    <h3 class="box-title">Repertorial Analysis</h3>
+                                    <h3 class="box-title">Disease Details</h3>
                                     <div class="btn-group pull-right">
                                         <button type="button" class="btn btnPrevious btn-default btn-sm"><i
                                                 class="fa fa-chevron-left"></i></button>
@@ -575,7 +538,7 @@
                                 <div class="box-body no-padding">
                                     <div class="table-responsive mailbox-messages">
                                         <textarea id="editor4" name="observation" rows="10" cols="80">
-                                        </textarea>
+                                            </textarea>
                                     </div>
                                     <div class="mailbox-controls">
                                         <div class="pull-right">
@@ -604,21 +567,22 @@
         </section>
     </form>
     <script>
-$(function(){
+        $(function() {
 
 
-    CKEDITOR.replace('editor1');
-    CKEDITOR.replace('editor2');
-    CKEDITOR.replace('editor4');
+            CKEDITOR.replace('editor1');
+            CKEDITOR.replace('editor2');
+            CKEDITOR.replace('editor4');
 
- $('.btnNext').click(function () {
-        $('.nav-pills > .active').next('li').find('a').trigger('click');
-    });
-    $('.btnPrevious').click(function () {
-        $('.nav-pills > .active').prev('li').find('a').trigger('click');
-    });
+            $('.btnNext').click(function() {
+                $('.nav-pills > .active').next('li').find('a').trigger('click');
+            });
+            $('.btnPrevious').click(function() {
+                $('.nav-pills > .active').prev('li').find('a').trigger('click');
+            });
 
-})
-</script>
+        })
+
+    </script>
 
 @endsection

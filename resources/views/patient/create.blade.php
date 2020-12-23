@@ -88,7 +88,7 @@
                                         placeholder="Enter ...">
                                 </div>
 
-                                <div style="padding-top: 20px;" class="col-sm-2"> <label>Panchayath :</label></div>
+                                <div style="padding-top: 20px;" class="col-sm-2"> <label>Panchayath</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-9">
                                     <input type="text" name="panchayath" id="panchayath"
                                         value="{{ $patient->panchayath ?? '' }}" class="form-control "
@@ -607,6 +607,7 @@
             })
 
             $('#addmore3').click(function() {
+                family_members();
                
             })
             $(document).on('click', '.rmbody', function() {

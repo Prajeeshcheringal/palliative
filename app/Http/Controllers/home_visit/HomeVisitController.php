@@ -56,7 +56,7 @@ class HomeVisitController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
                     
-                    $btn = '<a href="bookings/add_data" class="btn btn-success" style="margin-left:20px">  <i class="fa fa-edit"></i></span></a>';
+                    $btn = '<a href="bookings/add_data/'.$data->id.'/'.$data->pat_id.'" class="btn btn-success" style="margin-left:20px">  <i class="fa fa-edit"></i></span></a>';
                     // $btn .= '<a href="patient/create/' . $data->id . '" class="btn btn-success" style="margin:1px"><span><i class="fa fa-edit"></i></span></a>';
                     // $btn .= '<a href="patient/delete/' . $data->id . ' "class="btn btn-danger" style="margin:1px" onclick="';
                     // $btn .= "return confirm('Do You Want to Delete') ";
@@ -69,9 +69,13 @@ class HomeVisitController extends Controller
         return view('home_visit.bookinglist');
     } 
 
-    function bookingsAddData(){
-
-        return view('home_visit.booking_add_data');
+    function bookingsAddData($bok_id,$pat_id){
+        $data =[
+            'bok_id'=>$bok_id,
+            'pat_id' =>$pat_id,
+            'patient'=>Patient::where('id',$pat_id)->first()
+        ];
+        return view('home_visit.booking_add_data', $data);
 
     }
 }
