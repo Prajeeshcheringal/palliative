@@ -31,7 +31,10 @@
     <script src="{{ url('/public') }}/plugins/ckeditor/ckeditor.js"></script>
     <script src="{{ url('/public') }}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <!-- Google Font -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -438,9 +441,7 @@ desired effect
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.js"></script>
-<script>
-    
-    </script>
+
 <script>
     $(document).ajaxStart(function() {
         Pace.restart()
@@ -448,6 +449,12 @@ desired effect
 
 
     $(function() {
+        Toast.fire({
+        icon: 'info',
+        title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+      })
+
+        /* toastr.success('Saved Successfully') */
 
 
         /* $('a').click(function() {
