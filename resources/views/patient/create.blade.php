@@ -81,7 +81,7 @@
                                         value="{{ $patient->ref_no ?? '' }}" placeholder="Enter ...">
                                 </div>
 
-                                <div style="padding-top: 20px;" class="col-sm-2"> <label>Organization:</label></div>
+                                <div style="padding-top: 20px;" class="col-sm-2"> <label>Organization</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-9">
                                     <input type="text" name="organization" id="organization"
                                         value="{{ $patient->organization ?? '' }}" class="form-control"
