@@ -447,12 +447,12 @@ desired effect
         Pace.restart()
     })
 
-
+/* 
     $(function() {
         Toast.fire({
         icon: 'info',
         title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-      })
+      }) */
 
         /* toastr.success('Saved Successfully') */
 
@@ -472,7 +472,7 @@ desired effect
 
         })
         $('form').validate();*/
-    }); 
+    /* });  */
 
 </script>
 

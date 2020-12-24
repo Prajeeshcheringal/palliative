@@ -287,10 +287,10 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="rowi">
+                                        <tbody id="prescrow">
                                             <tr id="add">
-                                                <td class="col-lg-3"><input  id="itemname" type="text"
-                                                        class="form-control " placeholder="Medicine"/></td>
+                                                <td class="col-lg-3"><input id="itemname" type="text"
+                                                        class="form-control " placeholder="Medicine" /></td>
                                                 <td class="col-lg-1">
                                                     <select tabindex="-1" name="potency" class="form-control ">
                                                         <option value="">Select</option>
@@ -301,8 +301,7 @@
                                                     </select>
                                                 </td>
                                                 <td class="col-lg-3"><input id="qty" name="qty" type="text"
-                                                        class="form-control"
-                                                        placeholder="Purpose" /></td>
+                                                        class="form-control" placeholder="Purpose" /></td>
                                                 <td class="col-lg-2"><select tabindex="-1" id="unit_item"
                                                         class="form-control col-lg-1">
                                                         <option value="">Select</option>
@@ -322,10 +321,9 @@
                                                 </td>
                                                 <!-- <td class="col-lg-2"><input id="mrp_item" type="text" class="form-control   text-right two-digits" placeholder="MRP" /></td> -->
                                                 <td class="col-lg-1">
-                                                    <button data-toggle="tooltip" type="button" title="Add To save"
-                                                        class="btn btn-success" href="#">
+                                                    <a title="Add To save" class="btn btn-success prescbtn" href="#">
                                                         <span class="glyphicon glyphicon-plus"></span>
-                                                    </button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -405,30 +403,10 @@
 
                     <div class="tab-pane" id="doctornote">
                         <div class="col-md-6">
-                            <!--                                <div class="box-header">
-                                                                            <h3 class="box-title">Patients Note</h3>
-                                                                        </div>
-                                                                        <div class="box-body"> 
-                                                                            <div class="form-group">
-                                                                            </div>
-                                                                        </div>-->
-                            <!-- /.box-body -->
-                            <!-- /.box -->
+
 
                         </div>
-                        <!--                            <div class="col-md-6">
-                                    
-                                                                    <div class="box-header">
-                                                                        <h3 class="box-title">Reception Note</h3>
-                                                                    </div>
-                                                                    <div class="box-body"> 
-                                                                        <div class="form-group">
-                                                                        </div>
-                                                                    </div>
-                                                                     /.box-body 
-                                                                     /.box 
-                                    
-                                                                </div>-->
+
                         <div class="box-header with-border mailbox-controls">
                             <h3 class="box-title">Doctor's Notes</h3>
                             <div class="btn-group pull-right">
@@ -870,6 +848,7 @@
     $(function () {
 
 
+
         CKEDITOR.replace('editor1');
         CKEDITOR.replace('editor2');
         CKEDITOR.replace('editor4');
@@ -880,8 +859,30 @@
         $('.btnPrevious').click(function () {
             $('.nav-pills > .active').prev('li').find('a').trigger('click');
         });
+        $('.prescbtn').click(function () {
+            presc();
+        });
+
+        $(document).on('click', '.remove', function () {
+            $(this).closest('tr').remove();
+
+        });
 
     })
+
+    function presc() {
+
+        var newrow =
+            '<tr id="add"><td class="col-lg-3"><input id="itemname" type="text" class="form-control " placeholder="Medicine" /></td>' +
+            '<td class="col-lg-1"><input tabindex="-1" name="potency" class="form-control"/></td>' +
+            '<td class="col-lg-3"><input id="qty" name="qty" type="text" class="form-control" placeholder="Purpose" /></td>' +
+            '<td class="col-lg-2"><input tabindex="-1" id="unit_item" class="form-control col-lg-1"></td>' +
+            '<td class="col-lg-2"><input tabindex="-1" id="unit_item" class="form-control col-lg-1"/></td><td class="col-lg-1">' +
+            '<button data-toggle="tooltip" type="button" title="Add To save" class="btn btn-danger remove" href="#"><span class="glyphicon glyphicon-remove"></span>' +
+            '</button></td></tr>';
+        $('#prescrow').append(newrow);
+
+    }
 
 </script>
 
