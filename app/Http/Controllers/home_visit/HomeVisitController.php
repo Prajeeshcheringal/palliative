@@ -78,4 +78,15 @@ class HomeVisitController extends Controller
         return view('home_visit.booking_add_data', $data);
 
     }
+
+    function addDatasave(Request $request)
+    {
+        try {
+
+            Booking::create($request->all());
+            return redirect('bookings')->with('Success', 'Created Successfully');
+        } catch (\Exception $e) {
+            return redirect('bookings')->with('Error', 'Oops Something Went Wrong');
+        }
+    }
 }

@@ -24,43 +24,43 @@
 
                             <div class="row">
 
-                                <div class="col-sm-2"> <label>Reg no :</label></div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-3"> <label>Reg no :</label></div>
+                                <div class="col-sm-3">
                                     <input type="hidden" name="id" id="id" class="form-control"
                                         value="{{ $patient->id ?? '' }}">
                                     <input type="text" name="reg_no" id="reg_no" class=" form-control"
                                         value="{{ $patient->reg_no ?? '' }}" placeholder="Enter ..." required>
                                 </div>
                                 <div> <label class="col-sm-2"> Date :</label></div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-4">
                                     <input type="date" name="date" id="date" class=" form-control"
                                         value="{{ $patient->date ?? '' }}" placeholder="Enter ..." required>
                                 </div>
 
-                                <div style="padding-top: 20px;" class="col-sm-2"> <label>Name :</label></div>
+                                <div style="padding-top: 20px;" class="col-sm-3"> <label>Name :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-9">
                                     <input type="text" name="name" id="name" class="form-control"
                                         value="{{ $patient->name ?? '' }}" placeholder="Enter ..." required maxlength="40">
                                 </div>
 
-                                <div style="padding-top: 20px;" class="col-sm-2"> <label>Age :</label></div>
+                                <div style="padding-top: 20px;" class="col-sm-3"> <label>Age :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-9">
                                     <input type="text" name="age" id="age" class="form-control "
                                         value="{{ $patient->age ?? '' }}" placeholder="Enter ..." required maxlength="3">
                                 </div>
 
-                                <div style="padding-top: 20px;" class="col-sm-2"> <label>Phone :</label></div>
+                                <div style="padding-top: 20px;" class="col-sm-3"> <label>Phone :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-9">
                                     <input type="text" name="phone" id="phone" value="{{ $patient->phone ?? '' }}"
                                         class="form-control" placeholder="Enter ..." required minlength="10" maxlength="10">
                                 </div>
-                                <div style="padding-top: 20px;" class="col-sm-2"> <label>Care of :</label></div>
+                                <div style="padding-top: 20px;" class="col-sm-3"> <label>Care of :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-9">
                                     <input type="text" name="care_of" value="{{ $patient->care_of ?? '' }}" id="care_of"
                                         class="form-control" placeholder="Enter ..." required maxlength="40">
                                 </div>
 
-                                <div style="padding-top: 20px;" class="col-sm-2"> <label>Address :</label></div>
+                                <div style="padding-top: 20px;" class="col-sm-3"> <label>Address :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-9">
                                     <textarea type="text" name="address" id="address" class="form-control"
                                         placeholder="Enter ..." required>{{ $patient->address ?? '' }} </textarea>
@@ -75,39 +75,39 @@
 
                             <div class="row">
 
-                                <div class="col-sm-2"> <label>Ref No :</label></div>
+                                <div class="col-sm-3"> <label>Ref No :</label></div>
                                 <div class="col-sm-9">
                                     <input type="text" name="ref_no" id="ref_no" class=" form-control"
                                         value="{{ $patient->ref_no ?? '' }}" placeholder="Enter ...">
                                 </div>
 
-                                <div style="padding-top: 20px;" class="col-sm-2"> <label>Organization</label></div>
+                                <div style="padding-top: 20px;" class="col-sm-3"> <label>Organization</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-9">
                                     <input type="text" name="organization" id="organization"
                                         value="{{ $patient->organization ?? '' }}" class="form-control"
                                         placeholder="Enter ...">
                                 </div>
 
-                                <div style="padding-top: 20px;" class="col-sm-2"> <label>Panchayath</label></div>
+                                <div style="padding-top: 20px;" class="col-sm-3"> <label>Panchayath</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-9">
                                     <input type="text" name="panchayath" id="panchayath"
                                         value="{{ $patient->panchayath ?? '' }}" class="form-control "
                                         placeholder="Enter ..." required>
                                 </div>
 
-                                <div style="padding-top: 20px;" class="col-sm-2"> <label>Pincode :</label></div>
+                                <div style="padding-top: 20px;" class="col-sm-3"> <label>Pincode :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-9">
                                     <input type="text" name="pincode" id="pincode" value="{{ $patient->pincode ?? '' }}"
                                         class="form-control" placeholder="Enter ..." required>
                                 </div>
-                                <div style="padding-top: 20px;" class="col-sm-2"> <label>Volunteer :</label></div>
+                                <div style="padding-top: 20px;" class="col-sm-3"> <label>Volunteer :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-9">
                                     <input type="text" name="volunteer" id="volunteer"
                                         value="{{ $patient->volunteer ?? '' }}" class="form-control"
                                         placeholder="Enter ...">
                                 </div>
 
-                                <div style="padding-top: 20px;" class="col-sm-2"> <label>Location :</label></div>
+                                <div style="padding-top: 20px;" class="col-sm-3"> <label>Location :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-9">
                                     <textarea type="text" name="location" id="location" class="form-control"
                                         placeholder="Enter ..." required> {{ $patient->location ?? '' }} </textarea>

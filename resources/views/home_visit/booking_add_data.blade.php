@@ -21,13 +21,16 @@
                         <ul class="nav nav-pills nav-stacked">
                             <li class="active"><a href="#activity" data-toggle="tab" id="pat_name"
                                     name="pat_name">Patient Details</a></li>
+                            <li><a href="#diagnosis" data-toggle="tab">Primary Data </a></li>
+
                             <li><a href="#disease_details" data-toggle="tab">Disease Details</a></li>
                             <li><a href="#doctornote" data-toggle="tab">Doctor's Notes</a></li>
 
                             <li><a href="#labnote" data-toggle="tab">Mental & Sperictual</a></li>
-                            <li><a href="#diagnosis" data-toggle="tab">Primary Data </a></li>
                             <li><a href="#prescription" data-toggle="tab">Prescription</a></li>
-                            <li><a href="#timeline" data-toggle="tab">Time Line</a></li>
+                            <li><a href="#team_members" data-toggle="tab">Team Members</a></li>
+
+                            <li><a href="#timeline" data-toggle="tab">History</a></li>
                         </ul>
 
                     </div>
@@ -348,11 +351,13 @@
                         </div>
 
                     </div>
-                    <!-- /.tab-pane -->
-                    {{-- <div class="tab-pane" id="timeline">
-                                <!-- The timeline -->
+
+                    <div class="tab-pane" id="team_members">
+                        <div class="row">
+                            <div class="col-md-12">
+
                                 <div class="box-header with-border mailbox-controls">
-                                    <h3 class="box-title">Time Line</h3>
+                                    <h3 class="box-title">Team Members</h3>
                                     <div class="btn-group pull-right">
                                         <button type="button" class="btn btnPrevious btn-default btn-sm"><i
                                                 class="fa fa-chevron-left"></i></button>
@@ -360,46 +365,132 @@
                                                 class="fa fa-chevron-right"></i></button>
                                     </div>
                                 </div>
-                                <ul class="timeline timeline-inverse">
-
-                                    <!-- timeline time label -->
-                                    <?php foreach ($details as $item) { ?>
-                                    <li class="time-label">
-                                        <span class="bg-red"> <?php echo $item['Bok_Date']; ?> </span>
-
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-envelope bg-blue"></i>
-
-                                        <div class="timeline-item">
-                                            <h3 class="timeline-header"><a href="#">Observations & Diagnosis</a> </h3>
-                                            <div class="timeline-body">
-                                                <b>Observations :</b> <?php echo $item['Bok_DocNote']; ?> <br></br>
-                                                <b>Diagnosis :</b> <?php echo $item['Bok_DoctDescription'];
-                                                                    ?> <br></br>
-                                                <b>Lab Notes :</b> <?php echo $item['Bok_Labnote']; ?> <br></br>
-                                                <b>Doctor's Notes :</b> <?php echo $item['Bok_Summery']; ?> <br></br>
-                                            </div>
-                                            <h3 class="timeline-header"><a href="#">Prescription</a> </h3>
-                                            <div class="timeline-body">
-                                                <?php echo $item['Pre_note']; ?> <br></br>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <?php } ?>
+                                <div class="box-body" style="margin-top: 15px;margin-bottom:50px;">
+                                    <table class="table table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Role</th>
+                                                <th>Contact No</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="teamrow">
+                                            <tr id="">
+                                                <td class="col-lg-3"><input id="" type="text" class="form-control "
+                                                        placeholder="Name" /></td>
+                                                <td class="col-lg-3">
+                                                    <select tabindex="-1" name="" class="form-control ">
+                                                        <option value="">Select</option>
+                                                        <option value="">Doctor</option>
+                                                        <option value="">Nurse</option>
+                                                        <option value="">Driver</option>
+                                                        <option value="">Volunteer</option>
 
 
-                                    <li>
-                                        <i class="fa fa-clock-o bg-gray"></i>
-                                    </li>
-                                </ul>
-                                <div class="btn-group pull-right">
-                                    <button type="button" class="btn btnPrevious btn-default btn-sm"><i
-                                            class="fa fa-chevron-left"></i></button>
-                                    <button type="button" class="btn btnNext btn-default btn-sm"><i
-                                            class="fa fa-chevron-right"></i></button>
+                                                    </select>
+                                                </td>
+                                                <td class="col-lg-3"><input id="qty" name="qty" type="text"
+                                                        class="form-control" placeholder="Contact No" /></td>
+
+
+                                                <td class="col-lg-1">
+                                                    <a title="Add To save" class="btn btn-success teambtn" href="#">
+                                                        <span class="glyphicon glyphicon-plus"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
                                 </div>
-                            </div> --}}
+                                <div class="box-header with-border mailbox-controls">
+                                    <div class="btn-group pull-right">
+                                        <button type="button" class="btn btnPrevious btn-default btn-sm"><i
+                                                class="fa fa-chevron-left"></i></button>
+                                        <button type="button" class="btnNext btn btn-default btn-sm"><i
+                                                class="fa fa-chevron-right"></i></button>
+                                    </div>
+                                </div>
+                                <!-- /.box-body -->
+                                <!-- /.box -->
+
+                            </div>
+                            <!-- /.col (left) -->
+
+                            <!-- /.col (right) -->
+                        </div>
+
+                    </div>
+                    <!-- /.tab-pane -->
+
+
+                    <div class="tab-pane" id="timeline">
+                        <!-- The timeline -->
+                        <div class="box-header with-border mailbox-controls">
+                            <h3 class="box-title">History </h3>
+                            <div class="btn-group pull-right">
+                                <button type="button" class="btn btnPrevious btn-default btn-sm"><i
+                                        class="fa fa-chevron-left"></i></button>
+                                <button type="button" class="btn btnNext btn-default btn-sm"><i
+                                        class="fa fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body" style="margin-top: 15px;margin-bottom:50px;">
+
+                                   
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="box-group" id="accordion">
+                                        @for($i=0; $i<5; $i++)
+
+                                            <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                                            <div class="panel box box-primary">
+                                                <div class="box-header with-border">
+                                                    <h4 class="box-title">
+                                                        <a data-toggle="collapse" data-parent="#accordion"
+                                                            href="#collapseOne{{$i}}">
+                                                            {{Date('d/M/Y')}}
+                                                        </a>
+                                                    </h4>
+                                                </div>
+                                                <div id="collapseOne{{$i}}" class="panel-collapse collapse">
+                                                    <div class="box-body">
+
+                                                        Anim pariatur cliche reprehenderit, enim eiusmod high life
+                                                        accusamus
+                                                        terry richardson ad squid. 3
+                                                        wolf moon officia aute, non cupidatat skateboard dolor brunch.
+                                                        Food
+                                                     
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endfor
+                                        </div>
+                                      
+                                    </div>
+                                  
+                        </div>
+                        <div class="box-header with-border mailbox-controls">
+                            <div class="btn-group pull-right">
+                                <button type="button" class="btn btnPrevious btn-default btn-sm"><i
+                                        class="fa fa-chevron-left"></i></button>
+                                <button type="button" class="btnNext btn btn-default btn-sm"><i
+                                        class="fa fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
 
                     <div class="tab-pane" id="doctornote">
                         <div class="col-md-6">
@@ -509,7 +600,7 @@
                                                         placeholder="Enter ..." required maxlength="40">
                                                 </div>
 
-                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>പേരതിസരശുചെ
+                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>പൊതു അവസ്ഥ :
                                                     </label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <textarea type="text" name="location" id="location"
@@ -518,29 +609,24 @@
                                                 </div>
 
 
-                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>പേരതിസരശുചെ
+                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>പരിസര ശുചിത്വം
+                                                        :
                                                     </label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <textarea type="text" name="location" id="location"
                                                         class="form-control" placeholder="Enter ..." required>
                                                     {{ $patient->location ?? '' }} </textarea>
                                                 </div>
-                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>പേരതിസരശുചെ
+                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>തൊലി / നഖം :
                                                     </label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <textarea type="text" name="location" id="location"
                                                         class="form-control" placeholder="Enter ..." required>
                                                     {{ $patient->location ?? '' }} </textarea>
                                                 </div>
-                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>പേരതിസരശുചെ
-                                                    </label></div>
-                                                <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="location" id="location"
-                                                        class="form-control" placeholder="Enter ..." required>
-                                                    {{ $patient->location ?? '' }} </textarea>
+                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>തല /മുടി :
+                                                    </label>
                                                 </div>
-                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>പേരതിസരശുചെ
-                                                    </label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <textarea type="text" name="location" id="location"
                                                         class="form-control" placeholder="Enter ..." required>
@@ -563,15 +649,17 @@
                                                         placeholder="Enter ...">
                                                 </div>
 
-                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>സമയ
-                                                        വതിനത</label></div>
+                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>വിനോദങ്ങൾ
+                                                        :</label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <input type="text" name="name" id="name" class="form-control"
                                                         value="{{ $patient->name ?? '' }}"
-                                                        placeholder="വതിഹനഹദങ്ങള്‍" required maxlength="40">
+                                                        placeholder="സമയ വിനയോഗം " required maxlength="40">
                                                 </div>
 
-                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>കപേഹതു </label>
+
+
+                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>വായ : </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <textarea type="text" name="location" id="location"
@@ -579,7 +667,8 @@
                                                     {{ $patient->location ?? '' }} </textarea>
                                                 </div>
 
-                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>കപേഹതു </label>
+                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>പെരിനിയം :
+                                                    </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <textarea type="text" name="location" id="location"
@@ -587,15 +676,16 @@
                                                     {{ $patient->location ?? '' }} </textarea>
                                                 </div>
 
-                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>കപേഹതു </label>
+                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>ഹിഡൻ ഏരിയകൾ :
+                                                    </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <textarea type="text" name="location" id="location"
                                                         class="form-control" placeholder="Enter ..." required>
                                                     {{ $patient->location ?? '' }} </textarea>
                                                 </div>
-
-                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>കപേഹതു </label>
+                                                <div style="padding-top: 20px;" class="col-sm-4"> <label>മറ്റ് ചികിത്സാ
+                                                        രീതികൾ: </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <textarea type="text" name="location" id="location"
@@ -607,6 +697,7 @@
                                             </div>
 
                                         </div>
+                                        <hr>
                                         <!-- /.box-body -->
                                     </div>
                                     <div class="mailbox-controls">
@@ -638,75 +729,75 @@
 
                                             <div class="row">
                                                 <div style="padding-top: 20px;" class="col-sm-4">
-                                                    <label>പേഹനതീയമം :</label></div>
+                                                    <label>ആഹാരം :</label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <div class="form-group">
                                                         <div class="radio">
                                                             <label>
                                                                 <input type="radio" name="optionsRadios"
                                                                     id="optionsRadios1" value="option1" checked>
-                                                                കെഴതിക്കുനണഴ
-                                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                കൃത്യമായി കഴിക്കുന്നുണ്ട്
+                                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                             <label>
                                                                 <input type="radio" name="optionsRadios"
                                                                     id="optionsRadios2" value="option2">
-                                                                ഇല </label>
+                                                                ഇല്ല </label>
                                                         </div>
 
                                                     </div>
                                                 </div>
 
                                                 <div style="padding-top: 20px;" class="col-sm-4">
-                                                    <label>മൂതമം :</label></div>
+                                                    <label>പാനിയം :</label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <div class="form-group">
                                                         <div class="radio">
                                                             <label>
                                                                 <input type="radio" name="optionsRadios"
                                                                     id="optionsRadios1" value="option1" checked>
-                                                                കെഴതിക്കുനണഴ
-                                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                കൃത്യമായി കഴിക്കുന്നുണ്ട്
+                                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                             <label>
                                                                 <input type="radio" name="optionsRadios"
                                                                     id="optionsRadios2" value="option2">
-                                                                ഇല </label>
+                                                                ഇല്ല </label>
                                                         </div>
 
                                                     </div>
                                                 </div>
 
                                                 <div style="padding-top: 20px;" class="col-sm-4">
-                                                    <label>ഹശഹധന :</label></div>
+                                                    <label>മൂത്രം :</label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <div class="form-group">
                                                         <div class="radio">
                                                             <label>
                                                                 <input type="radio" name="optionsRadios"
                                                                     id="optionsRadios1" value="option1" checked>
-                                                                കെഴതിക്കുനണഴ
+                                                                കൃത്യമായി നടക്കുന്നുണ്ട്
                                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                             <label>
                                                                 <input type="radio" name="optionsRadios"
                                                                     id="optionsRadios2" value="option2">
-                                                                ഇല </label>
+                                                                ഇല്ല </label>
                                                         </div>
 
                                                     </div>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-4">
-                                                    <label>ശരതീര ശുചെതീകെരണമം &nbsp;:</label></div>
+                                                    <label>ശോധന &nbsp;:</label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <div class="form-group">
                                                         <div class="radio">
                                                             <label>
                                                                 <input type="radio" name="optionsRadios"
                                                                     id="optionsRadios1" value="option1" checked>
-                                                                കെഴതിക്കുനണഴ
+                                                                കൃത്യമായി നടക്കുന്നുണ്ട്
                                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                             <label>
                                                                 <input type="radio" name="optionsRadios"
                                                                     id="optionsRadios2" value="option2">
-                                                                ഇല </label>
+                                                                ഇല്ല </label>
                                                         </div>
 
                                                     </div>
@@ -722,57 +813,59 @@
                                             <div class="row">
 
 
-                                                <div style="padding-top: 20px;" class="col-sm-4">
-                                                    <label>ഉറകമം :</label></div>
-                                                <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <div class="form-group">
-                                                        <div class="radio">
-                                                            <label>
-                                                                <input type="radio" name="optionsRadios"
-                                                                    id="optionsRadios1" value="option1" checked>
-                                                                കെഴതിക്കുനണഴ
-                                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                            <label>
-                                                                <input type="radio" name="optionsRadios"
-                                                                    id="optionsRadios2" value="option2">
-                                                                ഇല </label>
-                                                        </div>
 
-                                                    </div>
-                                                </div>
                                                 <div style="padding-top: 20px;" class="col-sm-4">
-                                                    <label>വശ്യഹയ :</label></div>
+                                                    <label>വ്യായാമം :</label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <div class="form-group">
                                                         <div class="radio">
                                                             <label>
                                                                 <input type="radio" name="optionsRadios"
                                                                     id="optionsRadios1" value="option1" checked>
-                                                                കെഴതിക്കുനണഴ
+                                                                കൃത്യമായി നടക്കുന്നുണ്ട്
                                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                             <label>
                                                                 <input type="radio" name="optionsRadios"
                                                                     id="optionsRadios2" value="option2">
-                                                                ഇല </label>
+                                                                ഇല്ല </label>
                                                         </div>
 
                                                     </div>
                                                 </div>
 
                                                 <div style="padding-top: 20px;" class="col-sm-4">
-                                                    <label>ആഹഹരമം :</label></div>
+                                                    <label>ഉറക്കം &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <div class="form-group">
                                                         <div class="radio">
                                                             <label>
                                                                 <input type="radio" name="optionsRadios"
                                                                     id="optionsRadios1" value="option1" checked>
-                                                                കെഴതിക്കുനണഴ
+                                                                ആവശിയതിനുണ്ട്
                                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                             <label>
                                                                 <input type="radio" name="optionsRadios"
                                                                     id="optionsRadios2" value="option2">
-                                                                ഇല </label>
+                                                                ഇല്ല </label>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div style="padding-top: 20px;" class="col-sm-4">
+                                                    <label>ശരീര ശുചീകരണം :</label></div>
+                                                <div style="padding-top: 20px;" class="col-sm-8">
+                                                    <div class="form-group">
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="optionsRadios"
+                                                                    id="optionsRadios1" value="option1" checked>
+                                                                കൃത്യമായി നടക്കുന്നുണ്ട്
+                                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            <label>
+                                                                <input type="radio" name="optionsRadios"
+                                                                    id="optionsRadios2" value="option2">
+                                                                ഇല്ല </label>
                                                         </div>
 
                                                     </div>
@@ -859,11 +952,21 @@
         $('.btnPrevious').click(function () {
             $('.nav-pills > .active').prev('li').find('a').trigger('click');
         });
+
         $('.prescbtn').click(function () {
             presc();
         });
 
         $(document).on('click', '.remove', function () {
+            $(this).closest('tr').remove();
+
+        });
+
+        $('.teambtn').click(function () {
+            addteam();
+        });
+
+        $(document).on('click', '.teamremove', function () {
             $(this).closest('tr').remove();
 
         });
@@ -881,6 +984,18 @@
             '<button data-toggle="tooltip" type="button" title="Add To save" class="btn btn-danger remove" href="#"><span class="glyphicon glyphicon-remove"></span>' +
             '</button></td></tr>';
         $('#prescrow').append(newrow);
+
+    }
+
+    function addteam() {
+
+        var newrow =
+            '<tr id=""><td class="col-lg-3"><input id="" type="text" class="form-control " placeholder="Name" /></td>' +
+            '<td class="col-lg-3"><input tabindex="-1" name="" class="form-control "/></td>' +
+            '<td class="col-lg-3"><input id="qty" name="qty" type="text" class="form-control" placeholder="Contact No" /></td>' +
+            '<td class="col-lg-1"><a title="Add To save" class="btn btn-danger teamremove" href="#"> <span class="glyphicon glyphicon-remove"></span>' +
+            '</a></td> </tr>';
+        $('#teamrow').append(newrow);
 
     }
 

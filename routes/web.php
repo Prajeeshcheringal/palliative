@@ -31,4 +31,5 @@ Route::get('/addvisit', 'home_visit\HomeVisitController@listall')->name('addvisi
 Route::post('/booking/save', 'home_visit\HomeVisitController@save');
 Route::get('/bookings', 'home_visit\HomeVisitController@bookings')->name('bookings');
 Route::get('/bookings/add_data/{bid}/{pid}', 'home_visit\HomeVisitController@bookingsAddData');
+Route::any('/bookings/add_data/save', 'home_visit\HomeVisitController@AddDataSave');
 
