@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 23, 2020 at 10:48 PM
+-- Generation Time: Dec 27, 2020 at 11:59 PM
 -- Server version: 5.7.30-0ubuntu0.18.04.1
 -- PHP Version: 7.0.33-29+ubuntu18.04.1+deb.sury.org+1
 
@@ -30,7 +30,27 @@ CREATE TABLE `bookings` (
   `id` int(11) NOT NULL,
   `pat_id` int(11) DEFAULT NULL,
   `date` date DEFAULT NULL,
-  `note` text,
+  `bok_note` text,
+  `disease_details` text,
+  `doctors_note` text,
+  `mental_note` text,
+  `bp` varchar(50) DEFAULT NULL,
+  `pulse` varchar(20) DEFAULT NULL,
+  `tempreture` varchar(20) DEFAULT NULL,
+  `general_state` text,
+  `mouth` text,
+  `skin` text,
+  `head` text,
+  `hidden_area` text,
+  `other_treatment` text,
+  `surroundings` text,
+  `food` varchar(10) DEFAULT NULL,
+  `water` varchar(10) DEFAULT NULL,
+  `urine` varchar(10) DEFAULT NULL,
+  `exercise` varchar(10) DEFAULT NULL,
+  `body_cleaning` varchar(10) DEFAULT NULL,
+  `sleep` varchar(10) DEFAULT NULL,
+  `constipation` varchar(10) DEFAULT NULL,
   `status` int(11) DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -40,12 +60,9 @@ CREATE TABLE `bookings` (
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`id`, `pat_id`, `date`, `note`, `status`, `created_at`, `updated_at`) VALUES
-(16, 16, '2020-12-21', 'ok', 1, '2020-12-20 02:12:42', '2020-12-20 02:12:42'),
-(17, 6, '2020-12-13', 'ghftg', 1, '2020-12-20 02:13:10', '2020-12-20 02:13:10'),
-(18, 6, '2020-12-13', 'ghftg', 1, '2020-12-20 02:13:10', '2020-12-20 02:13:10'),
-(19, 16, '2020-12-20', 'hhj', 1, '2020-12-20 02:56:54', '2020-12-20 02:56:54'),
-(20, 16, '2020-12-23', NULL, 1, '2020-12-22 13:51:37', '2020-12-22 13:51:37');
+INSERT INTO `bookings` (`id`, `pat_id`, `date`, `bok_note`, `disease_details`, `doctors_note`, `mental_note`, `bp`, `pulse`, `tempreture`, `general_state`, `mouth`, `skin`, `head`, `hidden_area`, `other_treatment`, `surroundings`, `food`, `water`, `urine`, `exercise`, `body_cleaning`, `sleep`, `constipation`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, '2020-12-14', 'hhhhhhhhhhhh', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-12-27 01:44:55', '2020-12-27 01:44:55'),
+(2, 1, '2020-12-14', 'hhhhhhhhhhhh', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-12-27 01:44:55', '2020-12-27 01:44:55');
 
 -- --------------------------------------------------------
 
@@ -78,8 +95,7 @@ CREATE TABLE `patients` (
 --
 
 INSERT INTO `patients` (`id`, `reg_no`, `date`, `name`, `age`, `phone`, `address`, `care_of`, `panchayath`, `ref_no`, `organization`, `pincode`, `volunteer`, `location`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(6, 'gsdgdsg', '2020-12-08', 'prajeesh p', 22, 9567303152, 'prajeesh p\r\ncheringal parambu', 'dsg', 'gs', 'gsd', 'gsd', 678572, 'prajeesh p', 'htyhtry', '2020-12-07 11:17:17', '2020-12-07 11:17:17', NULL),
-(16, 'fdsfds', '2020-12-15', 'Adhithya', 32, 9567303152, 'prajeesh p\r\ncheringal parambu', 'Chandran', 'gs', 'gsd', 'gsd', 678572, 'prajeesh p', 'gsdgfdsggdsg', '2020-12-12 11:05:32', '2020-12-12 23:36:26', NULL);
+(1, 'gsdgdsg', '2020-12-01', 'prajeesh p', 22, 9567303152, 'prajeesh p\r\ncheringal parambu', 'Chandran', 'gs', 'gsd', 'gsd', 678572, 'prajeesh p', 'l', '2020-12-27 01:44:26', '2020-12-27 01:44:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -98,15 +114,6 @@ CREATE TABLE `patient_body_charts` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `patient_body_charts`
---
-
-INSERT INTO `patient_body_charts` (`id`, `pat_id`, `body_part`, `side`, `grade`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 4, 'leg', NULL, '10', '2020-12-06 13:09:40', '2020-12-06 13:09:40', NULL),
-(2, 5, 'hand', NULL, '10', '2020-12-06 13:11:15', '2020-12-06 13:11:15', NULL),
-(3, 5, 'ace', NULL, '10', '2020-12-06 13:11:15', '2020-12-06 13:11:15', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -120,17 +127,6 @@ CREATE TABLE `patient_difficulties` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `patient_difficulties`
---
-
-INSERT INTO `patient_difficulties` (`id`, `pat_id`, `dificulty`, `created_at`, `updated_at`) VALUES
-(1, 13, 'on', '2020-12-10 03:53:48', '2020-12-10 03:53:48'),
-(2, 13, 'on', '2020-12-10 03:53:48', '2020-12-10 03:53:48'),
-(3, 13, 'on', '2020-12-10 03:53:48', '2020-12-10 03:53:48'),
-(4, 13, 'on', '2020-12-10 03:53:48', '2020-12-10 03:53:48'),
-(5, 13, 'on', '2020-12-10 03:53:48', '2020-12-10 03:53:48');
 
 -- --------------------------------------------------------
 
@@ -153,14 +149,6 @@ CREATE TABLE `patient_family_members` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `patient_family_members`
---
-
-INSERT INTO `patient_family_members` (`id`, `pat_id`, `name`, `relation`, `age`, `education`, `married`, `job`, `disease`, `remark`, `created_at`, `updated_at`) VALUES
-(1, 7, 'werewr', 'rwerew', 1, '1', 'yes', 'hgfh', 'hfgh', 'hgfhghgh', '2020-12-07 11:18:06', '2020-12-07 11:18:06'),
-(2, 7, 'fsdfdsf', 'fdsf', 12, '12', 'yes', 'yes', 'adasd', 'dasdsa', '2020-12-07 11:18:06', '2020-12-07 11:18:06');
-
 -- --------------------------------------------------------
 
 --
@@ -176,15 +164,6 @@ CREATE TABLE `patient_family_trees` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `patient_family_trees`
---
-
-INSERT INTO `patient_family_trees` (`id`, `pat_id`, `name`, `relation`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 8, 'name', 'rel', '2020-12-07 11:36:59', '2020-12-07 11:36:59', NULL),
-(2, 8, 'fsdf', 'fsdds', '2020-12-07 11:36:59', '2020-12-07 11:36:59', NULL),
-(12, 16, 'prajeesh', 'devep', '2020-12-13 00:02:31', '2020-12-13 00:02:31', NULL);
 
 -- --------------------------------------------------------
 
@@ -209,12 +188,7 @@ CREATE TABLE `patient_other_details` (
 --
 
 INSERT INTO `patient_other_details` (`id`, `pat_id`, `need_food`, `report_of_person`, `patient_assumptiom`, `relative_assumption`, `patient_social`, `created_at`, `updated_at`) VALUES
-(16, 16, 'dfgdfgfdgfd', 'hgfh  fdgfd gfdgfg', 'hgfhgf gfdgfdggfd fd gfdgfd', 'hgfh fdgdfg fgdfgf g', 'hgfhgfh  gdfgfd g', '2020-12-13 00:02:31', '2020-12-13 00:02:31'),
-(19, 17, NULL, NULL, NULL, NULL, NULL, '2020-12-18 12:30:04', '2020-12-18 12:30:04'),
-(20, 18, NULL, NULL, NULL, NULL, NULL, '2020-12-18 12:38:23', '2020-12-18 12:38:23'),
-(21, 19, NULL, NULL, NULL, NULL, NULL, '2020-12-18 12:53:16', '2020-12-18 12:53:16'),
-(22, 20, NULL, NULL, NULL, NULL, NULL, '2020-12-18 12:53:30', '2020-12-18 12:53:30'),
-(23, 21, NULL, NULL, NULL, NULL, NULL, '2020-12-18 12:54:14', '2020-12-18 12:54:14');
+(2, 1, NULL, NULL, NULL, NULL, NULL, '2020-12-27 01:44:26', '2020-12-27 01:44:26');
 
 --
 -- Indexes for dumped tables
@@ -224,7 +198,8 @@ INSERT INTO `patient_other_details` (`id`, `pat_id`, `need_food`, `report_of_per
 -- Indexes for table `bookings`
 --
 ALTER TABLE `bookings`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `patient_relation` (`pat_id`);
 
 --
 -- Indexes for table `patients`
@@ -270,37 +245,47 @@ ALTER TABLE `patient_other_details`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `patient_body_charts`
 --
 ALTER TABLE `patient_body_charts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `patient_difficulties`
 --
 ALTER TABLE `patient_difficulties`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `patient_family_members`
 --
 ALTER TABLE `patient_family_members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `patient_family_trees`
 --
 ALTER TABLE `patient_family_trees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `patient_other_details`
 --
 ALTER TABLE `patient_other_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD CONSTRAINT `patient_relation` FOREIGN KEY (`pat_id`) REFERENCES `patients` (`id`) ON DELETE CASCADE;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

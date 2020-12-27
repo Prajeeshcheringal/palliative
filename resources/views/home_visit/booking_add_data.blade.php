@@ -233,9 +233,12 @@
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>Location
                                                         :</label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="location" id="location"
-                                                        class="form-control" placeholder="Enter ..." required>
-                                                    {{ $patient->location ?? '' }} </textarea>
+                                                 
+                                                    <textarea type="text" name="address" id="address"
+                                                    class="form-control" placeholder="Enter ..."
+                                                    required>{{ $patient->location ?? '' }} </textarea>
+
+
                                                 </div>
 
                                             </div>
@@ -445,7 +448,7 @@
                                         @for($i=0; $i<5; $i++)
 
                                             <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                                            <div class="panel box box-primary">
+                                            <div class="panel box box-">
                                                 <div class="box-header with-border">
                                                     <h4 class="box-title">
                                                         <a data-toggle="collapse" data-parent="#accordion"
@@ -603,9 +606,10 @@
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>പൊതു അവസ്ഥ :
                                                     </label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="location" id="location"
-                                                        class="form-control" placeholder="Enter ..." required>
-                                                    {{ $patient->location ?? '' }} </textarea>
+                                                    <textarea type="text" name="address" id="address"
+                                                    class="form-control" placeholder="Enter ..."
+                                                    required>{{ $patient->location ?? '' }} </textarea>
+
                                                 </div>
 
 
@@ -613,24 +617,27 @@
                                                         :
                                                     </label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="location" id="location"
-                                                        class="form-control" placeholder="Enter ..." required>
-                                                    {{ $patient->location ?? '' }} </textarea>
+                                                    <textarea type="text" name="address" id="address"
+                                                    class="form-control" placeholder="Enter ..."
+                                                    required>{{ $patient->location ?? '' }} </textarea>
+
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>തൊലി / നഖം :
                                                     </label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="location" id="location"
-                                                        class="form-control" placeholder="Enter ..." required>
-                                                    {{ $patient->location ?? '' }} </textarea>
+                                                    <textarea type="text" name="address" id="address"
+                                                    class="form-control" placeholder="Enter ..."
+                                                    required>{{ $patient->location ?? '' }} </textarea>
+
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>തല /മുടി :
                                                     </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="location" id="location"
-                                                        class="form-control" placeholder="Enter ..." required>
-                                                    {{ $patient->location ?? '' }} </textarea>
+                                                    <textarea type="text" name="address" id="address"
+                                                    class="form-control" placeholder="Enter ..."
+                                                    required>{{ $patient->location ?? '' }} </textarea>
+
                                                 </div>
 
 
@@ -662,35 +669,39 @@
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>വായ : </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="location" id="location"
-                                                        class="form-control" placeholder="Enter ..." required>
-                                                    {{ $patient->location ?? '' }} </textarea>
+                                                    <textarea type="text" name="address" id="address"
+                                                    class="form-control" placeholder="Enter ..."
+                                                    required>{{ $patient->location ?? '' }} </textarea>
+
                                                 </div>
 
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>പെരിനിയം :
                                                     </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="location" id="location"
-                                                        class="form-control" placeholder="Enter ..." required>
-                                                    {{ $patient->location ?? '' }} </textarea>
+                                                    <textarea type="text" name="address" id="address"
+                                                    class="form-control" placeholder="Enter ..."
+                                                    required>{{ $patient->location ?? '' }} </textarea>
+
                                                 </div>
 
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>ഹിഡൻ ഏരിയകൾ :
                                                     </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="location" id="location"
-                                                        class="form-control" placeholder="Enter ..." required>
-                                                    {{ $patient->location ?? '' }} </textarea>
+                                                    <textarea type="text" name="address" id="address"
+                                                    class="form-control" placeholder="Enter ..."
+                                                    required>{{ $patient->location ?? '' }} </textarea>
+
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>മറ്റ് ചികിത്സാ
                                                         രീതികൾ: </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="location" id="location"
-                                                        class="form-control" placeholder="Enter ..." required>
-                                                    {{ $patient->location ?? '' }} </textarea>
+                                                    <textarea type="text" name="address" id="address"
+                                                    class="form-control" placeholder="Enter ..."
+                                                    required>{{ $patient->location ?? '' }} </textarea>
+
                                                 </div>
 
 
