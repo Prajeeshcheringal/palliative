@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\patients\Patient;
 use App\Model\home_visit\Booking;
 use Yajra\DataTables\DataTables;
-
+use Illuminate\Support\Facades\DB;
 class HomeVisitController extends Controller
 {
     function listall(Request $request)
@@ -73,7 +73,12 @@ class HomeVisitController extends Controller
         $data =[
             'bok_id'=>$bok_id,
             'pat_id' =>$pat_id,
-            'patient'=>Patient::where('id',$pat_id)->first()
+            'patient'=>Patient::where('id',$pat_id)->first(),
+            'booking'=>Booking::where('id',$bok_id)->first(),
+            'prescription'=>DB::table('prescription')->where('bok_id',$bok_id)->get(),
+            'team_members'=>DB::table('team_members')->where('bok_id',$bok_id)->get(),
+
+
         ];
         return view('home_visit.booking_add_data', $data);
 
@@ -81,12 +86,70 @@ class HomeVisitController extends Controller
 
     function addDatasave(Request $request)
     {
-        try {
+            $teamcount=0; $prescount = 0;
+       // try {
 
-            Booking::create($request->all());
-            return redirect('bookings')->with('Success', 'Created Successfully');
-        } catch (\Exception $e) {
-            return redirect('bookings')->with('Error', 'Oops Something Went Wrong');
-        }
+
+
+
+            $bok_id =$request->bok_id;
+            Booking::find($bok_id)->update($request->all());
+            DB::table('prescription')->where('bok_id',$bok_id)->delete();
+            DB::table('team_members')->where('bok_id',$bok_id)->delete();
+
+            if(isset($request->medicine)){
+
+                $prescount = count($request->medicine);
+
+               
+                for($i=0;$i<$prescount;$i++){
+                    $prescdata =[
+                        'bok_id'=>$bok_id,
+                        'pat_id'=>$request->pat_id,
+                        'medicine' =>$request->medicine[$i],
+                        'dose' =>$request->dose[$i],
+                        'availability' => $request->availability[$i],
+                        'usage' => $request->usage[$i],
+                        'purpose' => $request->purpose[$i],
+    
+                    ];
+                    DB::table('prescription')->insert($prescdata);
+                }
+
+            }
+
+            if(isset($request->team_name)){
+
+                $teamcount = count($request->team_name);
+
+               
+                for($i=0;$i<$teamcount;$i++){
+                    $teamdata =[
+                        'bok_id'=>$bok_id,
+                        'pat_id'=>$request->pat_id,
+                        'team_name' =>$request->team_name[$i],
+                        'role' =>$request->role[$i],
+                        'contact_no' => $request->contact_no[$i]
+                    
+    
+                    ];
+                    DB::table('team_members')->insert($teamdata);
+                }
+
+            }
+
+
+
+            return redirect('bookings')->with('Success', 'Saved Successfully');
+
+
+
+
+
+
+
+        // } catch (\Exception $e) {
+        //     return redirect('bookings')->with('Error', 'Oops Something Went Wrong');
+        // }
     }
 }

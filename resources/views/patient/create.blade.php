@@ -1,10 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <style>
-        }
 
-    </style>
     <form action="{{ url('/patient/save') }}" method="POST">
         <div id="patient_details">
             <div class="box">
@@ -115,6 +112,9 @@
 
                             </div>
                         </div>
+
+
+
                     </div>
 
                 </div>
@@ -341,14 +341,14 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <input type="text" class="form-control" disabled>
+                                            <input type="text" class="form-control" placeholder="Part" id="body_part">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" placeholder="Side" id="side">
 
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" placeholder="Grade" id="grade">
 
                                         </td>
                                         <td><a id="addmore1" class="btn btn-success form-control"><i
@@ -377,17 +377,17 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" placeholder="Sl No">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" disabled>
+                                            <input type="text" class="form-control" id="family_tree_name" placeholder="Name">
 
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control"id ="family_tree_relation" placeholder="Relation">
 
                                         </td>
-                                        <td><a class="btn btn-success form-control " id="addmore2" onclick="family_tree('','')"><i
+                                        <td><a class="btn btn-success form-control " id="addmore2"><i
                                                     class="fa fa-plus"></i></a></td>
                                     </tr>
                                 </tbody>
@@ -415,7 +415,7 @@
                                             <th>Married</th>
                                             <th>Job</th>
                                             <th>Disease</th>
-                                            <th>Remarks</th>
+                                            <th>Remark</th>
                                             <th></th>
 
                                         </tr>
@@ -425,37 +425,38 @@
                                         <tr>
 
                                             <td>
-                                                <div><input type="text" class="form-control" disabled />
+                                                <div><input type="text" class="form-control" id="family_name" placeholder="Name"/>
                                                 </div>
                                             </td>
                                             <td>
-                                                <div><input type="text" class="form-control" />
+                                                <div><input type="text" class="form-control" id="family_relation" placeholder="Relation" />
                                                 </div>
                                             </td>
                                             <td>
-                                                <div><input type="text" class="form-control" />
+                                                <div><input type="text" class="form-control" id="family_age" placeholder="Age" />
                                                 </div>
                                             </td>
                                             <td>
-                                                <div><input type="text" class="form-control" />
+                                                <div><input type="text" class="form-control" id="family_education" placeholder="Education" />
                                                 </div>
                                             </td>
                                             <td>
-                                                <div><input type="text" class="form-control" />
+                                                <div><input type="text" class="form-control" id="family_married" placeholder="Married" />
                                                 </div>
                                             </td>
                                             <td>
-                                                <div><input type="text" class="form-control" />
+                                                <div><input type="text" class="form-control" id="family_job" placeholder="Job" />
                                                 </div>
                                             </td>
                                             <td>
-                                                <div><input type="text" class="form-control" />
+                                                <div><input type="text" class="form-control" id="family_disease" placeholder="Disease" />
                                                 </div>
                                             </td>
                                             <td>
-                                                <div><input type="text" class="form-control" />
+                                                <div><input type="text" class="form-control" id="family_remark" placeholder="Remark"/>
                                                 </div>
                                             </td>
+                                           
 
                                             <td><a class="btn btn-success form-control " id="addmore3"><i
                                                         class="fa fa-plus"></i></a></td>
@@ -594,19 +595,84 @@
                     family_tree('{{$family->name}}','{{$family->relation}}')
 
                     @endforeach
-            @endif
-            $('#addmore1').click(function() {
-                var new_row = '<tr><td><input type="text" class="form-control name="body_part[]""></td>' +
-                    '<td><input type="text" class="form-control" name="side[]" required> </td><td> <input type="text"  class="form-control" name="grade[]"required> </td>' +
-                    ' <td><a id="" class="btn btn-danger form-control rmbody"><i class="fa fa-remove"></i></a></td> </tr>';
 
-                $('#bodychart').append(new_row);
+                    @foreach($family_members  as $member)
+
+                    family_members('{{$member->name}}','{{$member->relation}}','{{$member->age}}','{{$member->education}}','{{$member->married}}','{{$member->job}}','{{$member->disease}}','{{$member->remark}}')
+
+                    @endforeach
+
+                    @foreach($body_parts  as $parts)
+
+                              body_chart('{{$parts->body_part}}','{{$parts->side}}','{{$parts->grade}}');
+
+                    @endforeach
+            @endif
+
+
+            $('#addmore1').click(function() {
+
+                var body_part =$('#body_part').val();
+                var side =$('#side').val();
+                var grade =$('#grade').val();
+
+                if(body_part && side && grade){
+
+                    body_chart(body_part,side,grade);   
+                    $('#body_part').val('');
+                    $('#side').val('');
+                    $('#grade').val('');
+                }
+
+            })
+
+
+            $('#addmore2').click(function() {
+
+                var family_tree_name =$('#family_tree_name').val();
+                var family_tree_relation =$('#family_tree_relation').val();
+                if(family_tree_name && family_tree_relation){
+
+
+                    family_tree(family_tree_name,family_tree_relation);       
+
+                    $('#family_tree_name').val('');
+                    $('#family_tree_relation').val('');
+                }
+            
             })
 
             $('#addmore3').click(function() {
-                family_members();
-               
+                    
+
+                var family_name = $('#family_name').val();
+                var family_relation = $('#family_relation').val();
+                var family_age = $('#family_age').val();
+                var family_education = $('#family_education').val();
+                var family_married = $('#family_married').val();
+                var family_job = $('#family_job').val();
+                var family_disease = $('#family_disease').val();
+                var family_remark = $('#family_remark').val();
+
+                if(family_name && family_relation && family_age && family_education){
+
+                    family_members(family_name,family_relation,family_age,family_education,family_married,family_job,family_disease,family_remark);
+
+                    $('#family_name').val('');
+                    $('#family_relation').val('');
+                    $('#family_age').val('');
+                    $('#family_education').val('');
+                    $('#family_married').val('');
+                    $('#family_job').val('');
+                    $('#family_disease').val('');
+                    $('#family_remark').val('');
+                }
+                             
             })
+
+
+
+
             $(document).on('click', '.rmbody', function() {
 
                 $(this).closest('tr').remove();
@@ -625,27 +691,39 @@
         })
 
         function family_tree(name,relation) {
+
             var new_row = '<tr><td><input type="text" class="form-control"></td>' +
                 '<td><input type="text" class="form-control" value="'+name+'" name="tree_name[]"> </td><td> <input type="text"  class="form-control" value="'+relation+'" name="tree_relation[]"> </td>' +
                 ' <td><a id="" class="btn btn-danger form-control rmtree"><i class="fa fa-remove"></i></a></td> </tr>';
 
             $('#familytree').append(new_row);
+
         }
-        function family_members(){
+        function family_members(name,relation,age,education,married,job,disease,remark){
 
             var new_row =
-                    '<tr> <td> <div><input type="text" class="form-control" name="member_name[]"/> </div> </td>' +
-                    '<td><div><input type="text" class="form-control" name="relation[]"/> </div></td>' +
-                    '<td> <div><input type="text" class="form-control" name="relation_age[]"/> </div> </td>' +
-                    '<td><div><input type="text" class="form-control" name="education[]" /></div> </td>' +
-                    ' <td><div><input type="text" class="form-control" name="marriage_status[]"/> </div></td>' +
-                    ' <td> <div><input type="text" class="form-control" name="job[]"/> </div></td>' +
-                    '<td><div><input type="text" class="form-control"  name="disease[]" /></div></td>' +
-                    '<td><div><input type="text" class="form-control" name="remark[]" /></div></td>' +
-                    ' <td><a class="btn btn-danger form-control rmmembers" id="addmore3"><i class="fa fa-remove"></i></a></td>/tr>';
+                    '<tr> <td> <div><input type="text" value="'+name+'" class="form-control" name="member_name[]"/> </div> </td>' +
+                    '<td><div><input type="text" value="'+relation+'" class="form-control" name="relation[]"/> </div></td>' +
+                    '<td> <div><input type="text" value="'+age+'" class="form-control" name="relation_age[]"/> </div> </td>' +
+                    '<td><div><input type="text" value="'+education+'" class="form-control" name="education[]" /></div> </td>' +
+                    ' <td><div><input type="text" value="'+married+'" class="form-control" name="marriage_status[]"/> </div></td>' +
+                    ' <td> <div><input type="text" value="'+job+'" class="form-control" name="job[]"/> </div></td>' +
+                    '<td><div><input type="text" value="'+disease+'" class="form-control"  name="disease[]" /></div></td>' +
+                    '<td><div><input type="text" value="'+remark+'" class="form-control" name="remark[]" /></div></td>' +
+                    ' <td><a class="btn btn-danger form-control rmmembers"><i class="fa fa-remove"></i></a></td>/tr>';
 
                 $('#family_members').append(new_row);
 
+        }
+
+        function body_chart(body_part,side,grade){
+
+            var new_row = '<tr><td><input type="text" value="'+body_part+'" class="form-control" name="body_part[]"></td>' +
+                    '<td><input type="text" class="form-control" value="'+side+'" name="side[]" required> </td><td> '
+                    +'<input type="text"  class="form-control" value="'+grade+'" name="grade[]"required> </td>' +
+                    ' <td><a id="" class="btn btn-danger form-control rmbody"><i class="fa fa-remove"></i></a></td> </tr>';
+
+                $('#bodychart').append(new_row);
         }
 
     </script>

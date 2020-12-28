@@ -45,6 +45,9 @@ class PatientController extends Controller
             $data['patient'] = Patient::where('id', $id)->first();
             $data['patientotherdetail']= PatientOtherDetail::where('pat_id', $id)->first();
             $data['family_tree']= PatientFamilyTree::where('pat_id', $id)->get();
+            $data['family_members']= PatientFamilyMember::where('pat_id', $id)->get();
+            $data['body_parts']= PatientBodyChart::where('pat_id', $id)->get();
+
         }
 
         return view('patient.create', $data);
@@ -58,6 +61,8 @@ class PatientController extends Controller
         $data['patient'] = Patient::where('id', $id)->first();
         $data['patientotherdetail']= PatientOtherDetail::where('pat_id', $id)->first();
         $data['family_tree']= PatientFamilyTree::where('pat_id', $id)->get();
+        $data['family_members']= PatientFamilyMember::where('pat_id', $id)->get();
+        $data['body_parts']= PatientBodyChart::where('pat_id', $id)->get();
 
 
         return view('patient.create', $data);
@@ -69,9 +74,8 @@ class PatientController extends Controller
         $family_members = 0;
         $family_tree = 0;
         $patient_difficulties = 0;
-
         if ($request->body_part) {
-
+           
             $body_chart_item = count(($request->body_part));
         }
         if ($request->member_name) {
@@ -87,7 +91,7 @@ class PatientController extends Controller
             $patient_difficulties = count(($request->dificulty));
         }
 
-        try {
+       // try {
             $data = [
                 'reg_no' => $request->reg_no,
                 'date' => $request->date,
@@ -131,7 +135,6 @@ class PatientController extends Controller
                     'body_part' => $request->body_part[$i],
                     'side' => $request->side[$i],
                     'grade' => $request->grade[$i]
-
                 ];
 
                 PatientBodyChart::create($pat_body_chart);
@@ -200,11 +203,14 @@ class PatientController extends Controller
             PatientOtherDetail::create($patient_other_details);
 
             return redirect('patients')->with('Success', 'Created Successfully');
-        } catch (\Exception $e) {
+        // } catch (\Exception $e) {
 
-            return redirect('patients')->with('Error', 'Oops Something Went Wrong');
-        }
+        //     return redirect('patients')->with('Error', 'Oops Something Went Wrong');
+        // }
     }
+
+
+
     public function delete($id)
     {
         try {

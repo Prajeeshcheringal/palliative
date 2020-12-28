@@ -69,8 +69,8 @@
                         name: 'date'
                     },
                     {
-                        data: 'note',
-                        name: 'note'
+                        data: 'bok_note',
+                        name: 'bok_note'
                     },
                     {
                         data: 'action',
