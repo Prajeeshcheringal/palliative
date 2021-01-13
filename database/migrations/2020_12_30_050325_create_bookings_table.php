@@ -18,6 +18,7 @@ class CreateBookingsTable extends Migration
             $table->integer('pat_id')->nullable()->index('patient_relation');
             $table->date('date')->nullable();
             $table->text('bok_note')->nullable();
+            $table->text('bok_type')->nullable();
             $table->text('disease_details')->nullable();
             $table->text('doctors_note')->nullable();
             $table->text('mental_note')->nullable();

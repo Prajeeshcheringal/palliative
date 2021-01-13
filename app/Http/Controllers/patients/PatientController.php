@@ -9,6 +9,8 @@ use App\Model\patients\PatientFamilyTree;
 use App\Model\patients\PatientDifficulty;
 use App\Model\patients\PatientOtherDetail;
 use App\Model\patients\Patient;
+use App\Model\general\Disease;
+
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
 
@@ -39,6 +41,7 @@ class PatientController extends Controller
     {
         $data['id'] = $id;
         $data['view'] = "create";
+        $data['diseases'] = Disease::all();
         if ($id > 0) {
 
             $data['view'] = "update";
@@ -58,6 +61,7 @@ class PatientController extends Controller
 
         $data['id'] = $id;
         $data['view'] = "view";
+        $data['diseases'] = Disease::all();
         $data['patient'] = Patient::where('id', $id)->first();
         $data['patientotherdetail']= PatientOtherDetail::where('pat_id', $id)->first();
         $data['family_tree']= PatientFamilyTree::where('pat_id', $id)->get();
@@ -91,7 +95,7 @@ class PatientController extends Controller
             $patient_difficulties = count(($request->dificulty));
         }
 
-       // try {
+        try {
             $data = [
                 'reg_no' => $request->reg_no,
                 'date' => $request->date,
@@ -106,6 +110,10 @@ class PatientController extends Controller
                 'pincode' => $request->pincode,
                 'volunteer' => $request->volunteer,
                 'location' => $request->location,
+                'disease' =>  $request->pat_disease,
+                'financial_status' => $request->financial_status,
+                'category' => $request->category
+
             ];
 
             if (!$request->id) {
@@ -152,8 +160,8 @@ class PatientController extends Controller
                     'education' => $request->education[$i],
                     'married' => $request->marriage_status[$i],
                     'job' => $request->job[$i],
-                    'disease' => $request->disease[$i],
-                    'remark' => $request->remark[$i],
+                    'is_student' => $request->is_student[$i],
+                   // 'remark' => $request->remark[$i],
                 ];
 
                 PatientFamilyMember::create($family_members_data);
@@ -203,10 +211,10 @@ class PatientController extends Controller
             PatientOtherDetail::create($patient_other_details);
 
             return redirect('patients')->with('Success', 'Created Successfully');
-        // } catch (\Exception $e) {
+         } catch (\Exception $e) {
 
-        //     return redirect('patients')->with('Error', 'Oops Something Went Wrong');
-        // }
+             return redirect('patients')->with('Error', 'Oops Something Went Wrong');
+        }
     }
 
 

@@ -33,3 +33,16 @@ Route::get('/bookings', 'home_visit\HomeVisitController@bookings')->name('bookin
 Route::get('/bookings/add_data/{bid}/{pid}', 'home_visit\HomeVisitController@bookingsAddData');
 Route::any('/bookings/add_data/save', 'home_visit\HomeVisitController@AddDataSave');
 
+Route::get('/addapoinments', 'home_visit\HomeVisitController@clinicListall')->name('addapoinments');
+Route::get('/dailypatients', 'home_visit\HomeVisitController@clinicbookings')->name('dailypatients');
+
+Route::get('/diseases','general\DiseaseController@listall')->name('diseases');
+Route::get('/disease/create/{id}','general\DiseaseController@create');
+Route::get('/disease/view/{id}','general\DiseaseController@view');
+Route::post('/disease/save','general\DiseaseController@save');
+Route::get('/disease/delete/{id}','general\DiseaseController@delete');
+
+
+Route::get('/reports/patients','report\ReportController@patientReport')->name('patientreport');
+Route::get('/reports/students','report\ReportController@patientReport')->name('studentreport');
+Route::get('/reports/treatment','report\ReportController@patientReport')->name('treatmentreport');

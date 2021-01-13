@@ -22,7 +22,7 @@
                             <div class="row">
 
                                 <div class="col-sm-3"> <label>Reg no :</label></div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <input type="hidden" name="id" id="id" class="form-control"
                                         value="{{ $patient->id ?? '' }}">
                                     <input type="text" name="reg_no" id="reg_no" class=" form-control"
@@ -35,30 +35,55 @@
                                 </div>
 
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Name :</label></div>
-                                <div style="padding-top: 20px;" class="col-sm-9">
+                                <div style="padding-top: 20px;" class="col-sm-8">
                                     <input type="text" name="name" id="name" class="form-control"
                                         value="{{ $patient->name ?? '' }}" placeholder="Enter ..." required maxlength="40">
                                 </div>
 
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Age :</label></div>
-                                <div style="padding-top: 20px;" class="col-sm-9">
+                                <div style="padding-top: 20px;" class="col-sm-8">
                                     <input type="text" name="age" id="age" class="form-control "
                                         value="{{ $patient->age ?? '' }}" placeholder="Enter ..." required maxlength="3">
                                 </div>
 
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Phone :</label></div>
-                                <div style="padding-top: 20px;" class="col-sm-9">
+                                <div style="padding-top: 20px;" class="col-sm-8">
                                     <input type="text" name="phone" id="phone" value="{{ $patient->phone ?? '' }}"
                                         class="form-control" placeholder="Enter ..." required minlength="10" maxlength="10">
                                 </div>
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Care of :</label></div>
-                                <div style="padding-top: 20px;" class="col-sm-9">
+                                <div style="padding-top: 20px;" class="col-sm-2">
+                                    <select type="text" name="care_of"  id="care_of"
+                                        class="form-control" required>
+                                        <option value="">Select</option>
+                                        <option value="W/O">W/O</option>
+                                        <option value="H/O">H/O</option>
+                                        <option value="S/O">S/O</option>
+                                        <option value="D/O">D/O</option>
+                                        <option value="F/O">F/O</option>
+                                        <option value="M/O">M/O</option>
+                                    </select>
+                                </div>
+                                <div style="padding-top: 20px;" class="col-sm-6">
                                     <input type="text" name="care_of" value="{{ $patient->care_of ?? '' }}" id="care_of"
                                         class="form-control" placeholder="Enter ..." required maxlength="40">
                                 </div>
+                                <div style="padding-top: 20px;" class="col-sm-3"> <label>Disease :</label></div>
+                                <div style="padding-top: 20px;" class="col-sm-8">
+                                    <select type="text" name="pat_disease"  id="pat_disease"
+                                        class="form-control" required >
+                                    <option value="">Select</option>
+                                    @foreach ($diseases as $disease)
 
+                                        <option value="{{ $disease->id}}">{{$disease->disease}}</option>
+                                    @endforeach
+                                        
+                                
+                                    
+                                    </select>
+                                </div>
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Address :</label></div>
-                                <div style="padding-top: 20px;" class="col-sm-9">
+                                <div style="padding-top: 20px;" class="col-sm-8">
                                     <textarea type="text" name="address" id="address" class="form-control"
                                         placeholder="Enter ..." required>{{ $patient->address ?? '' }} </textarea>
                                 </div>
@@ -73,42 +98,95 @@
                             <div class="row">
 
                                 <div class="col-sm-3"> <label>Ref No :</label></div>
-                                <div class="col-sm-9">
+                                <div class="col-sm-8">
                                     <input type="text" name="ref_no" id="ref_no" class=" form-control"
                                         value="{{ $patient->ref_no ?? '' }}" placeholder="Enter ...">
                                 </div>
 
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Organization</label></div>
-                                <div style="padding-top: 20px;" class="col-sm-9">
+                                <div style="padding-top: 20px;" class="col-sm-8">
                                     <input type="text" name="organization" id="organization"
                                         value="{{ $patient->organization ?? '' }}" class="form-control"
                                         placeholder="Enter ...">
                                 </div>
 
+
+                                <div  style="padding-top: 20px;" class="col-sm-3"> <label>Financial Status :</label></div>
+                                <div  style="padding-top: 20px;"  class="col-sm-3">
+                                    <select name="financial_status" id="financial_status" class=" form-control" required>
+                                        <option value="">Select</option>
+                                        <option value="Very Poor">Very Poor</option>
+                                        <option value="Poor">Poor</option>
+                                        <option value="Middle Class">Middle Class</option>
+                                        <option value="Wealthy">Wealthy</option>
+                                    </select>
+                                </div>
+                                <div  style="padding-top: 20px;"  class="col-sm-2"> <label> Category :</label></div>
+                                <div  style="padding-top: 20px;" class="col-sm-3">
+                                    <select name="category" id="category" class=" form-control" required>
+                                        <option value="">Select</option>
+                                        <option value="SC">SC</option>
+                                        <option value="ST">ST</option>
+                                        <option value="OEC">OEC</option>
+                                        <option value="OBC">OBC</option>
+                                        <option value="General">General</option>
+                                    </select>
+                                </div>
+
+
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Panchayath</label></div>
-                                <div style="padding-top: 20px;" class="col-sm-9">
+                                <div style="padding-top: 20px;" class="col-sm-8">
                                     <input type="text" name="panchayath" id="panchayath"
                                         value="{{ $patient->panchayath ?? '' }}" class="form-control "
                                         placeholder="Enter ..." required>
                                 </div>
 
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Pincode :</label></div>
-                                <div style="padding-top: 20px;" class="col-sm-9">
+                                <div style="padding-top: 20px;" class="col-sm-8">
                                     <input type="text" name="pincode" id="pincode" value="{{ $patient->pincode ?? '' }}"
                                         class="form-control" placeholder="Enter ..." required>
                                 </div>
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Volunteer :</label></div>
-                                <div style="padding-top: 20px;" class="col-sm-9">
+                                <div style="padding-top: 20px;" class="col-sm-8">
                                     <input type="text" name="volunteer" id="volunteer"
                                         value="{{ $patient->volunteer ?? '' }}" class="form-control"
                                         placeholder="Enter ...">
                                 </div>
-
+                                
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Location :</label></div>
-                                <div style="padding-top: 20px;" class="col-sm-9">
+                                <div style="padding-top: 20px;" class="col-sm-8">
                                     <textarea type="text" name="location" id="location" class="form-control"
                                         placeholder="Enter ..." required> {{ $patient->location ?? '' }} </textarea>
                                 </div>
+
+                                {{-- <div style="padding-top: 20px;" class="col-sm-3">
+                                    <label>Financial Status:</label></div>
+                                <div style="padding-top: 20px;" class="col-sm-8">
+                                    <div class="form-group">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="body_cleaning"
+                                                     value="1" >very Poor
+                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <label>
+                                                <input type="radio" name="body_cleaning"
+                                                     value="0">
+                                                Poor 
+                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                             <label>
+                                                <input type="radio" name="body_cleaning"
+                                                     value="0"  checked>
+                                                Middle Class 
+                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                              <label>
+                                                <input type="radio" name="body_cleaning"
+                                                     value="0"  >
+                                                Wealthy 
+                                             </label>
+                                        </div>
+
+                                    </div>
+                                </div> --}}
 
                             </div>
                         </div>
@@ -331,7 +409,7 @@
                                 <thead>
                                     <tr>
                                         <th>Body Parts</th>
-                                        <th>Side</th>
+                                        <th clas="col-sm-3">Side</th>
                                         <th>Grade</th>
                                         <th></th>
 
@@ -344,7 +422,15 @@
                                             <input type="text" class="form-control" placeholder="Part" id="body_part">
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" placeholder="Side" id="side">
+                                            <select  class="form-control" placeholder="Side" id="side">
+
+                                                <option value="">Select</option>
+                                                <option value="Front-Left">Front-Left</option>
+                                                <option value="Front-Right">Front-Righ</option>
+                                                <option value="Back-Left">Back-Left</option>
+                                                <option value="Back-Right">Back-Right</option>
+
+                                            </select>
 
                                         </td>
                                         <td>
@@ -367,7 +453,7 @@
 
                                 <thead>
                                     <tr>
-                                        <th>Sl no</th>
+                                        <th class="col-sm-2">Sl no</th>
                                         <th>Name </th>
                                         <th>Relation</th>
                                         <th></th>
@@ -408,14 +494,13 @@
                                     class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Name </th>
+                                            <th class="col-sm-2">Name </th>
                                             <th>Relation</th>
-                                            <th>Age</th>
+                                            <th class="col-sm-1">Age</th>
                                             <th>Education</th>
                                             <th>Married</th>
                                             <th>Job</th>
-                                            <th>Disease</th>
-                                            <th>Remark</th>
+                                            <th class="col-sm-1">Student</th>
                                             <th></th>
 
                                         </tr>
@@ -441,7 +526,15 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <div><input type="text" class="form-control" id="family_married" placeholder="Married" />
+                                                <div><Select type="text" class="form-control" id="family_married" placeholder="Married">
+                                                    <option value="">Select</option>
+                                                    <option value="Married">Married</option>
+                                                    <option value="Married">Unmarried</option>
+                                                    <option value="Married">Divorced</option>
+                                                    <option value="Widow">Widow/Widower</option>
+
+
+                                                </Select>
                                                 </div>
                                             </td>
                                             <td>
@@ -449,13 +542,17 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <div><input type="text" class="form-control" id="family_disease" placeholder="Disease" />
+                                                <div><select type="text" class="form-control" id="is_student">
+                                                    <option value="No">No</option>
+                                                    <option value="Yes">Yes</option>
+
+                                                </select>
                                                 </div>
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 <div><input type="text" class="form-control" id="family_remark" placeholder="Remark"/>
                                                 </div>
-                                            </td>
+                                            </td> --}}
                                            
 
                                             <td><a class="btn btn-success form-control " id="addmore3"><i
@@ -598,7 +695,7 @@
 
                     @foreach($family_members  as $member)
 
-                    family_members('{{$member->name}}','{{$member->relation}}','{{$member->age}}','{{$member->education}}','{{$member->married}}','{{$member->job}}','{{$member->disease}}','{{$member->remark}}')
+                    family_members('{{$member->name}}','{{$member->relation}}','{{$member->age}}','{{$member->education}}','{{$member->married}}','{{$member->job}}','{{$member->is_student}}')
 
                     @endforeach
 
@@ -651,12 +748,12 @@
                 var family_education = $('#family_education').val();
                 var family_married = $('#family_married').val();
                 var family_job = $('#family_job').val();
-                var family_disease = $('#family_disease').val();
-                var family_remark = $('#family_remark').val();
+                var is_student = $('#is_student').val();
+               // var family_remark = $('#family_remark').val();
 
                 if(family_name && family_relation && family_age && family_education){
 
-                    family_members(family_name,family_relation,family_age,family_education,family_married,family_job,family_disease,family_remark);
+                    family_members(family_name,family_relation,family_age,family_education,family_married,family_job,is_student);
 
                     $('#family_name').val('');
                     $('#family_relation').val('');
@@ -664,8 +761,8 @@
                     $('#family_education').val('');
                     $('#family_married').val('');
                     $('#family_job').val('');
-                    $('#family_disease').val('');
-                    $('#family_remark').val('');
+                    $('#is_student').val('No');
+                    //$('#family_remark').val('');
                 }
                              
             })
@@ -699,7 +796,7 @@
             $('#familytree').append(new_row);
 
         }
-        function family_members(name,relation,age,education,married,job,disease,remark){
+        function family_members(name,relation,age,education,married,job,is_student){
 
             var new_row =
                     '<tr> <td> <div><input type="text" value="'+name+'" class="form-control" name="member_name[]"/> </div> </td>' +
@@ -708,8 +805,8 @@
                     '<td><div><input type="text" value="'+education+'" class="form-control" name="education[]" /></div> </td>' +
                     ' <td><div><input type="text" value="'+married+'" class="form-control" name="marriage_status[]"/> </div></td>' +
                     ' <td> <div><input type="text" value="'+job+'" class="form-control" name="job[]"/> </div></td>' +
-                    '<td><div><input type="text" value="'+disease+'" class="form-control"  name="disease[]" /></div></td>' +
-                    '<td><div><input type="text" value="'+remark+'" class="form-control" name="remark[]" /></div></td>' +
+                    '<td><div><input type="text" value="'+is_student+'" class="form-control"  name="is_student[]" readonly /></div></td>' +
+                    // '<td><div><input type="text" value="'+remark+'" class="form-control" name="remark[]" /></div></td>' +
                     ' <td><a class="btn btn-danger form-control rmmembers"><i class="fa fa-remove"></i></a></td>/tr>';
 
                 $('#family_members').append(new_row);
