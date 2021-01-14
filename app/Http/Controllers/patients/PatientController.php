@@ -41,7 +41,7 @@ class PatientController extends Controller
     {
         $data['id'] = $id;
         $data['view'] = "create";
-        $data['diseases'] = Disease::all();
+        $data['diseases'] = [];//Disease::all();
         if ($id > 0) {
 
             $data['view'] = "update";
@@ -50,6 +50,29 @@ class PatientController extends Controller
             $data['family_tree']= PatientFamilyTree::where('pat_id', $id)->get();
             $data['family_members']= PatientFamilyMember::where('pat_id', $id)->get();
             $data['body_parts']= PatientBodyChart::where('pat_id', $id)->get();
+
+        }else{
+
+            $last_reg_no =Patient::latest()->first();
+            if($last_reg_no){
+
+                $year = substr($last_reg_no->reg_no,4,6);
+
+                if($year == date('y')){
+                    
+                    $no = sprintf("%03d",substr($last_reg_no->reg_no,0,3) + 1);
+                    $data['reg_no'] = $no .'/'. $year;
+
+                }else{
+
+                    $data['reg_no'] = 001 .'/' .date('y');
+                }   
+
+            }else{
+
+                $data['reg_no'] = 001 .'/' .date('y');
+
+            }
 
         }
 
