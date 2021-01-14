@@ -43,6 +43,6 @@ Route::post('/disease/save','general\DiseaseController@save');
 Route::get('/disease/delete/{id}','general\DiseaseController@delete');
 
 
-Route::get('/reports/patients','report\ReportController@patientReport')->name('patientreport');
-Route::get('/reports/students','report\ReportController@patientReport')->name('studentreport');
-Route::get('/reports/treatment','report\ReportController@patientReport')->name('treatmentreport');
+Route::any('/reports/patients','report\ReportController@patientReport')->name('patientreport');
+Route::get('/reports/students','report\ReportController@studentReport')->name('studentreport');
+Route::any('/reports/treatment','report\ReportController@treatmentReport')->name('treatmentreport');

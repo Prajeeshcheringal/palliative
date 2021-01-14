@@ -23,7 +23,8 @@ class Patient extends Model
         'location',
         'disease',
         'category',
-        'financial_status'
+        'financial_status',
+        'care_of_relation'
     ];
 
     public function getDiseaseRelation(){

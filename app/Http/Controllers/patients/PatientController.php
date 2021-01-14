@@ -112,7 +112,8 @@ class PatientController extends Controller
                 'location' => $request->location,
                 'disease' =>  $request->pat_disease,
                 'financial_status' => $request->financial_status,
-                'category' => $request->category
+                'category' => $request->category,
+                'care_of_relation'=>$request->care_of_relation
 
             ];
 

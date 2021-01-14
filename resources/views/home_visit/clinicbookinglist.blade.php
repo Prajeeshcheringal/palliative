@@ -3,9 +3,9 @@
 @section('content')
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Daily Patients</h3>
+            <h3 class="box-title">Out Patients</h3>
             <a href="{{ url('/patient/create/0') }}" class="pull-right btn btn-success"> <i class="fa fa-plus "></i></a>
-
+            
         </div>
         <!-- /.box-header -->
         <div class="box-body" style="padding-left: 20px; padding-bottom: 15Ppx">

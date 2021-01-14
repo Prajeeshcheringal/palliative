@@ -31,7 +31,8 @@
                                 <div> <label class="col-sm-2"> Date :</label></div>
                                 <div class="col-sm-4">
                                     <input type="date" name="date" id="date" class=" form-control"
-                                        value="{{ $patient->date ?? '' }}" placeholder="Enter ..." required>
+                                    @if($view =='create')
+                                    value="{{date('Y-m-d')}}" @endif   value="{{ $patient->date ?? '' }}" placeholder="Enter ..." required>
                                 </div>
 
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Name :</label></div>
@@ -53,7 +54,7 @@
                                 </div>
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Care of :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-2">
-                                    <select type="text" name="care_of"  id="care_of"
+                                    <select type="text" name="care_of_relation"  id="care_of"
                                         class="form-control" required>
                                         <option value="">Select</option>
                                         <option value="W/O">W/O</option>
@@ -65,7 +66,7 @@
                                     </select>
                                 </div>
                                 <div style="padding-top: 20px;" class="col-sm-6">
-                                    <input type="text" name="care_of" value="{{ $patient->care_of ?? '' }}" id="care_of"
+                                    <input type="text" name="care_of" value="{{ $patient->care_of ?? '' }}"
                                         class="form-control" placeholder="Enter ..." required maxlength="40">
                                 </div>
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Disease :</label></div>
@@ -686,6 +687,11 @@
     <script>
         $(function() {
             @if($view !='create')
+
+                $('#category').val('{{$patient->category}}');
+                $('#pat_disease').val({{$patient->disease}});
+                $('#financial_status').val('{{$patient->financial_status}}');
+                $('#care_of').val('{{$patient->care_of_relation}}');
 
                 @foreach($family_tree  as $family)
 
