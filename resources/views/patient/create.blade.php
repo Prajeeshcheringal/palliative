@@ -26,7 +26,9 @@
                                     <input type="hidden" name="id" id="id" class="form-control"
                                         value="{{ $patient->id ?? '' }}">
                                     <input type="text" name="reg_no" id="reg_no" class=" form-control"
-                                        value="{{ $patient->reg_no ?? '' }}" placeholder="Enter ..." required>
+
+                                    @if($view == 'create') value="{{$reg_no}}" @endif  value="{{ $patient->reg_no ?? '' }}" placeholder="Enter ..." required readonly>
+
                                 </div>
                                 <div> <label class="col-sm-2"> Date :</label></div>
                                 <div class="col-sm-4">
