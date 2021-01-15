@@ -3,7 +3,7 @@
 @section('content')
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Create Appoinment</h3>
+            <h3 class="box-title">OP Registration</h3>
             {{-- <a href="{{ url('/patient/create/0') }}" class="pull-right btn btn-success">
                 <i class="fa fa-plus "></i></a> --}}
 
@@ -41,7 +41,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Create Appoinment</h4>
+                    <h4 class="modal-title">OP Registration</h4>
                 </div>
                 <div class="modal-body">
                     <p>
@@ -74,7 +74,7 @@
 
                                     <div class="form-group">
                                         <label for="">Date</label>
-                                        <input type="date" class="form-control" id="date" name="date" required>
+                                        <input type="date" class="form-control" id="date" value="{{date('Y-m-d')}}" name="date" required>
                                         <input type="hidden" class="form-control"  value="clinic" name="bok_type" required>
 
                                     </div>

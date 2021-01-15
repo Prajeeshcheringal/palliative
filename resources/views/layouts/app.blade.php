@@ -330,8 +330,8 @@ desired effect
                         </a>
                         <ul class="treeview-menu">
                             <li class="active"><a href="{{ url('/addapoinments') }}"><i
-                                        class="fa fa-circle-o"></i>Appoinments</a></li>
-                            <li><a href="{{ url('/dailypatients') }}"><i class="fa fa-circle-o"></i>Daily Patients </a>
+                                        class="fa fa-circle-o"></i>OP Registration</a></li>
+                            <li><a href="{{ url('/dailypatients') }}"><i class="fa fa-circle-o"></i>Out Patients </a>
                             </li>
                         </ul>
                     </li>
@@ -361,13 +361,13 @@ desired effect
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="active"><a href="{{ url('/patients') }}"><i class="fa fa-circle-o"></i>Treatment
+                            <li class="active"><a href="{{ url('/reports/treatment') }}"><i class="fa fa-circle-o"></i>Treatment
                                     Report</a></li>
 
                             <li class="active"><a href="{{ url('/reports/patients') }}"><i class="fa fa-circle-o"></i>Patients
                                     Report</a></li>
-                            <li class="active"><a href="{{ url('/diseases') }}"><i
-                                        class="fa fa-circle-o"></i>Students</a></li>
+                            <li class="active"><a href="{{ url('/reports/students') }}"><i
+                                        class="fa fa-circle-o"></i>Students Report</a></li>
 
                         </ul>
                     </li>

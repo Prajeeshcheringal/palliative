@@ -3,14 +3,13 @@
 @section('content')
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Patients Report</h3>
+            <h3 class="box-title">Treatment Report</h3>
             {{-- <a href="{{ url('/patient/create/0') }}" class="pull-right btn btn-success">
                 <i class="fa fa-plus "></i></a> --}}
 
         </div>
         <!-- /.box-header -->
         <div class="box-body" style="padding-left: 20px; padding-bottom: 15Ppx">
-
             <form type="post">
 
                 {{ csrf_field() }}
@@ -21,49 +20,38 @@
 
                     </div>
                     <div class="col-xs-2">
-                        <label for=""> Disease</label>
-                        <select type="text" id="disease" class="form-control input-sm filter">
-                            <option value="">Select</option>
-                            @foreach ($diseases as $disease)
+                        <label for="">Start Date</label>
+                        <input type="date" id="start_date" value="{{ date('Y-m-d') }}" class="form-control input-sm filter">
 
-                            <option value="{{ $disease->id}}">{{$disease->disease}}</option>
-                        @endforeach
-                        </select>
                     </div>
                     <div class="col-xs-2">
-                        <label for=""> Category</label>
-                        <select type="text" id="category" class="form-control input-sm filter">
-                            <option value="">Select</option>
-                            <option value="SC">SC</option>
-                            <option value="ST">ST</option>
-                            <option value="OEC">OEC</option>
-                            <option value="OBC">OBC</option>
-                            <option value="General">General</option>
-                        </select>
+                        <label for="">End Date</label>
+                        <input type="date" id="end_date" value="{{ date('Y-m-d') }}" class="form-control input-sm filter">
+
                     </div>
                     <div class="col-xs-2">
-                        <label for=""> Financial Status</label>
-                        <select type="text" id="finance" class="form-control input-sm filter">
+                        <label for=""> Type</label>
+                        <select type="text" id="type" class="form-control input-sm filter">
                             <option value="">Select</option>
-                            <option value="Very Poor">Very Poor</option>
-                            <option value="Poor">Poor</option>
-                            <option value="Middle Class">Middle Class</option>
-                            <option value="Wealthy">Wealthy</option>
+                            <option value="home">Home</option>
+                            <option value="clinic">Clinic</option>
+
                         </select>
                     </div>
 
                 </div><br>
 
             </form>
+
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>Sl No </th>
                         <th>Reg No</th>
-                        <th>Name</th>
+                        <th>Patient</th>
                         <th>Phone</th>
-                        <th> Age</th>
-                        <th> Care Of</th>
+                        <th>date</th>
+                        <th>Type</th>
                         <th>Disease</th>
                         <th>Category</th>
                         <th>Fiancial Status</th>
@@ -81,23 +69,22 @@
     </div>
     <script>
         $(function() {
-                $('.filter').change(function()
-                {
-                  
-                    mytable.ajax.reload();
-                })
 
-           var mytable = $('#example1').DataTable({
+            $('.filter').change(function() {
+
+                mytable.ajax.reload();
+            })
+            var mytable = $('#example1').DataTable({
                 processing: true,
                 serverSide: true,
                 //  sScrollX: '100%',
                 ajax: {
-                    url: "{{ route('patientreport') }}",
+                    url: "{{ route('treatmentreport') }}",
                     type: "post",
                     data: function(data) {
-                        data.category=$('#category').val(),
-                        data.disease=$('#disease').val(),
-                        data.finance=$('#finance').val()
+                        data.start_date = $('#start_date').val(),
+                            data.end_date = $('#end_date').val(),
+                            data.type = $('#type').val()
                     }
                 },
                 columns: [{
@@ -105,34 +92,35 @@
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'reg_no',
+                        data: 'get_patient_relation.reg_no',
                         name: 'reg_no'
                     },
                     {
-                        data: 'name',
+                        data: 'get_patient_relation.name',
                         name: 'name'
                     },
                     {
-                        data: 'phone',
+                        data: 'get_patient_relation.phone',
                         name: 'phone'
                     },
                     {
-                        data: 'age',
-                        name: 'age'
+                        data: 'date',
+                        name: 'date'
                     },
 
                     {
-                        data: 'care_of',
-                        name: 'care_of'
+                        data: 'bok_type',
+                        name: 'bok_type'
                     },
                     {
-                        data: 'get_disease_relation.disease',
+                        data: 'get_patient_relation.disease',
                         name: 'disease'
-                    }, {
-                        data: 'category',
+                    },
+                    {
+                        data: 'get_patient_relation.category',
                         name: 'category'
                     }, {
-                        data: 'financial_status',
+                        data: 'get_patient_relation.financial_status',
                         name: 'financial_status'
                     },
                 ]
