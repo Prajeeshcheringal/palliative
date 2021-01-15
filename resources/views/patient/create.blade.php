@@ -124,7 +124,7 @@
                                         <option value="Wealthy">Wealthy</option>
                                     </select>
                                 </div>
-                                <div  style="padding-top: 20px;"  class="col-sm-2"> <label> Category :</label></div>
+                                <div  style="padding-top: 20px;"  class="col-sm-2"> <label> Category:</label></div>
                                 <div  style="padding-top: 20px;" class="col-sm-3">
                                     <select name="category" id="category" class=" form-control" required>
                                         <option value="">Select</option>

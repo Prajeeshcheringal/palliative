@@ -41,7 +41,7 @@ class PatientController extends Controller
     {
         $data['id'] = $id;
         $data['view'] = "create";
-        $data['diseases'] = Disease::all();
+        $data['diseases'] =[]; //Disease::all();
         if ($id > 0) {
 
             $data['view'] = "update";

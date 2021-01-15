@@ -42,6 +42,18 @@ Route::get('/disease/view/{id}','general\DiseaseController@view');
 Route::post('/disease/save','general\DiseaseController@save');
 Route::get('/disease/delete/{id}','general\DiseaseController@delete');
 
+Route::get('/medicines','general\MedicineController@listall')->name('medicines');
+Route::get('/medicine/create/{id}','general\MedicineController@create');
+Route::get('/medicine/view/{id}','general\MedicineController@view');
+Route::post('/medicine/save','general\MedicineController@save');
+Route::get('/medicine/delete/{id}','general\MedicineController@delete');
+
+Route::get('/equipments','general\EquipmentController@listall')->name('equipments');
+Route::get('/equipment/create/{id}','general\EquipmentController@create');
+Route::get('/equipment/view/{id}','general\EquipmentController@view');
+Route::post('/equipment/save','general\EquipmentController@save');
+Route::get('/equipment/delete/{id}','general\EquipmentController@delete');
+
 
 Route::any('/reports/patients','report\ReportController@patientReport')->name('patientreport');
 Route::get('/reports/students','report\ReportController@studentReport')->name('studentreport');
