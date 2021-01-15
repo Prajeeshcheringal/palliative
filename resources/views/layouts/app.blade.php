@@ -7,9 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Palliative Care</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="{{ url('/public') }}/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url('/public') }}/bower_components/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ url('/public') }}/bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet"
+        href="{{ url('/public') }}/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+        href="{{ url('/public') }}/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet"
+        href="{{ url('/public') }}/bower_components/Ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="{{ url('/public') }}/plugins/pace/pace.min.css">
 
     <link rel="stylesheet"
@@ -24,7 +27,8 @@
     <script src="{{ url('/public') }}/dist/js/adminlte.min.js"></script>
     <script src="{{ url('/public') }}/bower_components/datatables.net/js/jquery.dataTables.min.js">
     </script>
-    <script src="{{ url('/public') }}/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js">
+    <script
+        src="{{ url('/public') }}/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js">
     </script>
     <script src="{{ url('/public') }}/bower_components/jquery-slimscroll/jquery.slimscroll.min.js">
     </script>
@@ -130,28 +134,28 @@ desired effect
                                                 <div class="pull-left">
                                                     <!-- User Image -->
                                                     <img src="{{ url('/public') }}/dist/img/user2-160x160.jpg"
-                                                        class="img-circle" alt="User Image">
-                                                </div>
-                                                <!-- Message title and timestamp -->
-                                                <h4>
-                                                    Support Team
-                                                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                                </h4>
-                                                <!-- The message -->
-                                                <p>Why not buy a new awesome theme?</p>
-                                            </a>
-                                        </li>
-                                        <!-- end message -->
-                                    </ul>
-                                    <!-- /.menu -->
-                                </li>
-                                <li class="footer"><a href="#">See All Messages</a></li>
-                            </ul>
-                        </li> --}}
-                        <!-- /.messages-menu -->
+                        class="img-circle" alt="User Image">
+                </div>
+                <!-- Message title and timestamp -->
+                <h4>
+                    Support Team
+                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                </h4>
+                <!-- The message -->
+                <p>Why not buy a new awesome theme?</p>
+                </a>
+                </li>
+                <!-- end message -->
+                </ul>
+                <!-- /.menu -->
+                </li>
+                <li class="footer"><a href="#">See All Messages</a></li>
+                </ul>
+                </li> --}}
+                <!-- /.messages-menu -->
 
-                        <!-- Notifications Menu -->
-                        {{-- <li class="dropdown notifications-menu">
+                <!-- Notifications Menu -->
+                {{-- <li class="dropdown notifications-menu">
                             <!-- Menu toggle button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
@@ -174,8 +178,8 @@ desired effect
                                 <li class="footer"><a href="#">View all</a></li>
                             </ul>
                         </li> --}}
-                        <!-- Tasks Menu -->
-                        {{-- <li class="dropdown tasks-menu">
+                <!-- Tasks Menu -->
+                {{-- <li class="dropdown tasks-menu">
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-flag-o"></i>
@@ -213,83 +217,83 @@ desired effect
                                 </li>
                             </ul>
                         </li> --}}
-                        <!-- User Account Menu -->
-                        <li class="dropdown user user-menu">
-                            <!-- Menu Toggle Button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <!-- The user image in the navbar-->
-                                <img src="{{ url('/public') }}/dist/img/user2-160x160.jpg" class="user-image"
-                                    alt="User Image">
-                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">Admin</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- The user image in the menu -->
-                                <li class="user-header">
-                                    <img src="{{ url('/public') }}/dist/img/user2-160x160.jpg" class="img-circle"
-                                        alt="User Image">
+                <!-- User Account Menu -->
+                <li class="dropdown user user-menu">
+                    <!-- Menu Toggle Button -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <!-- The user image in the navbar-->
+                        <img src="{{ url('/public') }}/dist/img/user2-160x160.jpg"
+                            class="user-image" alt="User Image">
+                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                        <span class="hidden-xs">Admin</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- The user image in the menu -->
+                        <li class="user-header">
+                            <img src="{{ url('/public') }}/dist/img/user2-160x160.jpg"
+                                class="img-circle" alt="User Image">
 
-                                    <p>
-                                        Admin - Web Developer
-                                        <small>Member since Nov. 2012</small>
-                                    </p>
-                                </li>
-                                <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="row">
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Followers</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Sales</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Friends</a>
-                                        </div>
-                                    </div>
-                                    <!-- /.row -->
-                                </li>
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                    </div>
-                                </li>
-                            </ul>
+                            <p>
+                                Admin - Web Developer
+                                <small>Member since Nov. 2012</small>
+                            </p>
                         </li>
-                        <!-- Control Sidebar Toggle Button -->
-                        <li>
-                            <a href="">
-                                <!-- data-toggle="control-sidebar"-->
-                                <i class="fa fa-gears"></i>
-                            </a>
+                        <!-- Menu Body -->
+                        <li class="user-body">
+                            <div class="row">
+                                <div class="col-xs-4 text-center">
+                                    <a href="#">Followers</a>
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                    <a href="#">Sales</a>
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                    <a href="#">Friends</a>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                            </div>
                         </li>
                     </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- Left side column. contains the logo and sidebar -->
-        <aside class="main-sidebar">
+                </li>
+                <!-- Control Sidebar Toggle Button -->
+                <li>
+                    <a href="">
+                        <!-- data-toggle="control-sidebar"-->
+                        <i class="fa fa-gears"></i>
+                    </a>
+                </li>
+                </ul>
+    </div>
+    </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
 
-            <!-- sidebar: style can be found in sidebar.less -->
-            <section class="sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
 
-                <!-- Sidebar user panel (optional)
+            <!-- Sidebar user panel (optional)
                 <div class="user-panel">
                     <div class="pull-left image">
                         <img src="{{ url('/public') }}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
                         <p>Admin</p>  -->
-                <!-- Status 
+            <!-- Status 
                         <a href="#"><i class="fa fa-circle text-success"></i> </a>
                     </div>
                 </div>-->
 
-                <!-- search form (Optional) 
+            <!-- search form (Optional) 
                 <form action="#" method="get" class="sidebar-form">
                     <div class="input-group">
                         <input type="text" name="q" class="form-control" placeholder="Search...">
@@ -300,88 +304,97 @@ desired effect
                         </span>
                     </div>
                 </form>-->
-                <!-- /.search form -->
+            <!-- /.search form -->
 
-                <!-- Sidebar Menu -->
-                <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">Main Menu</li>
-                    <!-- Optionally, you can add icons to the links -->
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="header">Main Menu</li>
+                <!-- Optionally, you can add icons to the links -->
 
 
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-home"></i> <span>Home Visit</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li class="active"><a href="{{ url('/addvisit') }}"><i class="fa fa-circle-o"></i> Create
-                                    Visit</a></li>
-                            <li><a href="{{ url('/bookings') }}"><i class="fa fa-circle-o"></i>Daily Visits</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa  fa-medkit"></i> <span>Clinic</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li class="active"><a href="{{ url('/addapoinments') }}"><i
-                                        class="fa fa-circle-o"></i>OP Registration</a></li>
-                            <li><a href="{{ url('/dailypatients') }}"><i class="fa fa-circle-o"></i>Out Patients </a>
-                            </li>
-                        </ul>
-                    </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-home"></i> <span>Home Visit</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="{{ url('/addvisit') }}"><i
+                                    class="fa fa-circle-o"></i> Create
+                                Visit</a></li>
+                        <li><a href="{{ url('/bookings') }}"><i class="fa fa-circle-o"></i>Daily
+                                Visits</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa  fa-medkit"></i> <span>Clinic</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="{{ url('/addapoinments') }}"><i
+                                    class="fa fa-circle-o"></i>OP Registration</a></li>
+                        <li><a href="{{ url('/dailypatients') }}"><i class="fa fa-circle-o"></i>Out
+                                Patients </a>
+                        </li>
+                    </ul>
+                </li>
 
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-arrows"></i> <span>General</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li class="active"><a href="{{ url('/patients') }}"><i
-                                        class="fa fa-circle-o"></i>Patients</a></li>
-                            <li class="active"><a href="{{ url('/diseases') }}"><i
-                                        class="fa fa-circle-o"></i>Disease</a></li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-arrows"></i> <span>General Master</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="{{ url('/patients') }}"><i
+                                    class="fa fa-circle-o"></i>Patients</a></li>
+                        <li class="active"><a href="{{ url('/diseases') }}"><i
+                                    class="fa fa-circle-o"></i>Diseases</a></li>
+                        <li class="active"><a href="{{ url('/medicines') }}"><i
+                                    class="fa fa-circle-o"></i>Medicines</a></li>
+                                    <li class="active"><a href="{{ url('/equipments') }}"><i
+                                    class="fa fa-circle-o"></i>Equipments</a></li>
 
-                        </ul>
-                    </li>
-                    <br>
-                    <li class="header">Reports</li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-cube"></i> <span>Reports</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li class="active"><a href="{{ url('/reports/treatment') }}"><i class="fa fa-circle-o"></i>Treatment
-                                    Report</a></li>
+                    </ul>
+                </li>
+                <br>
+                <li class="header">Reports</li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-cube"></i> <span>Reports</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="{{ url('/reports/treatment') }}"><i
+                                    class="fa fa-circle-o"></i>Treatment
+                                Report</a></li>
 
-                            <li class="active"><a href="{{ url('/reports/patients') }}"><i class="fa fa-circle-o"></i>Patients
-                                    Report</a></li>
-                            <li class="active"><a href="{{ url('/reports/students') }}"><i
-                                        class="fa fa-circle-o"></i>Students Report</a></li>
+                        <li class="active"><a href="{{ url('/reports/patients') }}"><i
+                                    class="fa fa-circle-o"></i>Patients
+                                Report</a></li>
+                        <li class="active"><a href="{{ url('/reports/students') }}"><i
+                                    class="fa fa-circle-o"></i>Students Report</a></li>
 
-                        </ul>
-                    </li>
+                    </ul>
+                </li>
 
-                </ul>
-                <!-- /.sidebar-menu -->
-            </section>
-            <!-- /.sidebar -->
-        </aside>
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            {{-- <section class="content-header">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        {{-- <section class="content-header">
                 <h1>
                     Page Header
                     <small>Optional description</small>
@@ -392,32 +405,32 @@ desired effect
                 </ol>
             </section> --}}
 
-            <!-- Main content -->
-            <section class="content container-fluid">
-                <div id="content_view">
-                    @yield('content')
-                </div>
-                <!--------------------------
+        <!-- Main content -->
+        <section class="content container-fluid">
+            <div id="content_view">
+                @yield('content')
+            </div>
+            <!--------------------------
         | Your Page Content Here |
         -------------------------->
 
-            </section>
-            <!-- /.content -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+            Anything you want
         </div>
-        <!-- /.content-wrapper -->
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    </footer>
 
-        <!-- Main Footer -->
-        <footer class="main-footer">
-            <!-- To the right -->
-            <div class="pull-right hidden-xs">
-                Anything you want
-            </div>
-            <!-- Default to the left -->
-            <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
-        </footer>
-
-        <!-- Control Sidebar -->
-        {{-- <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control Sidebar -->
+    {{-- <aside class="control-sidebar control-sidebar-dark">
             <!-- Create the tabs -->
             <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
                 <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a>
@@ -489,14 +502,14 @@ desired effect
                 <!-- /.tab-pane -->
             </div>
         </aside> --}}
-        <!-- /.control-sidebar -->
+    <!-- /.control-sidebar -->
 
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.js"></script>
 
 <script>
-    $(document).ajaxStart(function() {
+    $(document).ajaxStart(function () {
         Pace.restart()
     })
 

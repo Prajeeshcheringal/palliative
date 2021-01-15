@@ -114,7 +114,7 @@
                                 </div>
 
 
-                                <div  style="padding-top: 20px;" class="col-sm-3"> <label>Financial Status :</label></div>
+                                <div  style="padding-top: 20px;" class="col-sm-3"> <label>Financial :</label></div>
                                 <div  style="padding-top: 20px;"  class="col-sm-3">
                                     <select name="financial_status" id="financial_status" class=" form-control" required>
                                         <option value="">Select</option>
@@ -124,7 +124,7 @@
                                         <option value="Wealthy">Wealthy</option>
                                     </select>
                                 </div>
-                                <div  style="padding-top: 20px;"  class="col-sm-2"> <label> Category :</label></div>
+                                <div  style="padding-top: 20px;"  class="col-sm-2"> <label> Category:</label></div>
                                 <div  style="padding-top: 20px;" class="col-sm-3">
                                     <select name="category" id="category" class=" form-control" required>
                                         <option value="">Select</option>
