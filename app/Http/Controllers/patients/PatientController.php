@@ -65,12 +65,12 @@ class PatientController extends Controller
 
                 }else{
 
-                    $data['reg_no'] = 001 .'/' .date('y');
+                    $data['reg_no'] = '001/' .date('y');
                 }   
 
             }else{
 
-                $data['reg_no'] = 001 .'/' .date('y');
+                $data['reg_no'] = '001/' .date('y');
 
             }
 
@@ -118,7 +118,7 @@ class PatientController extends Controller
             $patient_difficulties = count(($request->dificulty));
         }
 
-        try {
+       // try {
             $data = [
                 'reg_no' => $request->reg_no,
                 'date' => $request->date,
@@ -235,10 +235,10 @@ class PatientController extends Controller
             PatientOtherDetail::create($patient_other_details);
 
             return redirect('patients')->with('Success', 'Created Successfully');
-         } catch (\Exception $e) {
+        //  } catch (\Exception $e) {
 
-             return redirect('patients')->with('Error', 'Oops Something Went Wrong');
-        }
+        //      return redirect('patients')->with('Error', 'Oops Something Went Wrong');
+        // }
     }
 
 

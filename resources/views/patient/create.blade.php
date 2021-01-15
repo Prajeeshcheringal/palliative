@@ -45,13 +45,13 @@
 
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Age :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                    <input type="text" name="age" id="age" class="form-control "
+                                    <input type="number" name="age" id="age" class="form-control "
                                         value="{{ $patient->age ?? '' }}" placeholder="Enter ..." required maxlength="3">
                                 </div>
 
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Phone :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                    <input type="text" name="phone" id="phone" value="{{ $patient->phone ?? '' }}"
+                                    <input type="number" name="phone" id="phone" value="{{ $patient->phone ?? '' }}"
                                         class="form-control" placeholder="Enter ..." required minlength="10" maxlength="10">
                                 </div>
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Care of :</label></div>
@@ -146,7 +146,7 @@
 
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Pincode :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                    <input type="text" name="pincode" id="pincode" value="{{ $patient->pincode ?? '' }}"
+                                    <input type="number" name="pincode" id="pincode" value="{{ $patient->pincode ?? '' }}"
                                         class="form-control" placeholder="Enter ..." required>
                                 </div>
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Volunteer :</label></div>
