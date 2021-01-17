@@ -22,42 +22,42 @@
                             <div class="row">
 
                                 <div class="col-sm-3"> <label>Reg no :</label></div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <input type="hidden" name="id" id="id" class="form-control"
                                         value="{{ $patient->id ?? '' }}">
-                                    <input type="text" name="reg_no" id="reg_no" class=" form-control"
+                                    <input type="text" name="reg_no" id="reg_no" class=" form-control input-sm"
 
                                     @if($view == 'create') value="{{$reg_no}}" @endif  value="{{ $patient->reg_no ?? '' }}" placeholder="Enter ..." required readonly>
 
                                 </div>
-                                <div> <label class="col-sm-2"> Date :</label></div>
+                                <div> <label class="col-sm-1"> Date</label></div>
                                 <div class="col-sm-4">
-                                    <input type="date" name="date" id="date" class=" form-control"
+                                    <input type="date" name="date" id="date" class=" form-control input-sm"
                                     @if($view =='create')
                                     value="{{date('Y-m-d')}}" @endif   value="{{ $patient->date ?? '' }}" placeholder="Enter ..." required>
                                 </div>
 
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Name :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                    <input type="text" name="name" id="name" class="form-control"
+                                    <input type="text" name="name" id="name" class="form-control input-sm"
                                         value="{{ $patient->name ?? '' }}" placeholder="Enter ..." required maxlength="40">
                                 </div>
 
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Age :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                    <input type="number" name="age" id="age" class="form-control "
+                                    <input type="number" name="age" id="age" class="form-control input-sm "
                                         value="{{ $patient->age ?? '' }}" placeholder="Enter ..." required maxlength="3">
                                 </div>
 
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Phone :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-8">
                                     <input type="number" name="phone" id="phone" value="{{ $patient->phone ?? '' }}"
-                                        class="form-control" placeholder="Enter ..." required minlength="10" maxlength="10">
+                                        class="form-control input-sm" placeholder="Enter ..." required minlength="10" maxlength="10">
                                 </div>
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Care of :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-2">
                                     <select type="text" name="care_of_relation"  id="care_of"
-                                        class="form-control" required>
+                                        class="form-control input-sm" required>
                                         <option value="">Select</option>
                                         <option value="W/O">W/O</option>
                                         <option value="H/O">H/O</option>
@@ -69,12 +69,12 @@
                                 </div>
                                 <div style="padding-top: 20px;" class="col-sm-6">
                                     <input type="text" name="care_of" value="{{ $patient->care_of ?? '' }}"
-                                        class="form-control" placeholder="Enter ..." required maxlength="40">
+                                        class="form-control input-sm" placeholder="Enter ..." required maxlength="40">
                                 </div>
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Disease :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-8">
                                     <select type="text" name="pat_disease"  id="pat_disease"
-                                        class="form-control" required >
+                                        class="form-control input-sm" required >
                                     <option value="">Select</option>
                                     @foreach ($diseases as $disease)
 
@@ -87,8 +87,8 @@
                                 </div>
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Address :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                    <textarea type="text" name="address" id="address" class="form-control"
-                                        placeholder="Enter ..." required>{{ $patient->address ?? '' }} </textarea>
+                                    <textarea type="text" name="address" id="address" class="form-control input-sm"
+                                        placeholder="Enter ..." required>{{ $patient->address ?? '' }}</textarea>
                                 </div>
 
 
@@ -102,21 +102,21 @@
 
                                 <div class="col-sm-3"> <label>Ref No :</label></div>
                                 <div class="col-sm-8">
-                                    <input type="text" name="ref_no" id="ref_no" class=" form-control"
+                                    <input type="text" name="ref_no" id="ref_no" class=" form-control input-sm"
                                         value="{{ $patient->ref_no ?? '' }}" placeholder="Enter ...">
                                 </div>
 
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Organization</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-8">
                                     <input type="text" name="organization" id="organization"
-                                        value="{{ $patient->organization ?? '' }}" class="form-control"
+                                        value="{{ $patient->organization ?? '' }}" class="form-control input-sm"
                                         placeholder="Enter ...">
                                 </div>
 
 
                                 <div  style="padding-top: 20px;" class="col-sm-3"> <label>Financial :</label></div>
                                 <div  style="padding-top: 20px;"  class="col-sm-3">
-                                    <select name="financial_status" id="financial_status" class=" form-control" required>
+                                    <select name="financial_status" id="financial_status" class=" form-control input-sm" required>
                                         <option value="">Select</option>
                                         <option value="Very Poor">Very Poor</option>
                                         <option value="Poor">Poor</option>
@@ -126,7 +126,7 @@
                                 </div>
                                 <div  style="padding-top: 20px;"  class="col-sm-2"> <label> Category:</label></div>
                                 <div  style="padding-top: 20px;" class="col-sm-3">
-                                    <select name="category" id="category" class=" form-control" required>
+                                    <select name="category" id="category" class=" form-control input-sm" required>
                                         <option value="">Select</option>
                                         <option value="SC">SC</option>
                                         <option value="ST">ST</option>
@@ -140,26 +140,26 @@
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Panchayath</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-8">
                                     <input type="text" name="panchayath" id="panchayath"
-                                        value="{{ $patient->panchayath ?? '' }}" class="form-control "
+                                        value="{{ $patient->panchayath ?? '' }}" class="form-control input-sm "
                                         placeholder="Enter ..." required>
                                 </div>
 
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Pincode :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-8">
                                     <input type="number" name="pincode" id="pincode" value="{{ $patient->pincode ?? '' }}"
-                                        class="form-control" placeholder="Enter ..." required>
+                                        class="form-control input-sm" placeholder="Enter ..." required>
                                 </div>
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Volunteer :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-8">
                                     <input type="text" name="volunteer" id="volunteer"
-                                        value="{{ $patient->volunteer ?? '' }}" class="form-control"
+                                        value="{{ $patient->volunteer ?? '' }}" class="form-control input-sm"
                                         placeholder="Enter ...">
                                 </div>
                                 
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Location :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                    <textarea type="text" name="location" id="location" class="form-control"
-                                        placeholder="Enter ..." required> {{ $patient->location ?? '' }} </textarea>
+                                    <textarea type="text" name="location" id="location" class="form-control input-sm"
+                                        placeholder="Enter ..." required>{{ $patient->location ?? '' }}</textarea>
                                 </div>
 
                                 {{-- <div style="padding-top: 20px;" class="col-sm-3">
@@ -521,7 +521,7 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <div><input type="text" class="form-control" id="family_age" placeholder="Age" />
+                                                <div><input type="number" class="form-control" id="family_age" placeholder="Age" />
                                                 </div>
                                             </td>
                                             <td>
@@ -809,7 +809,7 @@
             var new_row =
                     '<tr> <td> <div><input type="text" value="'+name+'" class="form-control" name="member_name[]"/> </div> </td>' +
                     '<td><div><input type="text" value="'+relation+'" class="form-control" name="relation[]"/> </div></td>' +
-                    '<td> <div><input type="text" value="'+age+'" class="form-control" name="relation_age[]"/> </div> </td>' +
+                    '<td> <div><input type="number" value="'+age+'" class="form-control" name="relation_age[]"/> </div> </td>' +
                     '<td><div><input type="text" value="'+education+'" class="form-control" name="education[]" /></div> </td>' +
                     ' <td><div><input type="text" value="'+married+'" class="form-control" name="marriage_status[]"/> </div></td>' +
                     ' <td> <div><input type="text" value="'+job+'" class="form-control" name="job[]"/> </div></td>' +

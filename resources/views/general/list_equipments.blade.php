@@ -14,7 +14,7 @@
                     <tr>
                         <th>Sl No </th>
                         <th>Equipments</th>
-                        <th>Quantity</th>
+                        <th>Stock</th>
                         <th> Action</th>
 
                     </tr>
@@ -45,8 +45,8 @@
                     },
                   
                     {
-                        data: 'numbers',
-                        name: 'numbers'
+                        data: 'stock',
+                        name: 'stock'
                     },
                    
                     {
