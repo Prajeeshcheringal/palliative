@@ -58,3 +58,7 @@ Route::get('/equipment/delete/{id}','general\EquipmentController@delete');
 Route::any('/reports/patients','report\ReportController@patientReport')->name('patientreport');
 Route::get('/reports/students','report\ReportController@studentReport')->name('studentreport');
 Route::any('/reports/treatment','report\ReportController@treatmentReport')->name('treatmentreport');
+
+Route::any('/reports/equipments','report\ReportController@equipmentReport');
+
+Route::any('/reports/equipments/create/{id}','report\ReportController@equipmentCreate');

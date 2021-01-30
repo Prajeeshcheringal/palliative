@@ -82,4 +82,23 @@ class ReportController extends Controller
         }
         return view('reports.treatment_report');
     }
+
+    function equipmentReport(Request $request){
+
+        return view('reports.equipments_report');
+
+    }
+    function equipmentCreate($id){
+
+
+        $data['id'] = $id;
+        $data['view'] = "create";
+        if ($id > 0) {
+          //  $data['Medicine'] = Medicine::where('id', $id)->first();
+            $data['view'] = "update";
+        }
+
+        return view('reports.equipment_create');
+
+    }
 }

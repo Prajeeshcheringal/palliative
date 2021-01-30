@@ -381,6 +381,8 @@ desired effect
                                 Report</a></li>
                         <li class="active"><a href="{{ url('/reports/students') }}"><i
                                     class="fa fa-circle-o"></i>Students Report</a></li>
+                         <li class="active"><a href="{{ url('/reports/equipments') }}"><i
+                                    class="fa fa-circle-o"></i>Equipments Report</a></li>
 
                     </ul>
                 </li>
