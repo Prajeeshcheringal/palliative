@@ -19,7 +19,7 @@
                     <div class="col-sm-3">
 
                     </div>
-                    <div class="col-xs-2">
+                    <!-- <div class="col-xs-2">
                         <label for="">Start Date</label>
                         <input type="date" id="start_date" value="{{ date('Y-m-d') }}" class="form-control input-sm filter">
 
@@ -28,16 +28,38 @@
                         <label for="">End Date</label>
                         <input type="date" id="end_date" value="{{ date('Y-m-d') }}" class="form-control input-sm filter">
 
+                    </div> -->
+                    <div class="col-xs-2">
+                        <label for=""> Equipments</label>
+                        <select name="equip_id" id="equip_id" class=" form-control filter" required>
+                            <option value="">Select</option>
+                            @foreach($equipments as $equipment)
+
+                            <option value="{{$equipment->id}}" stock="{{$equipment->stock}}">{{$equipment->equipment}}</option>
+
+                            @endforeach
+                        </select>
                     </div>
                     <div class="col-xs-2">
-                        <label for=""> Type</label>
-                        <select type="text" id="type" class="form-control input-sm filter">
+                    <label for=""> Return Status</label>
+                        <select name="type" id="return_status" class="form-control filter" value="" placeholder="Enter ..." required>
                             <option value="">Select</option>
-                            <option value="home">Home</option>
-                            <option value="clinic">Clinic</option>
+                            <option value="3">Out of Date</option>
+                            <option value="0">No Return</option>
+                            <option value="1">Pending</option>
+                            <option value="2">Returned</option>
 
                         </select>
                     </div>
+                    <div class="col-xs-2">
+                    <label for=""> Usage Type </label>
+                        <select name="type" id="usage_type" class="form-control filter" value="" placeholder="Enter ..." required>
+                            <option value="">Select</option>
+                            <option value="Permanent">Permanent</option>
+                            <option value="Temperory">Temperory</option>
+                        </select>
+                    </div>
+                   
 
                 </div><br>
 
@@ -51,9 +73,11 @@
                         <th>Patient</th>
                         <th>Phone</th>
                         <th>date</th>
-                        <th>Disease</th>
                         <th>Equipment</th>
                         <th>Nos</th>
+                        <th>End Date</th>
+                        <th>Usage Type</th>
+                        <th>Return Status</th>
 
                     </tr>
                 </thead>
@@ -73,17 +97,20 @@
 
                 mytable.ajax.reload();
             })
+            
             var mytable = $('#example1').DataTable({
                 processing: true,
                 serverSide: true,
                 //  sScrollX: '100%',
                 ajax: {
-                   // url: "{{ route('treatmentreport') }}",
+                    url: "{{ route('reports/equipments') }}",
                     type: "post",
                     data: function(data) {
-                        data.start_date = $('#start_date').val(),
-                            data.end_date = $('#end_date').val(),
-                            data.type = $('#type').val()
+                            //data.start_date = $('#start_date').val(),
+                            //data.end_date = $('#end_date').val(),
+                            data.return_status = $('#return_status').val()
+                            data.usage_type = $('#usage_type').val()
+                            data.equip_id = $('#equip_id').val()
                     }
                 },
                 columns: [{
@@ -91,15 +118,15 @@
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'get_patient_relation.reg_no',
+                        data: 'reg_no',
                         name: 'reg_no'
                     },
                     {
-                        data: 'get_patient_relation.name',
+                        data: 'name',
                         name: 'name'
                     },
                     {
-                        data: 'get_patient_relation.phone',
+                        data: 'phone',
                         name: 'phone'
                     },
                     {
@@ -108,20 +135,25 @@
                     },
 
                     {
-                        data: 'bok_type',
-                        name: 'bok_type'
+                        data: 'equipment',
+                        name: 'equipment'
                     },
                     {
-                        data: 'get_patient_relation.disease',
-                        name: 'disease'
+                        data: 'nos',
+                        name: 'nos'
                     },
                     {
-                        data: 'get_patient_relation.category',
-                        name: 'category'
-                    }, {
-                        data: 'get_patient_relation.financial_status',
-                        name: 'financial_status'
+                        data: 'end_date',
+                        name: 'end_date'    
                     },
+                    {
+                        data: 'type',
+                        name: 'type'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action'
+                    }
                 ]
             });
 

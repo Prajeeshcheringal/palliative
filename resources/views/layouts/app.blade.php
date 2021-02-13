@@ -7,16 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Palliative Care</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet"
-        href="{{ url('/public') }}/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet"
-        href="{{ url('/public') }}/bower_components/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet"
-        href="{{ url('/public') }}/bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{ url('/public') }}/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url('/public') }}/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url('/public') }}/bower_components/Ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="{{ url('/public') }}/plugins/pace/pace.min.css">
 
-    <link rel="stylesheet"
-        href="{{ url('/public') }}/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url('/public') }}/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
     <link rel="stylesheet" href="{{ url('/public') }}/dist/css/AdminLTE.min.css">
 
@@ -27,8 +23,7 @@
     <script src="{{ url('/public') }}/dist/js/adminlte.min.js"></script>
     <script src="{{ url('/public') }}/bower_components/datatables.net/js/jquery.dataTables.min.js">
     </script>
-    <script
-        src="{{ url('/public') }}/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js">
+    <script src="{{ url('/public') }}/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js">
     </script>
     <script src="{{ url('/public') }}/bower_components/jquery-slimscroll/jquery.slimscroll.min.js">
     </script>
@@ -39,22 +34,34 @@
     <script src="{{ url('/public') }}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js">
     </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
 
     <!-- Google Font -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
     <style>
         body {
             /* font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif; */
             font-size: 16px;
-
+            /* background-color: #cccccc; */
         }
 
-        .sidebar-menu {}
+        .bg {
+            background-image: url("{{ url('/public') }}/bg.jpg");
+            height: 100%;
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .side {
+            background-image: url("{{ url('/public') }}/as.jpg");
+            background-color: blue;
+        }
 
         td,
         li {
@@ -68,7 +75,18 @@
             color: #ff0000;
             font-family: "Open Sans";
             font-size: 12px;
+        }
 
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
     </style>|
 
 </head>
@@ -222,16 +240,14 @@ desired effect
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-                        <img src="{{ url('/public') }}/dist/img/user2-160x160.jpg"
-                            class="user-image" alt="User Image">
+                        <img src="{{ url('/public') }}/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
                         <span class="hidden-xs">Admin</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                            <img src="{{ url('/public') }}/dist/img/user2-160x160.jpg"
-                                class="img-circle" alt="User Image">
+                            <img src="{{ url('/public') }}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                             <p>
                                 Admin - Web Developer
@@ -276,7 +292,7 @@ desired effect
     </nav>
     </header>
     <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar">
+    <aside class="main-sidebar side">
 
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
@@ -314,31 +330,29 @@ desired effect
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-home"></i> <span>Home Visit</span>
+                        <i class="fa fa-home"></i> <span>Home Care</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="{{ url('/addvisit') }}"><i
-                                    class="fa fa-circle-o"></i> Create
-                                Visit</a></li>
+                        <li class="active"><a href="{{ url('/addvisit') }}"><i class="fa fa-circle-o"></i> Create
+                                Home Care</a></li>
                         <li><a href="{{ url('/bookings') }}"><i class="fa fa-circle-o"></i>Daily
-                                Visits</a></li>
+                                Home Care</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa  fa-medkit"></i> <span>Clinic</span>
+                        <i class="fa  fa-medkit"></i> <span>Clinic Care</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="{{ url('/addapoinments') }}"><i
-                                    class="fa fa-circle-o"></i>OP Registration</a></li>
-                        <li><a href="{{ url('/dailypatients') }}"><i class="fa fa-circle-o"></i>Out
-                                Patients </a>
+                        <li class="active"><a href="{{ url('/addapoinments') }}"><i class="fa fa-circle-o"></i>Daily Registration</a></li>
+                        <li><a href="{{ url('/dailypatients') }}"><i class="fa fa-circle-o"></i>New Registrations
+                                 </a>
                         </li>
                     </ul>
                 </li>
@@ -351,14 +365,50 @@ desired effect
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="{{ url('/patients') }}"><i
-                                    class="fa fa-circle-o"></i>Patients</a></li>
-                        <li class="active"><a href="{{ url('/diseases') }}"><i
-                                    class="fa fa-circle-o"></i>Diseases</a></li>
-                        <li class="active"><a href="{{ url('/medicines') }}"><i
-                                    class="fa fa-circle-o"></i>Medicines</a></li>
-                                    <li class="active"><a href="{{ url('/equipments') }}"><i
-                                    class="fa fa-circle-o"></i>Equipments</a></li>
+                        <li class="active"><a href="{{ url('/patients') }}"><i class="fa fa-circle-o"></i>Patients</a></li>
+                        <li class="active"><a href="{{ url('/diseases') }}"><i class="fa fa-circle-o"></i>Diseases</a></li>
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa  fa-anchor"></i> <span>Equipments</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                       
+                        <li class="active"><a href="{{ url('/equipments') }}"><i class="fa fa-circle-o"></i>Equipments</a></li>
+                        <li class="active"><a href="{{ url('/reports/equipments') }}"><i class="fa fa-circle-o"></i>Equipments Management</a></li>
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-plus-square"></i> <span>Pharmacy</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                       
+                         <li class="active"><a href="{{ url('/medicines') }}"><i class="fa fa-circle-o"></i>Medicines</a></li>
+                        <li class="active"><a href="{{ url('/prescriptions') }}"><i class="fa fa-circle-o"></i>Prescriptions</a></li>
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa  fa-futbol-o"></i> <span>Settings</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                       
+                        <li class="active"><a href="{{ url('/equipments') }}"><i class="fa fa-circle-o"></i>Equipments</a></li>
+                        <li class="active"><a href="{{ url('/reports/equipments') }}"><i class="fa fa-circle-o"></i>Equipments Management</a></li>
 
                     </ul>
                 </li>
@@ -372,17 +422,12 @@ desired effect
                         </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="{{ url('/reports/treatment') }}"><i
-                                    class="fa fa-circle-o"></i>Treatment
+                        <li class="active"><a href="{{ url('/reports/treatment') }}"><i class="fa fa-circle-o"></i>Treatment
                                 Report</a></li>
 
-                        <li class="active"><a href="{{ url('/reports/patients') }}"><i
-                                    class="fa fa-circle-o"></i>Patients
+                        <li class="active"><a href="{{ url('/reports/patients') }}"><i class="fa fa-circle-o"></i>Patients
                                 Report</a></li>
-                        <li class="active"><a href="{{ url('/reports/students') }}"><i
-                                    class="fa fa-circle-o"></i>Students Report</a></li>
-                         <li class="active"><a href="{{ url('/reports/equipments') }}"><i
-                                    class="fa fa-circle-o"></i>Equipments Report</a></li>
+                        <li class="active"><a href="{{ url('/reports/students') }}"><i class="fa fa-circle-o"></i>Students Report</a></li>
 
                     </ul>
                 </li>
@@ -394,9 +439,9 @@ desired effect
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper bg">
         <!-- Content Header (Page header) -->
-        {{-- <section class="content-header">
+        <!-- <section class="content-header">
                 <h1>
                     Page Header
                     <small>Optional description</small>
@@ -405,11 +450,11 @@ desired effect
                     <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
                     <li class="active">Here</li>
                 </ol>
-            </section> --}}
+            </section>  -->
 
         <!-- Main content -->
         <section class="content container-fluid">
-            <div id="content_view">
+            <div id="content_view" class="">
                 @yield('content')
             </div>
             <!--------------------------
@@ -425,10 +470,10 @@ desired effect
     <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-            Anything you want
+           Not me but you &nbsp; <i class="fa fa-expeditedssl"></i>
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+        <strong>Copyright &copy;  {{Date('Y')}}   <a href="#">NSS GEC Wayanad</a>.</strong> All rights reserved.
     </footer>
 
     <!-- Control Sidebar -->
@@ -511,7 +556,7 @@ desired effect
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.js"></script>
 
 <script>
-    $(document).ajaxStart(function () {
+    $(document).ajaxStart(function() {
         Pace.restart()
     })
 
@@ -541,7 +586,6 @@ desired effect
     })
     $('form').validate();*/
     /* });  */
-
 </script>
 
 </html>

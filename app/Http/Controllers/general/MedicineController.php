@@ -5,7 +5,10 @@ namespace App\Http\Controllers\general;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\general\Medicine;
+use App\Model\home_visit\Booking;
 use Yajra\DataTables\DataTables;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class MedicineController extends Controller
 {
@@ -82,5 +85,63 @@ class MedicineController extends Controller
         } catch (\Exception $e) {
             return redirect('medicines')->with('Error', 'Oops Something Went Wrong');
         }
+    }
+
+    public function getMedicine(Request $request)
+    {
+
+
+        $search = $request->search;
+
+
+        $items = Medicine::orderby('medicine', 'asc')->select('id', 'medicine', 'quantity')->where('medicine', 'like', '%' . $search . '%')->limit(5)->get();
+
+
+        $response = array();
+        foreach ($items as $item) {
+            $response[] = array("value" => $item->id, "stock"=>$item->quantity ,"label" => $item->medicine);
+        }
+
+        return response()->json($response);
+    }
+
+
+    public  function Prescription(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $data = Booking::where('status',1)->whereDate('date', Carbon::today())->with('getPatientRelation')->latest()->get();
+
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($data) {
+                    $message = "'Do you want to delete'";
+                    $btn = '<a   href="prescription/view/' . $data->id . '/'.$data->pat_id.'"  class="btn btn-info" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
+                     return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        return view('general/prescriptions');
+    }
+
+    public function viewPrescription($bok_id,$pat_id){
+
+    $data =[
+        'pat_id'=>$pat_id,
+        'bok_id'=>$bok_id,
+        'patient'=>DB::table('patients')->where('id',$pat_id)->first(),
+         'prescription'=>DB::table('prescription')->where('bok_id',$bok_id)->get()
+
+    ];
+
+        return view('general/view_prescriptions',$data);
+
+    }
+
+    public function billingSave(Request $request){
+
+        
+
     }
 }

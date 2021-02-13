@@ -16,15 +16,15 @@ class Patient extends Model
         'address',
         'care_of',
         'panchayath',
-        'ref_no',
-        'organization',
+        'reg_type',
         'pincode',
         'volunteer',
-        'location',
+        'location', 
         'disease',
         'category',
         'financial_status',
-        'care_of_relation'
+        'care_of_relation',
+        'current_status'
     ];
 
     public function getDiseaseRelation(){

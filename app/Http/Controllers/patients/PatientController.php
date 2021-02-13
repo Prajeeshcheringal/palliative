@@ -20,14 +20,15 @@ class PatientController extends Controller
     {
         if ($request->ajax()) {
 
-            $data = Patient::latest()->get();
+            $data = Patient::where('current_status','Active')->latest()->get();
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
-                    $message = "'Do You Want to Delete'";
+                    $message = "'Do You Want to Close ?'";
                     $btn = '<a href="patient/view/' . $data->id . '" class="btn btn-primary" style="margin:1px">  <i class="fa fa-eye"></i></span></a>';
                     $btn .= '<a href="patient/create/' . $data->id . '" class="btn btn-success" style="margin:1px"><span><i class="fa fa-edit"></i></span></a>';
-                    $btn .= '<a href="patient/delete/' . $data->id . ' "class="btn btn-danger" style="margin:1px" onclick="return confirm(' . $message . ')"><span><i class="fa  fa-remove"></i></a></span>';
+                    $btn .= '<a href="patient/delete/' . $data->id . '/Closed "class="btn btn-warning" style="margin:1px" onclick="return confirm(' . $message . ')">Close</a>';
+                    $btn .= '<a href="patient/delete/' . $data->id . '/Expired "class="btn btn-danger" style="margin:1px" onclick="return confirm(' . $message . ')">Expired</a>';
 
                     return $btn;
                 })
@@ -41,7 +42,7 @@ class PatientController extends Controller
     {
         $data['id'] = $id;
         $data['view'] = "create";
-        $data['diseases'] =[]; //Disease::all();
+        $data['diseases'] = Disease::all();
         if ($id > 0) {
 
             $data['view'] = "update";
@@ -243,13 +244,30 @@ class PatientController extends Controller
 
 
 
-    public function delete($id)
+    public function delete($id,$data)
     {
         try {
-            Patient::find($id)->delete();
-            return redirect('patients')->with('Success', 'Deleted Successfully');
+            Patient::find($id)->update(['current_status' => $data]);
+            return redirect('patients')->with('Success', 'Updated Successfully');
         } catch (\Exception $e) {
             return redirect('patients')->with('Error', 'Oops Something Went Wrong');
         }
+    }
+
+    public function getPatients(Request $request){
+
+
+        $search = $request->search;
+
+       
+            $items = Patient::orderby('name', 'asc')->select('id', 'name','reg_no')->where('name', 'like', '%' . $search . '%')->orWhere('reg_no', 'like', '%' . $search . '%')->limit(5)->get();
+        
+
+        $response = array();
+        foreach ($items as $item) {
+            $response[] = array("value" => $item->id, "label" => $item->name .'  -  '.$item->reg_no);
+        }
+
+        return response()->json($response);
     }
 }

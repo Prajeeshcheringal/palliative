@@ -17,7 +17,7 @@
 
                 <div class="row">
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
 
                     </div>
                     <div class="col-xs-2">
@@ -51,6 +51,17 @@
                             <option value="Wealthy">Wealthy</option>
                         </select>
                     </div>
+                    <div class="col-xs-2">
+                        <label for=""> Current Status</label>
+                        <select type="text" id="current_status" class="form-control input-sm filter">
+
+                            <option value="">Select</option>
+                            <option value="Active">Active</option>
+                            <option value="Closed">Closed</option>
+                            <option value="Expired">Expired</option>
+
+                        </select>
+                    </div>
 
                 </div><br>
 
@@ -66,6 +77,7 @@
                         <th> Care Of</th>
                         <th>Disease</th>
                         <th>Category</th>
+                        <th>Current Status</th>
                         <th>Fiancial Status</th>
 
                     </tr>
@@ -98,6 +110,8 @@
                         data.category=$('#category').val(),
                         data.disease=$('#disease').val(),
                         data.finance=$('#finance').val()
+                        data.current_status=$('#current_status').val()
+
                     }
                 },
                 columns: [{
@@ -131,7 +145,12 @@
                     }, {
                         data: 'category',
                         name: 'category'
-                    }, {
+                    },
+                    {
+                        data: 'current_status',
+                        name: 'current_status'
+                    },
+                    {
                         data: 'financial_status',
                         name: 'financial_status'
                     },

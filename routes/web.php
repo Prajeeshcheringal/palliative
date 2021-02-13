@@ -24,7 +24,9 @@ Route::get('/patients', 'patients\PatientController@listall')->name('patients');
 Route::get('/patient/create/{id}', 'patients\PatientController@create');
 Route::post('/patient/save', 'patients\PatientController@save');
 Route::get('/patient/view/{id}', 'patients\PatientController@view');
-Route::get('/patient/delete/{id}', 'patients\PatientController@delete');
+Route::get('/patient/delete/{id}/{type}', 'patients\PatientController@delete');
+
+Route::post('/get/patients', 'patients\PatientController@getPatients')->name('get/patients');
 
 
 Route::get('/addvisit', 'home_visit\HomeVisitController@listall')->name('addvisit');
@@ -47,6 +49,14 @@ Route::get('/medicine/create/{id}','general\MedicineController@create');
 Route::get('/medicine/view/{id}','general\MedicineController@view');
 Route::post('/medicine/save','general\MedicineController@save');
 Route::get('/medicine/delete/{id}','general\MedicineController@delete');
+Route::post('/get/medicines','general\MedicineController@getMedicine')->name('get/medicines');
+Route::post('/medicine/billing/save','general\MedicineController@billingSave');
+
+//prescription routes
+
+Route::get('/prescriptions','general\MedicineController@Prescription')->name('prescriptions');
+Route::get('/prescription/view/{bok_id}/{pat_id}','general\MedicineController@viewPrescription');
+
 
 Route::get('/equipments','general\EquipmentController@listall')->name('equipments');
 Route::get('/equipment/create/{id}','general\EquipmentController@create');
@@ -59,6 +69,9 @@ Route::any('/reports/patients','report\ReportController@patientReport')->name('p
 Route::get('/reports/students','report\ReportController@studentReport')->name('studentreport');
 Route::any('/reports/treatment','report\ReportController@treatmentReport')->name('treatmentreport');
 
-Route::any('/reports/equipments','report\ReportController@equipmentReport');
+Route::any('/reports/equipments','report\ReportController@equipmentReport')->name('reports/equipments');
 
 Route::any('/reports/equipments/create/{id}','report\ReportController@equipmentCreate');
+
+Route::any('/reports/equipments/save','report\ReportController@equipmentSave');
+Route::any('/reports/equipments/return/{id}','report\ReportController@equipmentReturn');

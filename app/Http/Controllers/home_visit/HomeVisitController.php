@@ -8,13 +8,14 @@ use App\Model\patients\Patient;
 use App\Model\home_visit\Booking;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 class HomeVisitController extends Controller
 {
     function listall(Request $request)
     {
         if ($request->ajax()) {
 
-            $data = Patient::latest()->get();
+            $data = Patient::where('current_status','Active')->latest()->get();
 
             return Datatables::of($data)
                 ->addIndexColumn()
@@ -25,10 +26,7 @@ class HomeVisitController extends Controller
                     $reg_no = "'" . $data->reg_no . "'";
 
                     $btn = '<a  onclick="showModal(' . $patid . ',' . $name . ',' . $care_of . ',' . $reg_no . ')" class="btn btn-success" style="margin-left:20px">  <i class="fa fa-book"></i></span></a>';
-                    // $btn .= '<a href="patient/create/' . $data->id . '" class="btn btn-success" style="margin:1px"><span><i class="fa fa-edit"></i></span></a>';
-                    // $btn .= '<a href="patient/delete/' . $data->id . ' "class="btn btn-danger" style="margin:1px" onclick="';
-                    // $btn .= "return confirm('Do You Want to Delete') ";
-                    // $btn .= ' "><span><i class="fa  fa-remove"></i></a></span>';
+                   
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -71,6 +69,8 @@ class HomeVisitController extends Controller
 
     function bookingsAddData($bok_id,$pat_id){
         $data =[
+            //current bokking data
+
             'bok_id'=>$bok_id,
             'pat_id' =>$pat_id,
             'patient'=>Patient::where('id',$pat_id)->first(),
@@ -78,6 +78,13 @@ class HomeVisitController extends Controller
             'prescription'=>DB::table('prescription')->where('bok_id',$bok_id)->get(),
             'team_members'=>DB::table('team_members')->where('bok_id',$bok_id)->get(),
 
+            //previous data
+
+            'prev_bookings'=>Booking::where('pat_id',$pat_id)->where('status',1)->orderBy('date','desc')->get(),
+            'prev_prescriptions'=>DB::table('prescription')->where('pat_id',$pat_id)->get(),
+            'prev_team_members'=>DB::table('team_members')->where('pat_id',$pat_id)->get(),
+
+            
 
         ];
         return view('home_visit.booking_add_data', $data);
@@ -108,8 +115,7 @@ class HomeVisitController extends Controller
                         'pat_id'=>$request->pat_id,
                         'medicine' =>$request->medicine[$i],
                         'dose' =>$request->dose[$i],
-                        'availability' => $request->availability[$i],
-                        'usage' => $request->usage[$i],
+                        'period' => $request->period[$i],
                         'purpose' => $request->purpose[$i],
     
                     ];
@@ -157,7 +163,7 @@ class HomeVisitController extends Controller
     {
         if ($request->ajax()) {
 
-            $data = Patient::latest()->get();
+            $data = Patient::where('current_status','Active')->latest()->get();
 
             return Datatables::of($data)
                 ->addIndexColumn()
@@ -168,10 +174,7 @@ class HomeVisitController extends Controller
                     $reg_no = "'" . $data->reg_no . "'";
 
                     $btn = '<a  onclick="showModal(' . $patid . ',' . $name . ',' . $care_of . ',' . $reg_no . ')" class="btn btn-success" style="margin-left:20px">  <i class="fa fa-book"></i></span></a>';
-                    // $btn .= '<a href="patient/create/' . $data->id . '" class="btn btn-success" style="margin:1px"><span><i class="fa fa-edit"></i></span></a>';
-                    // $btn .= '<a href="patient/delete/' . $data->id . ' "class="btn btn-danger" style="margin:1px" onclick="';
-                    // $btn .= "return confirm('Do You Want to Delete') ";
-                    // $btn .= ' "><span><i class="fa  fa-remove"></i></a></span>';
+                   
                     return $btn;
                 })
                 ->rawColumns(['action'])
@@ -184,17 +187,14 @@ class HomeVisitController extends Controller
     {
         if ($request->ajax()) {
 
-            $data = Booking::where('bok_type','clinic')->with('getPatientRelation')->latest()->get();
+            $data = Booking::where('bok_type','clinic')->whereDate('date', Carbon::today())->with('getPatientRelation')->latest()->get();
 
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
                     
                     $btn = '<a href="bookings/add_data/'.$data->id.'/'.$data->pat_id.'" class="btn btn-success" style="margin-left:20px">  <i class="fa fa-edit"></i></span></a>';
-                    // $btn .= '<a href="patient/create/' . $data->id . '" class="btn btn-success" style="margin:1px"><span><i class="fa fa-edit"></i></span></a>';
-                    // $btn .= '<a href="patient/delete/' . $data->id . ' "class="btn btn-danger" style="margin:1px" onclick="';
-                    // $btn .= "return confirm('Do You Want to Delete') ";
-                    // $btn .= ' "><span><i class="fa  fa-remove"></i></a></span>';
+                   
                     return $btn;
                 })
                 ->rawColumns(['action'])

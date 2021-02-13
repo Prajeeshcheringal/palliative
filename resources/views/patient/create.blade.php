@@ -100,22 +100,19 @@
 
                             <div class="row">
 
-                                <div class="col-sm-3"> <label>Ref No :</label></div>
+                                <div class="col-sm-3"> <label>Reg Type :</label></div>
                                 <div class="col-sm-8">
-                                    <input type="text" name="ref_no" id="ref_no" class=" form-control input-sm"
-                                        value="{{ $patient->ref_no ?? '' }}" placeholder="Enter ...">
-                                </div>
-
-                                <div style="padding-top: 20px;" class="col-sm-3"> <label>Organization</label></div>
-                                <div style="padding-top: 20px;" class="col-sm-8">
-                                    <input type="text" name="organization" id="organization"
-                                        value="{{ $patient->organization ?? '' }}" class="form-control input-sm"
-                                        placeholder="Enter ...">
+                                <select name="reg_type" id="reg_type" class=" form-control input-sm" required>
+                                        <option value="">Select</option>
+                                        <option value="Permanent">Permanent</option>
+                                        <option value="Temperory">Temperory</option>
+                                    </select>
                                 </div>
 
 
-                                <div  style="padding-top: 20px;" class="col-sm-3"> <label>Financial :</label></div>
-                                <div  style="padding-top: 20px;"  class="col-sm-3">
+                             <div style="padding-top: 20px;" class="col-sm-3"> <label>Financial :</label></div>
+                             <div class="col-sm-8"  style="padding-top: 20px;">
+
                                     <select name="financial_status" id="financial_status" class=" form-control input-sm" required>
                                         <option value="">Select</option>
                                         <option value="Very Poor">Very Poor</option>
@@ -123,9 +120,18 @@
                                         <option value="Middle Class">Middle Class</option>
                                         <option value="Wealthy">Wealthy</option>
                                     </select>
-                                </div>
-                                <div  style="padding-top: 20px;"  class="col-sm-2"> <label> Category:</label></div>
-                                <div  style="padding-top: 20px;" class="col-sm-3">
+                             </div>
+
+                                <!-- <div style="padding-top: 20px;" class="col-sm-3"> <label>Organization</label></div>
+                                <div style="padding-top: 20px;" class="col-sm-8">
+                                    <input type="text" name="organization" id="organization"
+                                        value="{{ $patient->organization ?? '' }}" class="form-control input-sm"
+                                        placeholder="Enter ...">
+                                </div> -->
+
+                    
+                                <div  style="padding-top: 20px;"  class="col-sm-3"> <label> Category:</label></div>
+                                <div class="col-sm-8"  style="padding-top: 20px;">
                                     <select name="category" id="category" class=" form-control input-sm" required>
                                         <option value="">Select</option>
                                         <option value="SC">SC</option>
@@ -693,6 +699,7 @@
                 $('#category').val('{{$patient->category}}');
                 $('#pat_disease').val({{$patient->disease}});
                 $('#financial_status').val('{{$patient->financial_status}}');
+                $('#reg_type').val('{{$patient->reg_type}}');
                 $('#care_of').val('{{$patient->care_of_relation}}');
 
                 @foreach($family_tree  as $family)
