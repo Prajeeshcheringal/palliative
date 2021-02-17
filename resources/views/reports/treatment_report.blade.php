@@ -55,6 +55,7 @@
                         <th>Disease</th>
                         <th>Category</th>
                         <th>Fiancial Status</th>
+                        <th>Action</th>
 
                     </tr>
                 </thead>
@@ -122,6 +123,10 @@
                     }, {
                         data: 'get_patient_relation.financial_status',
                         name: 'financial_status'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action'
                     },
                 ]
             });

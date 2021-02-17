@@ -3,7 +3,7 @@
 @section('content')
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Add Home Visit</h3>
+            <h3 class="box-title">Create Home Care</h3>
             {{-- <a href="{{ url('/patient/create/0') }}" class="pull-right btn btn-success">
                 <i class="fa fa-plus "></i></a> --}}
 
@@ -17,10 +17,10 @@
                         <th>Reg No</th>
                         <th>Name</th>
                         <th>Phone</th>
-                        <th> Age</th>
-                        <th> Address</th>
-                        <th> Care Of</th>
-                        <th> Action</th>
+                        <th>Age</th>
+                        <th>Address</th>
+                        <th>Care Of</th>
+                        <th>Action</th>
 
                     </tr>
                 </thead>

@@ -406,12 +406,11 @@
                                                 <strong> Mental & Sperictual :</strong> {{$prev_book->mental_note}} <br><br>
 
                                                 <strong> Prescription :</strong> <br><br>
-                                                <table class="table table-bordered table-stripped" style="margin-left: 115px; margin-right:30px">
+                                                <table class="table table-bordered table-stripped" style="margin-left: 115px; margin-right:30px;    width: 70%">
                                                     <thead>
                                                         <th>Medicine</th>
                                                         <th>Dose</th>
                                                         <th>Purpose</th>
-                                                        <th></th>
 
                                                     </thead>
                                                     <tbody>
@@ -422,7 +421,6 @@
                                                             <td>{{$prev_presc->medicine}}</td>
                                                             <td>{{$prev_presc->dose }}</td>
                                                             <td>{{$prev_presc->purpose}}</td>
-                                                            <td></td>
                                                         </tr>
 
                                                         @endif
@@ -433,12 +431,11 @@
                                                 @if($prev_book->bok_type == 'home')
 
                                                 <strong> Team Members :</strong> <br><br>
-                                                <table class="table table-bordered table-stripped" style="margin-left: 115px;">
+                                                <table class="table table-bordered table-stripped" style="margin-left: 115px;     width: 70%">
                                                     <thead>
                                                         <th>Name</th>
                                                         <th>Role</th>
                                                         <th>Contact No</th>
-                                                        <th></th>
 
 
                                                     </thead>
@@ -450,7 +447,6 @@
                                                             <td>{{$prev_team->team_name}}</td>
                                                             <td>{{$prev_team->role }}</td>
                                                             <td>{{$prev_team->contact_no}}</td>
-                                                            <td></td>
 
                                                         </tr>
 

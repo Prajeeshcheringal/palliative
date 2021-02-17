@@ -41,6 +41,12 @@ class ReportController extends Controller
             $data = $model->latest()->get();
             return Datatables::of($data)
                 ->addIndexColumn()
+                ->addColumn('action', function ($data) {
+
+                    $url =env('APP_URL');
+                    $btn = '<a   href="'.$url.'/patient/view/' . $data->id . '"  class="btn btn-info" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
+                    return $btn;    
+                })
                 ->rawColumns(['action'])
                 ->make(true);
         }
@@ -82,6 +88,12 @@ class ReportController extends Controller
             $data = $model->latest()->get();
             return Datatables::of($data)
                 ->addIndexColumn()
+                 ->addColumn('action', function ($data) {
+                    
+                    $url =env('APP_URL');
+                    $btn = '<a   href="'.$url.'/patient/view/' . $data->getPatientRelation->id . '"  class="btn btn-info" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
+                    return $btn;    
+                })
                 ->rawColumns(['action'])
                 ->make(true);
         }

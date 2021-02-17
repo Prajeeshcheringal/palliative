@@ -697,7 +697,7 @@
             @if($view !='create')
 
                 $('#category').val('{{$patient->category}}');
-                $('#pat_disease').val({{$patient->disease}});
+                $('#pat_disease').val('{{$patient->disease}}');
                 $('#financial_status').val('{{$patient->financial_status}}');
                 $('#reg_type').val('{{$patient->reg_type}}');
                 $('#care_of').val('{{$patient->care_of_relation}}');

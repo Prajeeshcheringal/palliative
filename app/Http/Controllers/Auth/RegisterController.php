@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\DataTables;
 
 class RegisterController extends Controller
 {
@@ -38,7 +40,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     /**
@@ -53,6 +55,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone'=>['required'],
+            'role'=>['required']
         ]);
     }
 
@@ -68,6 +72,34 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role' =>$data['role'],
+            'phone' =>$data['phone'],
         ]);
+
+
+    }
+
+
+    public function Users(Request $request)
+    {
+
+
+        if ($request->ajax()) {
+
+            $data = User::latest()->get();
+
+            return Datatables::of($data)
+                ->addIndexColumn()
+                // ->addColumn('action', function ($data) {
+
+                //     $btn = '<a href="bookings/add_data/' . $data->id . '/' . $data->pat_id . '" class="btn btn-success" style="margin-left:20px">  <i class="fa fa-edit"></i></span></a>';
+
+                //     return $btn;
+                // })
+                // ->rawColumns(['action'])
+                ->make(true);
+        }
+
+        return view('auth.users');
     }
 }

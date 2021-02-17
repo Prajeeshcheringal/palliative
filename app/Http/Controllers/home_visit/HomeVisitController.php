@@ -48,23 +48,22 @@ class HomeVisitController extends Controller
     {
         if ($request->ajax()) {
 
-            $data = Booking::where('bok_type','home')->with('getPatientRelation')->latest()->get();
+            $data = Booking::where('bok_type','home')->whereDate('date',$request->book_date)->with('getPatientRelation')->latest()->get();
 
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
                     
                     $btn = '<a href="bookings/add_data/'.$data->id.'/'.$data->pat_id.'" class="btn btn-success" style="margin-left:20px">  <i class="fa fa-edit"></i></span></a>';
-                    // $btn .= '<a href="patient/create/' . $data->id . '" class="btn btn-success" style="margin:1px"><span><i class="fa fa-edit"></i></span></a>';
-                    // $btn .= '<a href="patient/delete/' . $data->id . ' "class="btn btn-danger" style="margin:1px" onclick="';
-                    // $btn .= "return confirm('Do You Want to Delete') ";
-                    // $btn .= ' "><span><i class="fa  fa-remove"></i></a></span>';
+                    
                     return $btn;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('home_visit.bookinglist');
+
+        $data['two_days_ago'] = date('Y-m-d', strtotime('-2 days'));
+        return view('home_visit.bookinglist', $data);
     } 
 
     function bookingsAddData($bok_id,$pat_id){

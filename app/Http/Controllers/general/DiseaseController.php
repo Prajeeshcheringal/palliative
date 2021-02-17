@@ -22,8 +22,8 @@ class DiseaseController extends Controller
                     $message = "'Do you want to delete'";
                     $btn = '<a   href="disease/view/' . $data->id . '"  class="btn btn-info" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
                     $btn .= '<a href="disease/create/' . $data->id . '" class="btn btn-success" style="margin:1px"><span><i class="fa fa-edit"></i></span></a>';
-                    $btn .= '<a href="disease/delete/' . $data->id . '" class="btn btn-danger" onclick="return confirm(' . $message . ')" style="margin:1px"><span><i class="fa fa-remove"></i></span></a>';
-                    return $btn;
+                    $btn .= '<a href="disease/delete/' . $data->id . '" class="btn btn-danger delete"  style="margin:1px"><span><i class="fa fa-remove"></i></span></a>';
+                    return $btn;    
                 })
                 ->rawColumns(['action'])
                 ->make(true);

@@ -10,6 +10,9 @@ use App\Model\patients\PatientDifficulty;
 use App\Model\patients\PatientOtherDetail;
 use App\Model\patients\Patient;
 use App\Model\general\Disease;
+use App\Model\home_visit\Booking;
+
+use Illuminate\Support\Facades\DB;
 
 use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
@@ -91,9 +94,12 @@ class PatientController extends Controller
         $data['family_tree']= PatientFamilyTree::where('pat_id', $id)->get();
         $data['family_members']= PatientFamilyMember::where('pat_id', $id)->get();
         $data['body_parts']= PatientBodyChart::where('pat_id', $id)->get();
+        $data['prev_bookings']= Booking::where('pat_id',$id)->where('status',1)->orderBy('date','desc')->get();
+        $data['prev_prescriptions']= DB::table('prescription')->where('pat_id',$id)->get();
+        $data['prev_team_members']= DB::table('team_members')->where('pat_id',$id)->get();
 
 
-        return view('patient.create', $data);
+        return view('patient.patient_history', $data);
     }
 
     function save(Request $request)

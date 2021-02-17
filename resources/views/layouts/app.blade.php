@@ -35,9 +35,12 @@
     </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link>
-    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+    </link>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -59,8 +62,7 @@
         }
 
         .side {
-            background-image: url("{{ url('/public') }}/as.jpg");
-            background-color: blue;
+            background-image: url("{{ url('/public') }}/side.jpeg");
         }
 
         td,
@@ -75,6 +77,15 @@
             color: #ff0000;
             font-family: "Open Sans";
             font-size: 12px;
+        }
+
+        .error {
+            color: #cc0033;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            line-height: 20px;
+            text-shadow: 1px 1px rgba(250, 250, 250, .3);
         }
 
         input::-webkit-outer-spin-button,
@@ -118,11 +129,15 @@ desired effect
         <header class="main-header">
 
             <!-- Logo -->
+
             <a href="{{ url('/home') }}/" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>C</b>are</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Palliative</b>Care</span>
+                <span class="logo-lg"><b>
+                <img src="{{ url('/public') }}/logo.jpeg" style="width: 45px; height:45px;  border-radius: 50%; margin-left:-30px;" class="user-image" alt="User Image">
+
+                Palliative</b>Care</span>
             </a>
 
             <!-- Header Navbar -->
@@ -151,7 +166,7 @@ desired effect
                                             <a href="#">
                                                 <div class="pull-left">
                                                     <!-- User Image -->
-                                                    <img src="{{ url('/public') }}/dist/img/user2-160x160.jpg"
+                                                    <img src="{{ url('/public') }}/logo.jpeg"
                         class="img-circle" alt="User Image">
                 </div>
                 <!-- Message title and timestamp -->
@@ -240,23 +255,23 @@ desired effect
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-                        <img src="{{ url('/public') }}/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                        <img src="{{ url('/public') }}/logo.jpeg" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">Admin</span>
+                        <span class="hidden-xs">{{Auth()->user()->name}}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                            <img src="{{ url('/public') }}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="{{ url('/public') }}/logo.jpeg" class="img-circle" alt="User Image">
 
                             <p>
-                                Admin - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                {{Auth()->user()->name}}
+                                <small> {{Auth()->user()->email}} </small>
                             </p>
                         </li>
                         <!-- Menu Body -->
                         <li class="user-body">
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-xs-4 text-center">
                                     <a href="#">Followers</a>
                                 </div>
@@ -266,18 +281,24 @@ desired effect
                                 <div class="col-xs-4 text-center">
                                     <a href="#">Friends</a>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- /.row -->
                         </li>
                         <!-- Menu Footer-->
+
+
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="#" onclick="event.preventDefault();  document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Sing out</a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="#" class="btn btn-default btn-flat" data-toggle="modal" data-target="#myModal">Change Password</a>
                             </div>
                         </li>
+
+
+
+
                     </ul>
                 </li>
                 <!-- Control Sidebar Toggle Button -->
@@ -288,11 +309,15 @@ desired effect
                     </a>
                 </li>
                 </ul>
+                <form id="logout-form" action="{{ url('/') }}/logout" method="POST" style="display: none;">
+                    @csrf
+                </form>
     </div>
     </nav>
+
     </header>
     <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar side">
+    <aside class="main-sidebar  side_menu" style="background-color: #00001a;">
 
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
@@ -324,110 +349,109 @@ desired effect
 
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">Main Menu</li>
+                <li class="header">Dashboard</li>
                 <!-- Optionally, you can add icons to the links -->
 
 
-                <li class="treeview">
+                <li class="treeview" id="home_care">
                     <a href="#">
                         <i class="fa fa-home"></i> <span>Home Care</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li class="active"><a href="{{ url('/addvisit') }}"><i class="fa fa-circle-o"></i> Create
+                    <ul class="treeview-menu" id="home_care_li">
+                        <li class="" id="home1"><a href="{{ url('/addvisit') }}"><i class="fa fa-circle-o"></i> Create
                                 Home Care</a></li>
-                        <li><a href="{{ url('/bookings') }}"><i class="fa fa-circle-o"></i>Daily
+                        <li id="home2"><a href="{{ url('/bookings') }}"><i class="fa fa-circle-o"></i>Daily
                                 Home Care</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview" id="clinic_care">
                     <a href="#">
                         <i class="fa  fa-medkit"></i> <span>Clinic Care</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li class="active"><a href="{{ url('/addapoinments') }}"><i class="fa fa-circle-o"></i>Daily Registration</a></li>
-                        <li><a href="{{ url('/dailypatients') }}"><i class="fa fa-circle-o"></i>New Registrations
-                                 </a>
+                    <ul class="treeview-menu" id="clinic_care_li">
+                        <li id="home3"><a href="{{ url('/addapoinments') }}"><i class="fa fa-circle-o"></i>Daily Registration</a></li>
+                        <li id="home4"><a href="{{ url('/dailypatients') }}"><i class="fa fa-circle-o"></i>New Registrations
+                            </a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="treeview">
+                <li class="treeview" id="general_master">
                     <a href="#">
                         <i class="fa fa-arrows"></i> <span>General Master</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li class="active"><a href="{{ url('/patients') }}"><i class="fa fa-circle-o"></i>Patients</a></li>
-                        <li class="active"><a href="{{ url('/diseases') }}"><i class="fa fa-circle-o"></i>Diseases</a></li>
+                    <ul class="treeview-menu" id="general_master_li">
+                        <li id="home5"><a href="{{ url('/patients') }}"><i class="fa fa-circle-o"></i>Patients</a></li>
+                        <li id="home6"><a href="{{ url('/diseases') }}"><i class="fa fa-circle-o"></i>Diseases</a></li>
 
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview" id="Equipments">
                     <a href="#">
                         <i class="fa  fa-anchor"></i> <span>Equipments</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                       
-                        <li class="active"><a href="{{ url('/equipments') }}"><i class="fa fa-circle-o"></i>Equipments</a></li>
-                        <li class="active"><a href="{{ url('/reports/equipments') }}"><i class="fa fa-circle-o"></i>Equipments Management</a></li>
+                    <ul class="treeview-menu" id="Equipments_li">
+
+                        <li id="home7"><a href="{{ url('/equipments') }}"><i class="fa fa-circle-o"></i>Equipments</a></li>
+                        <li id="home8"><a href="{{ url('/reports/equipments') }}"><i class="fa fa-circle-o"></i>Equipments Management</a></li>
 
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview" id="Pharmacy">
                     <a href="#">
                         <i class="fa fa-plus-square"></i> <span>Pharmacy</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                       
-                         <li class="active"><a href="{{ url('/medicines') }}"><i class="fa fa-circle-o"></i>Medicines</a></li>
-                        <li class="active"><a href="{{ url('/prescriptions') }}"><i class="fa fa-circle-o"></i>Prescriptions</a></li>
+                    <ul class="treeview-menu" id="Pharmacy_li">
+
+                        <li id="home9"><a href="{{ url('/medicines') }}"><i class="fa fa-circle-o"></i>Medicines</a></li>
+                        <li id="home10"><a href="{{ url('/prescriptions') }}"><i class="fa fa-circle-o"></i>Prescriptions</a></li>
 
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview" id="Settings">
                     <a href="#">
                         <i class="fa  fa-futbol-o"></i> <span>Settings</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                       
-                        <li class="active"><a href="{{ url('/equipments') }}"><i class="fa fa-circle-o"></i>Equipments</a></li>
-                        <li class="active"><a href="{{ url('/reports/equipments') }}"><i class="fa fa-circle-o"></i>Equipments Management</a></li>
+                    <ul class="treeview-menu" id="Settings_li">
+
+                        <li id="home11"><a href="{{ url('/users') }}"><i class="fa fa-circle-o"></i>Users</a></li>
 
                     </ul>
                 </li>
                 <br>
                 <li class="header">Reports</li>
-                <li class="treeview">
+                <li class="treeview" id="Reports">
                     <a href="#">
                         <i class="fa fa-cube"></i> <span>Reports</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li class="active"><a href="{{ url('/reports/treatment') }}"><i class="fa fa-circle-o"></i>Treatment
+                    <ul class="treeview-menu" id="Reports_li">
+                        <li id="home13"><a href="{{ url('/reports/treatment') }}"><i class="fa fa-circle-o"></i>Treatment
                                 Report</a></li>
 
-                        <li class="active"><a href="{{ url('/reports/patients') }}"><i class="fa fa-circle-o"></i>Patients
+                        <li id="home14"><a href="{{ url('/reports/patients') }}"><i class="fa fa-circle-o"></i>Patients
                                 Report</a></li>
-                        <li class="active"><a href="{{ url('/reports/students') }}"><i class="fa fa-circle-o"></i>Students Report</a></li>
+                        <li id="home15"><a href="{{ url('/reports/students') }}"><i class="fa fa-circle-o"></i>Students Report</a></li>
 
                     </ul>
                 </li>
@@ -463,6 +487,50 @@ desired effect
 
         </section>
         <!-- /.content -->
+
+        <form method="post" id="change_password_form" action="{{ url('/') }}/users/changepassword">
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg ">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                            <h4 class="modal-title">Change Password</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group m-form__group row">
+                                <div class="col-lg-4">
+                                    @csrf
+                                    <label>Current Password:</label>
+                                    <input type="password" name="current_password" id="current_password" class="form-control m-input" placeholder="Current Password" required>
+                                    <span class="error" id="current_password_error"></span>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="">New Password:</label>
+                                    <input type="password" name="new_password" id="new_password" class="form-control m-input" placeholder="New Password" required>
+                                    <span class="error" id="new_password_error"></span>
+
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="">Confirm Password:</label>
+                                    <input type="password" name="confirm_password" id="confirm_password" class="form-control m-input" placeholder="Confirm Password" required>
+                                    <span class="error" id="confirm_password_error"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                            <button type="submit" id="change_password" class="btn btn-info btn-sm">Change
+                                Password</button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </form>
     </div>
     <!-- /.content-wrapper -->
 
@@ -470,86 +538,31 @@ desired effect
     <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-           Not me but you &nbsp; <i class="fa fa-expeditedssl"></i>
+            <img src="{{ url('/public') }}/nsslogo.jpg" style="width: 25px; height:25px ;" class="user-image" alt="User Image">
+
+            &nbsp; &nbsp;<b>Not me but you !!</b>  &nbsp;
+            <!-- <img src="{{ url('/public') }}/gecwlogo.png" style="width: 25px; height:25px ;" class="user-image" alt="User Image"> -->
+
+            <!-- <i class="fa fa-expeditedssl"></i> -->
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy;  {{Date('Y')}}   <a href="#">NSS GEC Wayanad</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; {{Date('Y')}} <a href="#">NSS GEC Wayanad</a>.</strong> All rights reserved.
     </footer>
 
-    <!-- Control Sidebar -->
-    {{-- <aside class="control-sidebar control-sidebar-dark">
-            <!-- Create the tabs -->
-            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-                <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a>
-                </li>
-                <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-            </ul>
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <!-- Home tab content -->
-                <div class="tab-pane active" id="control-sidebar-home-tab">
-                    <h3 class="control-sidebar-heading">Recent Activity</h3>
-                    <ul class="control-sidebar-menu">
-                        <li>
-                            <a href="javascript:;">
-                                <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+    @if(session('Success'))
+    <script>
+        swal("Success!", "{{session('Success')}}", "success");
+    </script>
 
-                                <div class="menu-info">
-                                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+    @elseif(session('Error'))
 
-                                    <p>Will be 23 on April 24th</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.control-sidebar-menu -->
+    <script>
+        swal("Error!", "{{session('Error')}}", "error");
+    </script>
+    @endif
 
-                    <h3 class="control-sidebar-heading">Tasks Progress</h3>
-                    <ul class="control-sidebar-menu">
-                        <li>
-                            <a href="javascript:;">
-                                <h4 class="control-sidebar-subheading">
-                                    Custom Template Design
-                                    <span class="pull-right-container">
-                                        <span class="label label-danger pull-right">70%</span>
-                                    </span>
-                                </h4>
 
-                                <div class="progress progress-xxs">
-                                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- /.control-sidebar-menu -->
 
-                </div>
-                <!-- /.tab-pane -->
-                <!-- Stats tab content -->
-                <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-                <!-- /.tab-pane -->
-                <!-- Settings tab content -->
-                <div class="tab-pane" id="control-sidebar-settings-tab">
-                    <form method="post">
-                        <h3 class="control-sidebar-heading">General Settings</h3>
-
-                        <div class="form-group">
-                            <label class="control-sidebar-subheading">
-                                Report panel usage
-                                <input type="checkbox" class="pull-right" checked>
-                            </label>
-
-                            <p>
-                                Some information about this general settings option
-                            </p>
-                        </div>
-                        <!-- /.form-group -->
-                    </form>
-                </div>
-                <!-- /.tab-pane -->
-            </div>
-        </aside> --}}
-    <!-- /.control-sidebar -->
 
 
 </body>
@@ -560,32 +573,101 @@ desired effect
         Pace.restart()
     })
 
-    /* 
-        $(function() {
-            Toast.fire({
-            icon: 'info',
-            title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
-          }) */
-
-    /* toastr.success('Saved Successfully') */
+    $(function() {
 
 
-    /* $('a').click(function() {
-        event.preventDefault();
+        var selecteditem = sessionStorage.getItem('selecteditem');
+        var selectedli = sessionStorage.getItem('selectedli');
 
-        var href = $(this).attr('href');
-        $.ajax({
-          url:href,
-          success:function(result){
+        if (selecteditem != null) {
+            $('#' + selecteditem).addClass("menu-open") //.addClass("m-menu__item--open");
+            $('#' + selecteditem + '_li').css('display', 'block');
+        }
+        if (selectedli != null) {
+            $('#' + selectedli).addClass("active");
+        }
 
-            $('#content_view').html(result);
+        $(".side_menu li").click(function(e) {
 
-          }
+            id = $(this).closest('li').attr('id');
+
+            sessionStorage.setItem("selecteditem", id);
+            //	e.preventDefault();
+
+        });
+
+        $(".side_menu li ul li").click(function(e) {
+
+            id = $(this).attr('id');
+            sessionStorage.setItem("selectedli", id);
+
+        });
+
+        $('#change_password').click(function(event) {
+
+            var current_password = $('#current_password').val();
+            var new_password = $('#new_password').val();
+            var confirm_password = $('#confirm_password').val();
+
+            if (current_password) {
+
+                $('#current_password_error').text('');
+
+                if (new_password.length >= 8) {
+                    $('#new_password_error').text('');
+
+                    if (new_password === confirm_password) {
+
+
+                    } else {
+                        event.preventDefault();
+                        $('#confirm_password_error').text(
+                            'Password mismatch');
+                        $('#confirm_password').val('');
+                    }
+                } else {
+                    event.preventDefault();
+                    $('#new_password_error').text(
+                        'Enter new password with atleast 8 characters');
+
+                }
+
+
+            } else {
+                event.preventDefault();
+                $('#current_password_error').text('Enter current password');
+
+            }
+
+
+
+        })
+
+
+        $(document).on('click', '.delete', function(e) {
+
+            e.preventDefault();
+
+            swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+
+                    if (willDelete) {
+
+                        var url = $(this).attr('href');
+
+                        window.location.href = url;
+
+                    }
+                });
         })
 
     })
-    $('form').validate();*/
-    /* });  */
 </script>
 
 </html>

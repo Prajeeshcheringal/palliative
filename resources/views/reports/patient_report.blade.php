@@ -79,6 +79,7 @@
                         <th>Category</th>
                         <th>Current Status</th>
                         <th>Fiancial Status</th>
+                        <th>Action</th>
 
                     </tr>
                 </thead>
@@ -154,6 +155,10 @@
                         data: 'financial_status',
                         name: 'financial_status'
                     },
+                    {
+                        data: 'action',
+                        name: 'action'
+                    }
                 ]
             });
 

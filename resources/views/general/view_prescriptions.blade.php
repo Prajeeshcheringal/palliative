@@ -11,8 +11,8 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body" style="padding-left: 20px; padding-bottom: 35px">
-        <input type="hidden" name="pat_id" value={{$pat_id}}>
-        <input type="hidden" name="bok_id" value={{$bok_id}}>
+            <input type="hidden" name="pat_id" value={{$pat_id}}>
+            <input type="hidden" name="bok_id" value={{$bok_id}}>
 
 
 
@@ -79,7 +79,7 @@
 
                             <tr id="add">
                                 <td class="col-lg-3"><input id="medicine" type="text" class="form-control " placeholder="Medicine" />
-                                    <input id="medicine_id" type="hidden"/>
+                                    <input id="medicine_id" type="hidden" />
                                 </td>
                                 <td class="col-lg-2">
                                     <input id="current_stock" type="text" readonly class="form-control" placeholder="Current Stock" />
@@ -116,18 +116,24 @@
 <script>
     $(function() {
 
+        @foreach($medicines as $medicine)
+
+        presc('{{$medicine->medicine}}', '{{$medicine->medicine_id}}', '{{$medicine->stock}}', '{{$medicine->quantity}}')
+
+        @endforeach
+
         $('.prescbtn').click(function() {
 
             var medicine = $('#medicine').val();
             var medicine_id = $('#medicine_id').val();
-            var current_stock =parseInt($('#current_stock').val());
-            var quantity =parseInt($('#quantity').val());
+            var current_stock = parseInt($('#current_stock').val());
+            var quantity = parseInt($('#quantity').val());
 
             if (medicine && quantity && medicine_id) {
 
-                if(quantity > current_stock){
+                if (quantity > current_stock) {
 
-                    alert('Warning : Quantity must be less than stock');
+                    swal('Warning' , ' Quantity must be less than stock','warning');
 
                     return false;
 
@@ -139,9 +145,9 @@
                 $('#medicine_id').val('');
                 $('#current_stock').val('');
                 $('#quantity').val('');
-            }else{
+            } else {
 
-                alert('Warning : Enter all fields');
+                swal('Warning' , ' Enter all fields','warning');
 
 
             }
@@ -166,35 +172,35 @@
         });
 
 
-$("#medicine").autocomplete({
-        source: function(request, response) {
-            // Fetch data
-            $.ajax({
-                url: "{{route('get/medicines')}}",
-                type: 'post',
-                dataType: "json",
-                data: {
-                    _token: '{{csrf_token()}}', 
-                    search: request.term
-                },
-                success: function(data) {
-                    response(data);
+        $("#medicine").autocomplete({
+            source: function(request, response) {
+                // Fetch data
+                $.ajax({
+                    url: "{{route('get/medicines')}}",
+                    type: 'post',
+                    dataType: "json",
+                    data: {
+                        _token: '{{csrf_token()}}',
+                        search: request.term
+                    },
+                    success: function(data) {
+                        response(data);
+                    }
+                });
+            },
+            select: function(event, ui) {
+                // Set selection
+                $('#medicine').val(ui.item.label); // display the selected text
+                $('#medicine_id').val(ui.item.value); // save selected id to input
+                $('#current_stock').val(ui.item.stock);
+                if (ui.item.stock <= 0) {
+
+                    swal('Warning' , 'Selected medicine is out of stock','warning');
                 }
-            });
-        },
-        select: function(event, ui) {
-            // Set selection
-            $('#medicine').val(ui.item.label); // display the selected text
-            $('#medicine_id').val(ui.item.value); // save selected id to input
-            $('#current_stock').val(ui.item.stock);
-            if(ui.item.stock <= 0){
 
-                alert('Warning : Selected medicine is out of stock');
+                return false;
             }
-
-            return false;
-        }
-    });
+        });
 
 
     })

@@ -99,7 +99,7 @@ class MedicineController extends Controller
 
         $response = array();
         foreach ($items as $item) {
-            $response[] = array("value" => $item->id, "stock"=>$item->quantity ,"label" => $item->medicine);
+            $response[] = array("value" => $item->id, "stock" => $item->quantity, "label" => $item->medicine);
         }
 
         return response()->json($response);
@@ -110,14 +110,14 @@ class MedicineController extends Controller
     {
         if ($request->ajax()) {
 
-            $data = Booking::where('status',1)->whereDate('date', Carbon::today())->with('getPatientRelation')->latest()->get();
+            $data = Booking::where('status', 1)->whereDate('date', Carbon::today())->with('getPatientRelation')->latest()->get();
 
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
                     $message = "'Do you want to delete'";
-                    $btn = '<a   href="prescription/view/' . $data->id . '/'.$data->pat_id.'"  class="btn btn-info" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
-                     return $btn;
+                    $btn = '<a   href="prescription/view/' . $data->id . '/' . $data->pat_id . '"  class="btn btn-info" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
+                    return $btn;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -125,23 +125,59 @@ class MedicineController extends Controller
         return view('general/prescriptions');
     }
 
-    public function viewPrescription($bok_id,$pat_id){
+    public function viewPrescription($bok_id, $pat_id)
+    {
 
-    $data =[
-        'pat_id'=>$pat_id,
-        'bok_id'=>$bok_id,
-        'patient'=>DB::table('patients')->where('id',$pat_id)->first(),
-         'prescription'=>DB::table('prescription')->where('bok_id',$bok_id)->get()
+        $data = [
+            'pat_id' => $pat_id,
+            'bok_id' => $bok_id,
+            'patient' => DB::table('patients')->where('id', $pat_id)->first(),
+            'prescription' => DB::table('prescription')->where('bok_id', $bok_id)->get(),
+            'medicines' => DB::table('medicine_bills as a')->join('medicines as b', 'a.medicine_id', '=', 'b.id')->where('bok_id', $bok_id)->get(['a.medicine_id', 'a.quantity', 'b.medicine', 'b.quantity as stock']),
+        ];
 
-    ];
-
-        return view('general/view_prescriptions',$data);
-
+        return view('general/view_prescriptions', $data);
     }
 
-    public function billingSave(Request $request){
+    public function billingSave(Request $request)
+    {
 
-        
 
-    }
+        $pat_id = $request->pat_id;
+        $bok_id = $request->bok_id;
+        $medicine_count = 0;
+
+        $medicines = DB::table('medicine_bills')->where('bok_id', $bok_id)->get();
+
+        foreach ($medicines as $medicine) {
+
+            Medicine::where('id', $medicine->medicine_id)->increment('quantity', $medicine->quantity);
+        }
+
+        DB::table('medicine_bills')->where('bok_id', $bok_id)->delete();
+
+        if (isset($request->medicine_id)) {
+
+            $medicine_count = count($request->medicine_id);
+
+
+            for ($i = 0; $i < $medicine_count; $i++) {
+
+                Medicine::where('id', $request->medicine_id[$i])->decrement('quantity', $request->quantity[$i]);
+
+                $data = [
+
+                    'bok_id' => $bok_id,
+                    'pat_id' => $pat_id,
+                    'medicine_id' => $request->medicine_id[$i],
+                    'quantity' => $request->quantity[$i],
+
+                ];
+
+                DB::table('medicine_bills')->insert($data);
+            }
+        }
+        return redirect('prescriptions')->with('Success', 'Saved Successfully');
+
+    }  
 }
