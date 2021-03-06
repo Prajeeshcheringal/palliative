@@ -1,12 +1,10 @@
-@extends('layouts.app')
 
-@section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<form action="{{ url('/reports/equipments/save') }}" method="POST">
+<form action="{{ url('/reports/equipments/save') }}" back="{{ url('/reports/equipments') }}" id="form" method="POST">
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">{{ ucfirst($view) }} Equipment Report :</h3>
-            <a href="{{ url('/') }}/reports/equipments" class="pull-right btn btn-success"> <i class="fa fa-arrow-left"></i></a>
+            <a href="{{ url('/') }}/reports/equipments" class="pull-right btn btn-success ajax-link"> <i class="fa fa-arrow-left"></i></a>
 
         </div>
         <!-- /.box-header -->
@@ -92,7 +90,7 @@
 
         <div class="box-footer">
             @if($view != 'view')
-            <button type="submit" class="btn  btn-info pull-right" style="margin-right: 20px">Save</button>
+            <button type="submit" id="save" class="btn  btn-info pull-right" style="margin-right: 20px">Save</button>
             @endif
         </div>
 
@@ -164,4 +162,3 @@
 
     })
 </script>
-@endsection

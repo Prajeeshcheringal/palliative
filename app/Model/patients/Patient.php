@@ -24,7 +24,9 @@ class Patient extends Model
         'category',
         'financial_status',
         'care_of_relation',
-        'current_status'
+        'current_status',
+        'status_date',
+        'status_remark'
     ];
 
     public function getDiseaseRelation(){

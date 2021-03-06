@@ -1,12 +1,10 @@
-@extends('layouts.app')
 
-@section('content')
 
-<form action="{{ url('/medicine/billing/save') }}" method="POST">
+<form action="{{ url('/medicine/billing/save') }}" id="form" back="{{ url('/') }}/prescriptions" method="POST">
     <div class="box">
         <div class="box-header">
             <h3 class="box-title"> Prescriptions :</h3>
-            <a href="{{ url('/') }}/prescriptions" class="pull-right btn btn-success"> <i class="fa fa-arrow-left"></i></a>
+            <a href="{{ url('/') }}/prescriptions" class="pull-right btn btn-success ajax-link"> <i class="fa fa-arrow-left"></i></a>
 
         </div>
         <!-- /.box-header -->
@@ -107,7 +105,7 @@
         </div>
 
         <div class="box-footer">
-            <button type="submit" class="btn  btn-info pull-right" style="margin-right: 20px">Save</button>
+            <button type="submit" id="save" class="btn  btn-info pull-right" style="margin-right: 20px">Save</button>
         </div>
 
 
@@ -205,4 +203,3 @@
 
     })
 </script>
-@endsection

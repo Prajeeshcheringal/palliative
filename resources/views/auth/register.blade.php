@@ -1,8 +1,6 @@
-@extends('layouts.app')
 
-@section('content')
 
-<form method="POST" action="{{ route('register') }}">
+<form method="POST" action="{{ route('register') }}" id="form" back="{{ url('/') }}/users">
     @csrf
 
     <div class="box">
@@ -34,21 +32,23 @@
                     </div>
 
                 </div>
-
                 <div class="col-sm-6">
 
 
-                    <div class="col-sm-3"> <label>Password :</label></div>
-                    <div class="col-sm-9">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                    <div class="col-sm-3" > <label>User Role :</label></div>
+                    <div class="col-sm-9" >
+                        <select id="role" class="form-control" name="role" required autocomplete="role">
+                            <option value="">Select</option>
+                            <option value="Doctor">Doctor</option>
+                            <option value="Nurse">Nurse</option>
+                            <option value="Pharmacist">Pharmacist</option>
+                            <option value="Volunteer">Volunteer</option>
+                            <option value="Admin">Admin</option>
 
-                        @error('password')
-                        <span class="error" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+                        </select>
                     </div>
                 </div>
+
 
             </div>
 
@@ -58,10 +58,10 @@
 
                 <div class="col-sm-6">
 
-                    <div class="col-sm-3" style="padding-top: 20px;"> <label>Email :</label></div>
+                    <div class="col-sm-3" style="padding-top: 20px;"> <label>Username :</label></div>
                     <div class="col-sm-9" style="padding-top: 20px;">
 
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                         @error('email')
                         <span class="error" role="alert">
@@ -75,11 +75,18 @@
                 <div class="col-sm-6">
 
 
-                    <div class="col-sm-3" style="padding-top: 20px;"> <label>Confirm Password :</label></div>
+                    <div class="col-sm-3" style="padding-top: 20px;"> <label>Password :</label></div>
                     <div class="col-sm-9" style="padding-top: 20px;">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                        @error('password')
+                        <span class="error" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                     </div>
                 </div>
+
 
             </div>
 
@@ -97,21 +104,16 @@
                     </div>
 
                 </div>
-
                 <div class="col-sm-6">
 
 
-                    <div class="col-sm-3" style="padding-top: 20px;"> <label>User Role :</label></div>
+                    <div class="col-sm-3" style="padding-top: 20px;"> <label>Confirm Password :</label></div>
                     <div class="col-sm-9" style="padding-top: 20px;">
-                        <select id="role" class="form-control" name="role" required autocomplete="role">
-                            <option value="">Select</option>
-                            <option value="Doctor">Doctor</option>
-                            <option value="Nurse">Nurse</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Volunteer">Volunteer</option>
-                        </select>
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                     </div>
                 </div>
+
+
 
             </div>
 
@@ -120,10 +122,9 @@
 
         <div class="box-footer">
 
-            <button type="submit" class="btn  btn-info pull-right" style="margin-right: 20px">Save</button>
+            <button type="submit" id="save" class="btn  btn-info pull-right" style="margin-right: 20px">Save</button>
         </div>
 
 
     </div>
 </form>
-@endsection

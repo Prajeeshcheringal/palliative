@@ -1,10 +1,8 @@
-@extends('layouts.app')
 
-@section('content')
 <div class="box">
     <div class="box-header">
         <h3 class="box-title">Users</h3>
-        <a href="{{ url('/register') }}" class="pull-right btn btn-success"> <i class="fa fa-plus "></i></a>
+        <a href="{{ url('/register') }}" class="pull-right btn btn-success ajax-link"> <i class="fa fa-plus "></i></a>
 
     </div>
     <!-- /.box-header -->
@@ -16,11 +14,10 @@
                 <tr>
                     <th>Sl No </th>
                     <th>Name</th>
-                    <th>Email</th>
+                    <th>Username</th>
                     <th>Role</th>
                     <th>Phone</th>
-                    <!-- <th>Note</th>
-                    <th>Action</th> -->
+                    <th>Action</th> 
 
                 </tr>
             </thead>
@@ -42,7 +39,10 @@
             processing: true,
             serverSide: true,
             //  sScrollX: '100%',
-            ajax:"{{ route('users') }}",
+            ajax: {
+                url: "{{ route('users') }}",
+                type: "post",
+            },
             
             columns: [{
                     data: 'DT_RowIndex',
@@ -66,13 +66,12 @@
                     name: 'phone'
                 },
               
-                // {
-                //     data: 'action',
-                //     name: 'action'
-                // },
+                {
+                    data: 'action',
+                    name: 'action'
+                },
             ]
         });
 
     })
 </script>
-@endsection

@@ -19,55 +19,59 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function()
 {   
     Route::post('/users/changepassword', 'HomeController@changePassword');
-    Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/patients', 'patients\PatientController@listall')->name('patients');
-    Route::get('/patient/create/{id}', 'patients\PatientController@create');
+    Route::any('/', 'HomeController@dashboard')->name('dashboard');
+    Route::any('/home', 'HomeController@index')->name('home');
+    Route::any('/patients', 'patients\PatientController@listall')->name('patients');
+    Route::any('/patient/create/{id}', 'patients\PatientController@create');
     Route::post('/patient/save', 'patients\PatientController@save');
-    Route::get('/patient/view/{id}', 'patients\PatientController@view');
-    Route::get('/patient/delete/{id}/{type}', 'patients\PatientController@delete');
-    
+    Route::any('/patient/view/{id}', 'patients\PatientController@view');
+    Route::post('/patient/delete', 'patients\PatientController@delete');
     Route::post('/get/patients', 'patients\PatientController@getPatients')->name('get/patients');
     
     
-    Route::get('/addvisit', 'home_visit\HomeVisitController@listall')->name('addvisit');
+    Route::any('/addvisit', 'home_visit\HomeVisitController@listall')->name('addvisit');
     Route::post('/booking/save', 'home_visit\HomeVisitController@save');
     Route::any('/bookings', 'home_visit\HomeVisitController@bookings')->name('bookings');
-    Route::get('/bookings/add_data/{bid}/{pid}', 'home_visit\HomeVisitController@bookingsAddData');
+    Route::any('/bookings/add_data/{bid}/{pid}', 'home_visit\HomeVisitController@bookingsAddData');
     Route::any('/bookings/add_data/save', 'home_visit\HomeVisitController@AddDataSave');
+    Route::any('/bookings/pendings', 'home_visit\HomeVisitController@pendingBookings')->name('pendings');
+
+    Route::any('/bookings/delete/{id}', 'home_visit\HomeVisitController@deleteBooking');
+    Route::any('/bookings/rebook', 'home_visit\HomeVisitController@rebooking');
+
     
-    Route::get('/addapoinments', 'home_visit\HomeVisitController@clinicListall')->name('addapoinments');
-    Route::get('/dailypatients', 'home_visit\HomeVisitController@clinicbookings')->name('dailypatients');
+    Route::any('/addapoinments', 'home_visit\HomeVisitController@clinicListall')->name('addapoinments');
+    Route::any('/dailypatients', 'home_visit\HomeVisitController@clinicbookings')->name('dailypatients');
     
-    Route::get('/diseases','general\DiseaseController@listall')->name('diseases');
-    Route::get('/disease/create/{id}','general\DiseaseController@create');
-    Route::get('/disease/view/{id}','general\DiseaseController@view');
+    Route::any('/diseases','general\DiseaseController@listall')->name('diseases');
+    Route::any('/disease/create/{id}','general\DiseaseController@create');
+    Route::any('/disease/view/{id}','general\DiseaseController@view');
     Route::post('/disease/save','general\DiseaseController@save');
-    Route::get('/disease/delete/{id}','general\DiseaseController@delete');
+    Route::any('/disease/delete/{id}','general\DiseaseController@delete');
     
-    Route::get('/medicines','general\MedicineController@listall')->name('medicines');
-    Route::get('/medicine/create/{id}','general\MedicineController@create');
-    Route::get('/medicine/view/{id}','general\MedicineController@view');
+    Route::any('/medicines','general\MedicineController@listall')->name('medicines');
+    Route::any('/medicine/create/{id}','general\MedicineController@create');
+    Route::any('/medicine/view/{id}','general\MedicineController@view');
     Route::post('/medicine/save','general\MedicineController@save');
-    Route::get('/medicine/delete/{id}','general\MedicineController@delete');
+    Route::any('/medicine/delete/{id}','general\MedicineController@delete');
     Route::post('/get/medicines','general\MedicineController@getMedicine')->name('get/medicines');
     Route::post('/medicine/billing/save','general\MedicineController@billingSave');
     
     //prescription routes
     
-    Route::get('/prescriptions','general\MedicineController@Prescription')->name('prescriptions');
-    Route::get('/prescription/view/{bok_id}/{pat_id}','general\MedicineController@viewPrescription');
+    Route::any('/prescriptions','general\MedicineController@Prescription')->name('prescriptions');
+    Route::any('/prescription/view/{bok_id}/{pat_id}','general\MedicineController@viewPrescription');
     
     
-    Route::get('/equipments','general\EquipmentController@listall')->name('equipments');
-    Route::get('/equipment/create/{id}','general\EquipmentController@create');
-    Route::get('/equipment/view/{id}','general\EquipmentController@view');
+    Route::any('/equipments','general\EquipmentController@listall')->name('equipments');
+    Route::any('/equipment/create/{id}','general\EquipmentController@create');
+    Route::any('/equipment/view/{id}','general\EquipmentController@view');
     Route::post('/equipment/save','general\EquipmentController@save');
-    Route::get('/equipment/delete/{id}','general\EquipmentController@delete');
+    Route::any('/equipment/delete/{id}','general\EquipmentController@delete');
     
     
     Route::any('/reports/patients','report\ReportController@patientReport')->name('patientreport');
-    Route::get('/reports/students','report\ReportController@studentReport')->name('studentreport');
+    Route::any('/reports/students','report\ReportController@studentReport')->name('studentreport');
     Route::any('/reports/treatment','report\ReportController@treatmentReport')->name('treatmentreport');
     
     Route::any('/reports/equipments','report\ReportController@equipmentReport')->name('reports/equipments');
@@ -77,8 +81,27 @@ Route::group(['middleware' => 'auth'], function()
     Route::any('/reports/equipments/return/{id}','report\ReportController@equipmentReturn');
 
 
-    Route::get('/users','Auth\RegisterController@Users')->name('users');
+    Route::any('/users','Auth\RegisterController@Users')->name('users');
+    Route::any('/users/delete/{id}','Auth\RegisterController@userDelete');
 
-    
+
+
+
+    Route::any('/volunteers','VolunteerController@index')->name('volunteers');
+    Route::any('/volunteers/create/{id}','VolunteerController@create');
+
+    Route::post('/volunteer/save','VolunteerController@save');
+    Route::any('/volunteers/view/{id}','VolunteerController@view');
+
+
+
+    Route::any('/daily_volunteers','VolunteerController@dailyVolunteer')->name('daily_volunteers');
+    Route::any('/daily_volunteers/create/{id}','VolunteerController@dailyVolunteerCreate');
+
+    Route::post('/get/volunteers', 'VolunteerController@getVolunteers')->name('get/volunteers');
+    Route::post('/daily_volunteers/save', 'VolunteerController@dailyVolunteerSave');
+    Route::any('/daily_volunteers/delete/{id}', 'VolunteerController@dailyVolunteerDelete');
+
+
 });
 

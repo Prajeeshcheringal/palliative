@@ -1,13 +1,11 @@
-@extends('layouts.app')
 
-@section('content')
 
-    <form action="{{ url('/patient/save') }}" method="POST">
+    <form action="{{ url('/patient/save') }}" back="{{ url('/patients') }}" id="form" method="POST">
         <div id="patient_details">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title"><b>{{ ucfirst($view) }} Patient:</b></h3>
-                    <a href="{{ url('/') }}/patients" class="pull-right btn btn-success"> <i
+                    <a href="{{ url('/') }}/patients" class="pull-right btn btn-success ajax-link"> <i
                             class="fa fa-arrow-left"></i></a>
 
                 </div>
@@ -57,7 +55,7 @@
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Care of :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-2">
                                     <select type="text" name="care_of_relation"  id="care_of"
-                                        class="form-control input-sm" required>
+                                        class="form-control input-sm" >
                                         <option value="">Select</option>
                                         <option value="W/O">W/O</option>
                                         <option value="H/O">H/O</option>
@@ -228,7 +226,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox" value="1" @if (in_array(1, $difficulties)) checked @endif name="dificulty[]">
                                         വേദന
                                     </label>
                                 </div>
@@ -238,7 +236,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox" value="2" @if (in_array(2, $difficulties)) checked @endif name="dificulty[]">
                                         ഓക്കാനം
                                     </label>
                                 </div>
@@ -248,7 +246,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox" value="3"  @if (in_array(3, $difficulties)) checked @endif name="dificulty[]">
                                         ഛർദ്ദി
                                     </label>
                                 </div>
@@ -258,7 +256,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox" value="4"  @if (in_array(4, $difficulties)) checked @endif name="dificulty[]">
                                         ഭക്ഷണം ഇറക്കാനുള്ള ബുദ്ധിമുട്ട് </label>
                                 </div>
                             </div>
@@ -267,7 +265,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox" value="5"  @if (in_array(5, $difficulties)) checked @endif name="dificulty[]">
                                         ചുമ
                                     </label>
                                 </div>
@@ -277,7 +275,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox" value="6"  @if (in_array(6, $difficulties)) checked @endif name="dificulty[]">
                                         സംസാരിക്കുവാനുള്ള ബുദ്ധിമുട്ട്
                                     </label>
                                 </div>
@@ -287,7 +285,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox" value="7"  @if (in_array(7, $difficulties)) checked @endif name="dificulty[]">
                                         വിശപ്പില്ലായമ
                                     </label>
                                 </div>
@@ -297,7 +295,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox" value="8"  @if (in_array(8, $difficulties)) checked @endif name="dificulty[]">
                                         മലബന്ധം
                                     </label>
                                 </div>
@@ -307,7 +305,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox" value="9"  @if (in_array(9, $difficulties)) checked @endif name="dificulty[]">
                                         വയർ / നെഞ്ച് എരിച്ചിൽ
                                     </label>
                                 </div>
@@ -317,7 +315,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox" value="10"  @if (in_array(10, $difficulties)) checked @endif name="dificulty[]">
                                         മൂത്രസംബന്ധമായ ബുദ്ധിമുട്ടുകൾ
                                     </label>
                                 </div>
@@ -327,7 +325,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox"  value="11"  @if (in_array(11, $difficulties)) checked @endif  name="dificulty[]">
                                         ശ്വാസം മുട്ട്
                                     </label>
                                 </div>
@@ -337,7 +335,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox"  value="12"  @if (in_array(12, $difficulties)) checked @endif  name="dificulty[]">
                                         വായിൽ വരൾച്ച / പുണ്ണ്
                                     </label>
                                 </div>
@@ -347,7 +345,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox"  value="13"   @if (in_array(13, $difficulties)) checked @endif name="dificulty[]">
                                         ഉറക്കമില്ലായ്മ
                                     </label>
                                 </div>
@@ -357,7 +355,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox"  value="14"  @if (in_array(14, $difficulties)) checked @endif  name="dificulty[]">
                                         മയക്കം
                                     </label>
                                 </div>
@@ -367,7 +365,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox"  value="15"  @if (in_array(15, $difficulties)) checked @endif  name="dificulty[]">
                                         പിച്ചും പേയും പറച്ചിൽ
                                     </label>
                                 </div>
@@ -377,7 +375,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox"  value="16"   @if (in_array(16, $difficulties)) checked @endif name="dificulty[]">
                                         വിക്കം / മുഴ
                                     </label>
                                 </div>
@@ -387,7 +385,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox"  value="17"  @if (in_array(17, $difficulties)) checked @endif  name="dificulty[]">
                                         നീർ
                                     </label>
                                 </div>
@@ -397,7 +395,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="dificulty[]">
+                                        <input type="checkbox"  value="18"  @if (in_array(18, $difficulties)) checked @endif  name="dificulty[]">
                                         മറ്റുള്ളവ
                                     </label>
                                 </div>
@@ -538,8 +536,8 @@
                                                 <div><Select type="text" class="form-control" id="family_married" placeholder="Married">
                                                     <option value="">Select</option>
                                                     <option value="Married">Married</option>
-                                                    <option value="Married">Unmarried</option>
-                                                    <option value="Married">Divorced</option>
+                                                    <option value="Unmarried">Unmarried</option>
+                                                    <option value="Divorced">Divorced</option>
                                                     <option value="Widow">Widow/Widower</option>
 
 
@@ -678,7 +676,7 @@
                 </div>
                 <hr style="border-top: 2px solid rgb(219, 215, 226); ">
                 @if ($view != 'view')
-                    <button type="submit" class="btn btn-lg btn-info pull-right" style="margin-right: 20px">Save</button>
+                    <button type="submit" id="save" class="btn btn-lg btn-info pull-right" style="margin-right: 20px">Save</button>
                 @endif
             </div>
 
@@ -694,6 +692,9 @@
 
     <script>
         $(function() {
+
+           
+
             @if($view !='create')
 
                 $('#category').val('{{$patient->category}}');
@@ -735,6 +736,11 @@
                     $('#side').val('');
                     $('#grade').val('');
                 }
+                else{
+                    
+                    swal("Warning!", "Enter all fields", "warning");
+
+                }
 
             })
 
@@ -750,6 +756,10 @@
 
                     $('#family_tree_name').val('');
                     $('#family_tree_relation').val('');
+                }else{
+                    
+                    swal("Warning!", "Enter all fields", "warning");
+
                 }
             
             })
@@ -766,7 +776,7 @@
                 var is_student = $('#is_student').val();
                // var family_remark = $('#family_remark').val();
 
-                if(family_name && family_relation && family_age && family_education){
+                if(family_name && family_relation && family_age && family_education && family_married){
 
                     family_members(family_name,family_relation,family_age,family_education,family_married,family_job,is_student);
 
@@ -778,6 +788,10 @@
                     $('#family_job').val('');
                     $('#is_student').val('No');
                     //$('#family_remark').val('');
+                }else{
+                    
+                    swal("Warning!", "Enter all fields", "warning");
+
                 }
                              
             })
@@ -818,7 +832,7 @@
                     '<td><div><input type="text" value="'+relation+'" class="form-control" name="relation[]"/> </div></td>' +
                     '<td> <div><input type="number" value="'+age+'" class="form-control" name="relation_age[]"/> </div> </td>' +
                     '<td><div><input type="text" value="'+education+'" class="form-control" name="education[]" /></div> </td>' +
-                    ' <td><div><input type="text" value="'+married+'" class="form-control" name="marriage_status[]"/> </div></td>' +
+                    ' <td><div><input type="text" value="'+married+'" class="form-control" name="marriage_status[]" disabled/> </div></td>' +
                     ' <td> <div><input type="text" value="'+job+'" class="form-control" name="job[]"/> </div></td>' +
                     '<td><div><input type="text" value="'+is_student+'" class="form-control"  name="is_student[]" readonly /></div></td>' +
                     // '<td><div><input type="text" value="'+remark+'" class="form-control" name="remark[]" /></div></td>' +
@@ -839,4 +853,4 @@
         }
 
     </script>
-@endsection
+

@@ -39,8 +39,10 @@ class RegisterController extends Controller
      * @return void
      */
     public function __construct()
-    {
+    {   
         $this->middleware('auth');
+        $this->middleware('admin');
+
     }
 
     /**
@@ -53,7 +55,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone'=>['required'],
             'role'=>['required']
@@ -84,22 +86,31 @@ class RegisterController extends Controller
     {
 
 
-        if ($request->ajax()) {
+        if ($request->isMethod('post')) {
 
             $data = User::latest()->get();
 
             return Datatables::of($data)
                 ->addIndexColumn()
-                // ->addColumn('action', function ($data) {
+                ->addColumn('action', function ($data) {
 
-                //     $btn = '<a href="bookings/add_data/' . $data->id . '/' . $data->pat_id . '" class="btn btn-success" style="margin-left:20px">  <i class="fa fa-edit"></i></span></a>';
+                    $btn = '<a href="users/delete/' . $data->id . '" class="btn btn-danger delete" style="margin-left:20px">  <i class="fa fa-remove"></i></span></a>';
 
-                //     return $btn;
-                // })
-                // ->rawColumns(['action'])
+                     return $btn;
+                 })
+                ->rawColumns(['action'])
                 ->make(true);
         }
 
         return view('auth.users');
+    }
+
+
+    public function userDelete($id){
+
+        User::find($id)->delete();
+
+        return redirect('/users')->with('Success', 'Deleted Successfully!');
+
     }
 }

@@ -1,8 +1,6 @@
-@extends('layouts.app')
 
-@section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<form method="post" id="frmcreate" action="{{url('/bookings/add_data/save')}}">
+<form method="post" id="form" back="{{url('/bookings')}}" action="{{url('/bookings/add_data/save')}}">
     <input type="hidden" name="bok_id" value="{{$bok_id}}">
     <input type="hidden" name="pat_id" value="{{$pat_id}}">
     <input type="hidden" name="status" value="1">
@@ -93,12 +91,12 @@
 
                         <div class="box-header with-border">
                             <span class="pull-left">
-                                <a role="button" back="" class="btn  btn-success align-bottom" href="{{ url('bookings') }}">
+                                <a role="button"  class="btn  btn-success align-bottom ajax-link" href="{{ url('bookings') }}">
                                     <span class="glyphicon glyphicon-arrow-left" title="back"></span>
                                 </a>
                             </span>
                             <div class="pull-right">
-                                <button type='submit' data-toggle="tooltip" title='Save' class='btn btn-info  btn-flat'>
+                                <button type='submit'id="save" data-toggle="tooltip" title='Save' class='btn btn-info  btn-flat'>
                                     <i class="glyphicon glyphicon-hdd"></i></button>
                             </div>
                         </div>
@@ -829,7 +827,7 @@
 
                                                 <div class="col-sm-4"> <label>BP (mmHg) :</label></div>
                                                 <div class="col-sm-8">
-                                                    <input type="text" name="bp" class="form-control" value="{{ $booking->bp ?? '' }}" placeholder="Enter ..." required>
+                                                    <input type="text" name="bp" class="form-control" value="{{ $booking->bp ?? '' }}" placeholder="Enter ..." >
                                                 </div>
 
 
@@ -837,13 +835,13 @@
                                                     <label>Temperature:</label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <input type="text" name="tempreture" class="form-control" value="{{ $booking->tempreture ?? '' }}" placeholder="Enter ..." required maxlength="40">
+                                                    <input type="text" name="tempreture" class="form-control" value="{{ $booking->tempreture ?? '' }}" placeholder="Enter ..."  maxlength="40">
                                                 </div>
 
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>General State:
                                                     </label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="general_state" class="form-control" placeholder="പൊതു അവസ്ഥ " required>{{$booking->general_state ?? '' }}</textarea>
+                                                    <textarea type="text" name="general_state" class="form-control" placeholder="പൊതു അവസ്ഥ " >{{$booking->general_state ?? '' }}</textarea>
 
                                                 </div>
 
@@ -852,20 +850,20 @@
                                                         :
                                                     </label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="surroundings" class="form-control" placeholder="പരിസര ശുചിത്വം" required>{{ $booking->surroundings ?? '' }}</textarea>
+                                                    <textarea type="text" name="surroundings" class="form-control" placeholder="പരിസര ശുചിത്വം" >{{ $booking->surroundings ?? '' }}</textarea>
 
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>Skin/Nail :
                                                     </label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="skin" class="form-control" placeholder="തൊലി / നഖം" required>{{ $booking->skin ?? '' }}</textarea>
+                                                    <textarea type="text" name="skin" class="form-control" placeholder="തൊലി / നഖം" >{{ $booking->skin ?? '' }}</textarea>
 
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>Head /Hair :
                                                     </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="head" class="form-control" placeholder="തല /മുടി" required>{{ $booking->head ?? '' }}</textarea>
+                                                    <textarea type="text" name="head" class="form-control" placeholder="തല /മുടി" >{{ $booking->head ?? '' }}</textarea>
 
                                                 </div>
 
@@ -886,7 +884,7 @@
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>Hobbies
                                                         :</label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <input type="text" name="hobbies" class="form-control" value="{{ $booking->hobbies ?? '' }}" placeholder="സമയ വിനയോഗം " required maxlength="40">
+                                                    <input type="text" name="hobbies" class="form-control" value="{{ $booking->hobbies ?? '' }}" placeholder="സമയ വിനയോഗം "  maxlength="40">
                                                 </div>
 
 
@@ -902,7 +900,7 @@
                                                     </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="sex" class="form-control" placeholder="പെരിനിയം" required>{{ $booking->sex ?? '' }}</textarea>
+                                                    <textarea type="text" name="sex" class="form-control" placeholder="പെരിനിയം" >{{ $booking->sex ?? '' }}</textarea>
 
                                                 </div>
 
@@ -910,14 +908,14 @@
                                                     </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="hidden_area" class="form-control" placeholder="ഹിഡൻ ഏരിയകൾ" required>{{ $booking->hidden_area ?? '' }}</textarea>
+                                                    <textarea type="text" name="hidden_area" class="form-control" placeholder="ഹിഡൻ ഏരിയകൾ" >{{ $booking->hidden_area ?? '' }}</textarea>
 
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>Other Treatment
                                                         : </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="other_treatment" class="form-control" placeholder="മറ്റ് ചികിത്സാ രീതികൾ" required>{{ $booking->other_treatment ?? '' }}</textarea>
+                                                    <textarea type="text" name="other_treatment" class="form-control" placeholder="മറ്റ് ചികിത്സാ രീതികൾ" >{{ $booking->other_treatment ?? '' }}</textarea>
 
                                                 </div>
 
@@ -1252,4 +1250,3 @@
     }
 </script>
 
-@endsection

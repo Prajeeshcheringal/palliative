@@ -1,8 +1,8 @@
 
 <div class="box">
     <div class="box-header">
-        <h3 class="box-title">Prescriptions</h3>
-        <!-- <a href="{{ url('/patient/create/0') }}" class="pull-right btn btn-success"> <i class="fa fa-plus "></i></a> -->
+        <h3 class="box-title">Volunteers</h3>
+        <a href="{{ url('/volunteers/create/0') }}" class="pull-right btn btn-success ajax-link"> <i class="fa fa-plus "></i></a>
 
     </div>
     <!-- /.box-header -->
@@ -11,14 +11,13 @@
             <thead>
                 <tr>
                     <th>Sl No </th>
-                    <th>Reg No</th>
+                    <th>Volunteer Id</th>
                     <th>Name</th>
-                    <th>Phone</th>
+                    <th>phone</th>
                     <th>Address</th>
-                    <th>Care Of</th>
-                    <th>Date</th>
-                    <th>Type</th>
-                    <th>Action</th>
+                    <th>Role</th>
+                    <th>Gender</th>
+                    <th> Action</th>
 
                 </tr>
             </thead>
@@ -38,7 +37,7 @@
             serverSide: true,
             //  sScrollX: '100%',
             ajax: {
-                url: "{{ route('prescriptions') }}",
+                url: "{{ route('volunteers') }}",
                 type: "post",
             },
             columns: [{
@@ -46,32 +45,28 @@
                     name: 'DT_RowIndex'
                 },
                 {
-                    data: 'get_patient_relation.reg_no',
-                    name: 'reg_no'
+                    data: 'vol_id',
+                    name: 'vol_id'
                 },
                 {
-                    data: 'get_patient_relation.name',
+                    data: 'name',
                     name: 'name'
-                },
-                {
-                    data: 'get_patient_relation.phone',
-                    name: 'phone'
                 },
 
                 {
-                    data: 'get_patient_relation.address',
+                    data: 'phone',
+                    name: 'phone'
+                },
+                {
+                    data: 'address',
                     name: 'address'
-                },
-                {
-                    data: 'get_patient_relation.care_of',
-                    name: 'care_of'
                 }, {
-                    data: 'date',
-                    name: 'date'
+                    data: 'role',
+                    name: 'role'
                 },
                 {
-                    data: 'bok_type',
-                    name: 'bok_type'
+                    data: 'gender',
+                    name: 'gender'
                 },
                 {
                     data: 'action',

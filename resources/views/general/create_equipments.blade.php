@@ -1,12 +1,10 @@
-@extends('layouts.app')
 
-@section('content')
 
-    <form action="{{ url('/equipment/save') }}" method="POST">
+    <form action="{{ url('/equipment/save') }}" id="form" back="{{ url('/') }}/equipments" method="POST">
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">{{ ucfirst($view) }} Equipment</h3>
-                <a href="{{ url('/') }}/equipments" class="pull-right btn btn-success"> <i class="fa fa-arrow-left"></i></a>
+                <a href="{{ url('/') }}/equipments" class="pull-right btn btn-success ajax-link"> <i class="fa fa-arrow-left"></i></a>
 
             </div>
             <!-- /.box-header -->
@@ -63,7 +61,7 @@
 
             <div class="box-footer">
                 @if ($view != 'view')
-                    <button type="submit" class="btn  btn-info pull-right" style="margin-right: 20px">Save</button>
+                    <button type="submit" id="save" class="btn  btn-info pull-right" style="margin-right: 20px">Save</button>
                 @endif
             </div>
 
@@ -85,4 +83,4 @@
         })
 
     </script>
-@endsection
+

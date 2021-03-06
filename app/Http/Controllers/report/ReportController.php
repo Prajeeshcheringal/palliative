@@ -19,7 +19,7 @@ class ReportController extends Controller
 {
     function patientReport(Request $request)
     {
-        if ($request->ajax()) {
+        if ($request->isMethod('post')) {
 
             $model =  Patient::with('getDiseaseRelation');
 
@@ -44,7 +44,7 @@ class ReportController extends Controller
                 ->addColumn('action', function ($data) {
 
                     $url =env('APP_URL');
-                    $btn = '<a   href="'.$url.'/patient/view/' . $data->id . '"  class="btn btn-info" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
+                    $btn = '<a   href="'.$url.'/patient/view/' . $data->id . '"  class="btn btn-info ajax-link" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
                     return $btn;    
                 })
                 ->rawColumns(['action'])
@@ -57,7 +57,7 @@ class ReportController extends Controller
 
     function studentReport(Request $request)
     {
-        if ($request->ajax()) {
+        if ($request->isMethod('post')) {
 
             $data = PatientFamilyMember::with('getPatientRelation')->where('is_student', 'Yes')->latest()->get();
             return Datatables::of($data)
@@ -72,7 +72,7 @@ class ReportController extends Controller
 
     function treatmentReport(Request $request)
     {
-        if ($request->ajax()) {
+        if ($request->isMethod('post')) {
             $model = Booking::with('getPatientRelation');
 
             if ($request->start_date) {
@@ -91,7 +91,7 @@ class ReportController extends Controller
                  ->addColumn('action', function ($data) {
                     
                     $url =env('APP_URL');
-                    $btn = '<a   href="'.$url.'/patient/view/' . $data->getPatientRelation->id . '"  class="btn btn-info" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
+                    $btn = '<a   href="'.$url.'/patient/view/' . $data->getPatientRelation->id . '"  class="btn btn-info ajax-link" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
                     return $btn;    
                 })
                 ->rawColumns(['action'])
@@ -103,7 +103,7 @@ class ReportController extends Controller
     function equipmentReport(Request $request)
     {
 
-        if ($request->ajax()) {
+        if ($request->isMethod('post')) {
 
 
 

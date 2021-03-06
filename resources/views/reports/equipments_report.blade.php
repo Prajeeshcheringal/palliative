@@ -1,10 +1,8 @@
-@extends('layouts.app')
 
-@section('content')
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Equipments Report</h3>
-             <a href="{{ url('/reports/equipments/create/0') }}" class="pull-right btn btn-success">
+             <a href="{{ url('/reports/equipments/create/0') }}" class="pull-right btn btn-success ajax-link">
                 <i class="fa fa-plus "></i></a>
 
         </div>
@@ -160,4 +158,4 @@
         })
 
     </script>
-@endsection
+

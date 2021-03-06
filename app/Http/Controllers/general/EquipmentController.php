@@ -13,7 +13,7 @@ class EquipmentController extends Controller
 
     function listall(Request $request)
     {
-        if ($request->ajax()) {
+        if ($request->isMethod('post')) {
 
             $data = Equipment::latest()->get();
 
@@ -21,9 +21,9 @@ class EquipmentController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
                     $message = "'Do you want to delete'";
-                    $btn = '<a   href="equipment/view/' . $data->id . '"  class="btn btn-info" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
-                    $btn .= '<a href="equipment/create/' . $data->id . '" class="btn btn-success" style="margin:1px"><span><i class="fa fa-edit"></i></span></a>';
-                    $btn .= '<a href="equipment/delete/' . $data->id . '" class="btn btn-danger" onclick="return confirm(' . $message . ')" style="margin:1px"><span><i class="fa fa-remove"></i></span></a>';
+                    $btn = '<a   href="equipment/view/' . $data->id . '"  class="btn btn-info ajax-link" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
+                    $btn .= '<a href="equipment/create/' . $data->id . '" class="btn btn-success ajax-link" style="margin:1px"><span><i class="fa fa-edit"></i></span></a>';
+                    // $btn .= '<a href="equipment/delete/' . $data->id . '" class="btn btn-danger" onclick="return confirm(' . $message . ')" style="margin:1px"><span><i class="fa fa-remove"></i></span></a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])

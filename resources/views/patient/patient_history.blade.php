@@ -1,10 +1,8 @@
-@extends('layouts.app')
 
-@section('content')
 <div class="box">
     <div class="box-header">
         <h3 class="box-title"><b>{{ ucfirst($view) }} Patient:</b></h3>
-        <a href="{{ url('/') }}/patients" class="pull-right btn btn-success"> <i class="fa fa-arrow-left"></i></a>
+        <a href="{{ url('/') }}/patients" class="pull-right btn btn-success ajax-link"> <i class="fa fa-arrow-left"></i></a>
 
     </div>
     <!-- /.box-header -->
@@ -1218,4 +1216,4 @@
 
 
 
-    @endsection
+    

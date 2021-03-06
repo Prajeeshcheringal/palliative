@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;  
+use Carbon\Carbon;
+
 class HomeController extends Controller
 {
     /**
@@ -17,7 +18,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-       // $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -26,35 +27,49 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   $data=[
+    {
+        $data = [
 
-        'total_patients' => DB::table('patients')->count(),
-        'active_patients' => DB::table('patients')->where('current_status','Active')->count(),
-        'daily_home_care' =>DB::table('bookings')->where('bok_type','home')->whereDate('date', Carbon::today())->count(),
-        'daily_clinic_care' =>DB::table('bookings')->where('bok_type','clinic')->whereDate('date', Carbon::today())->count(),
+            'total_patients' => DB::table('patients')->count(),
+            'active_patients' => DB::table('patients')->where('current_status', 'Active')->count(),
+            'daily_home_care' => DB::table('bookings')->where('bok_type', 'home')->whereDate('date', Carbon::today())->count(),
+            'daily_clinic_care' => DB::table('bookings')->where('bok_type', 'clinic')->whereDate('date', Carbon::today())->count(),
+            'pending_home_care' => DB::table('bookings')->where('bok_type', 'home')->where('status', 0)->whereDate('date', '<', Carbon::today())->count(),
 
 
 
-    ];
-        return view('home',$data);
+
+        ];
+        return view('home', $data);
     }
 
-    public function changePassword(Request $request){
+    public function dashboard()
+    {
+        $data = [
+
+            'total_patients' => DB::table('patients')->count(),
+            'active_patients' => DB::table('patients')->where('current_status', 'Active')->count(),
+            'daily_home_care' => DB::table('bookings')->where('bok_type', 'home')->whereDate('date', Carbon::today())->count(),
+            'daily_clinic_care' => DB::table('bookings')->where('bok_type', 'clinic')->whereDate('date', Carbon::today())->count(),
+            'pending_home_care' => DB::table('bookings')->where('bok_type', 'home')->where('status', 0)->whereDate('date', '<', Carbon::today())->count(),
+
+        ];
+        return view('layouts.app', $data);
+    }
+
+    public function changePassword(Request $request)
+    {
 
 
-        $current_password =$request->current_password;
-        $new_password =$request->new_password;
-       if(Hash::check($current_password, Auth::user()->password)){        
-      
-        User::find(Auth::user()->id)->update(['password'=> bcrypt($new_password)]);
-        return redirect('/home')->with('Success', 'Password Updated Successfully!');
+        $current_password = $request->current_password;
+        $new_password = $request->new_password;
+        if (Hash::check($current_password, Auth::user()->password)) {
 
-       }
-       else{
+            User::find(Auth::user()->id)->update(['password' => bcrypt($new_password)]);
+            return redirect('/')->with('Success', 'Password Updated Successfully!');
+        } else {
 
-         return redirect('/home')->with('Error', ' Oops Wrong Password !');
-
-       }
-
+            return redirect('/')->with('Error', ' Oops Wrong Password !');
+        }
     }
 }

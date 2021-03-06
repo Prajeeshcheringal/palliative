@@ -12,7 +12,7 @@ class DiseaseController extends Controller
 
     function listall(Request $request)
     {
-        if ($request->ajax()) {
+        if ($request->isMethod('post')) {
 
             $data = Disease::latest()->get();
 
@@ -20,9 +20,9 @@ class DiseaseController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
                     $message = "'Do you want to delete'";
-                    $btn = '<a   href="disease/view/' . $data->id . '"  class="btn btn-info" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
-                    $btn .= '<a href="disease/create/' . $data->id . '" class="btn btn-success" style="margin:1px"><span><i class="fa fa-edit"></i></span></a>';
-                    $btn .= '<a href="disease/delete/' . $data->id . '" class="btn btn-danger delete"  style="margin:1px"><span><i class="fa fa-remove"></i></span></a>';
+                    $btn = '<a   href="disease/view/' . $data->id . '"  class="btn btn-info ajax-link" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
+                    $btn .= '<a href="disease/create/' . $data->id . '" class="btn btn-success ajax-link" style="margin:1px"><span><i class="fa fa-edit"></i></span></a>';
+                    // $btn .= '<a href="disease/delete/' . $data->id . '" class="btn btn-danger delete"  style="margin:1px"><span><i class="fa fa-remove"></i></span></a>';
                     return $btn;    
                 })
                 ->rawColumns(['action'])
