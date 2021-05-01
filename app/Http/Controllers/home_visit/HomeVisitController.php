@@ -37,6 +37,15 @@ class HomeVisitController extends Controller
     }
     function save(Request $request)
     {
+        if ($request->pat_id == NULL) {
+
+            return response()->json([
+
+                'error' => 'Unknown Patient'
+                
+            ], 500);
+        }
+
         try {
 
             Booking::create($request->all());
@@ -70,6 +79,7 @@ class HomeVisitController extends Controller
     function bookingsAddData($bok_id, $pat_id)
     {
         $data = [
+
             //current bokking data
 
             'bok_id' => $bok_id,
@@ -215,9 +225,9 @@ class HomeVisitController extends Controller
                 ->addColumn('action', function ($data) {
                     $bok_id = $data->id;
                     $bok_note = "'" . $data->bok_note . "'";
-                    $base_url =url('/');
+                    $base_url = url('/');
 
-                    $btn = '<a href="'.$base_url.'/bookings/delete/' . $data->id . '"  back="'.$base_url.'/bookings/pendings"  class="btn btn-danger delete" style="margin-left:5px">Cancel</span></a>';
+                    $btn = '<a href="' . $base_url . '/bookings/delete/' . $data->id . '"  back="' . $base_url . '/bookings/pendings"  class="btn btn-danger delete" style="margin-left:5px">Cancel</span></a>';
                     $btn = $btn . '<a  onclick="showModal(' . $bok_id . ',' . $bok_note . ')" class="btn btn-success" style="margin-left:5px">Rebook</span></a>';
 
 
@@ -245,11 +255,10 @@ class HomeVisitController extends Controller
     {
         Booking::find($request->bok_id)->update([
 
-            'date'=>$request->date,
-            'bok_note'=>$request->bok_note
+            'date' => $request->date,
+            'bok_note' => $request->bok_note
         ]);
 
         return redirect('bookings/pendings')->with('Success', 'Rebooked Successfully');
-
     }
 }

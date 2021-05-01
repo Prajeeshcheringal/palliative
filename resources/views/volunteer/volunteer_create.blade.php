@@ -1,5 +1,3 @@
-
-
 <form action="{{ url('/volunteer/save') }}" back="{{ url('/') }}/volunteers" id="form" method="POST">
     <div class="box">
         <div class="box-header">
@@ -33,18 +31,7 @@
             </div>
             <div class="row">
 
-                <div class="col-sm-6">
 
-                    <div style="padding-top: 20px;" class="col-sm-3"> <label> Role :</label></div>
-                    <div class="col-sm-9" style="padding-top: 20px;">
-                        <select name="role" id="role" class="form-control" required>
-                            <option value="">Select</option>
-                            <option value="Volunteer">Volunteer</option>
-                            <option value="Driver">Driver</option>
-
-                        </select>
-                    </div>
-                </div>
 
                 <div class="col-sm-6">
 
@@ -58,10 +45,29 @@
                         </select>
                     </div>
                 </div>
+
+                <div class="col-sm-6">
+
+                    <div style="padding-top: 20px;" class="col-sm-3"> <label> Driving :</label></div>
+                    <div class="col-sm-9" style="padding-top: 20px;">
+                        <div class="form-group">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="role" value="No" checked>
+                                    No
+                                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <label>
+                                    <input type="radio" name="role" value="Yes" @if($volunteer->role ?? '') @if($volunteer->role == "Yes" ) checked @endif @endif >
+                                    Yes </label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="row">
-
+    
 
 
                 <div class="col-sm-6">
@@ -100,7 +106,7 @@
         @if($view != 'create')
 
         $('#gender').val('{{$volunteer->gender}}')
-        $('#role').val('{{$volunteer->role}}')
+        // $('#role').val('{{$volunteer->role}}')
 
 
         @endif

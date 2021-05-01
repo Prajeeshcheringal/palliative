@@ -15,7 +15,7 @@ class EquipmentController extends Controller
     {
         if ($request->isMethod('post')) {
 
-            $data = Equipment::latest()->get();
+            $data = Equipment::orderBy('equipment', 'ASC')->get();
 
             return Datatables::of($data)
                 ->addIndexColumn()

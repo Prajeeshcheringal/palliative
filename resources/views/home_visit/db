@@ -1,0 +1,1 @@
+ALTER TABLE `bookings` ADD `nurse_note` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL AFTER `doctors_note`;

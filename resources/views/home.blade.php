@@ -45,7 +45,7 @@
   <a href="{{url('/dailypatients')}}" class="ajax-link"  style="color: black;">
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
-        <span class="info-box-icon bg-yellow"><i class="fa  fa-medkit"></i></span>
+        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-medkit-outline"></i></span>
 
         <div class="info-box-content">
           <span class="info-box-text">Daily Clinic Care</span>
@@ -63,7 +63,7 @@
   <a href="{{url('/bookings')}}" class="ajax-link"  style="color: black;">
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
-        <span class="info-box-icon bg-violet"><i class="fa fa-home"></i></span>
+        <span class="info-box-icon" style="background-color: #709553; color: #fff !important;"><i class="ion ion-ios-home-outline"></i></span>
 
         <div class="info-box-content">
           <span class="info-box-text">Daily Home Care</span>
@@ -86,7 +86,7 @@
   <a href="{{url('/bookings/pendings')}}" class="ajax-link"  style="color: black;">
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
-        <span class="info-box-icon bg-red"><i class="fa fa-home"></i></span>
+        <span class="info-box-icon bg-red"><i class="ion ion-ios-home-outline"></i></span>
 
         <div class="info-box-content">
           <span class="info-box-text">Pending Home Care</span>
@@ -101,11 +101,11 @@
   <a href="{{url('/reports/equipments')}}" class="ajax-link"  style="color: black;">
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="info-box">
-        <span class="info-box-icon bg-yellow"><i class="fa  fa-anchor"></i></span>
+        <span class="info-box-icon" style="background-color: #cf9664 !important; color: #fff !important;"><i class="ion ion-ios-stopwatch-outline"></i></span>
 
         <div class="info-box-content">
           <span class="info-box-text">Pending Equipments</span>
-          <span class="info-box-number">{{$daily_clinic_care}}</span>
+          <span class="info-box-number">{{$pending_equipments}}</span>
         </div>
         <!-- /.info-box-content -->
       </div>

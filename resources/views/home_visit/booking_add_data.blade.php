@@ -1,4 +1,3 @@
-
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <form method="post" id="form" back="{{url('/bookings')}}" action="{{url('/bookings/add_data/save')}}">
     <input type="hidden" name="bok_id" value="{{$bok_id}}">
@@ -24,7 +23,8 @@
                             <li class="active"><a href="#activity" data-toggle="tab">Patient Details</a></li>
                             <li><a href="#diagnosis" data-toggle="tab">Primary Data </a></li>
                             <li><a href="#disease_details" data-toggle="tab">Disease Details</a></li>
-                            <li><a href="#doctornote" data-toggle="tab">Doctor's Notes</a></li>
+                            <li><a href="#nursenote" data-toggle="tab">Nurse's Notes</a></li>
+                            <li><a href="#doctornote" data-toggle="tab">Doctor's Note</a></li>
                             <li><a href="#labnote" data-toggle="tab">Mental & Sperictual</a></li>
                             <li><a href="#prescription" data-toggle="tab">Prescription</a></li>
                             <li><a href="#team_members" data-toggle="tab">Team Members</a></li>
@@ -91,12 +91,12 @@
 
                         <div class="box-header with-border">
                             <span class="pull-left">
-                                <a role="button"  class="btn  btn-success align-bottom ajax-link" href="{{ url('bookings') }}">
+                                <a role="button" class="btn  btn-success align-bottom ajax-link" href="{{ url('bookings') }}">
                                     <span class="glyphicon glyphicon-arrow-left" title="back"></span>
                                 </a>
                             </span>
                             <div class="pull-right">
-                                <button type='submit'id="save" data-toggle="tooltip" title='Save' class='btn btn-info  btn-flat'>
+                                <button type='submit' id="save" data-toggle="tooltip" title='Save' class='btn btn-info  btn-flat'>
                                     <i class="glyphicon glyphicon-hdd"></i></button>
                             </div>
                         </div>
@@ -261,8 +261,8 @@
                                             <tr id="add">
                                                 <td class="col-lg-3"><input id="medicine" type="text" class="form-control " placeholder="Medicine" />
                                                 <td class="col-lg-2">
-                                                    <input id="dose" name="" type="text" class="form-control"  placeholder="Dose"/>
-                                                        <!-- <option value="">Select</option>
+                                                    <input id="dose" name="" type="text" class="form-control" placeholder="Dose" />
+                                                    <!-- <option value="">Select</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -274,7 +274,7 @@
                                                 <td class="col-lg-3"><input id="period" type="number" class="form-control" placeholder="Period" /></td>
 
                                                 <td class="col-lg-3"><input id="purpose" type="text" class="form-control" placeholder="Purpose" /></td>
-                                               
+
                                                 <td class="col-lg-1">
                                                     <a title="Add To save" class="btn btn-success prescbtn" href="#">
                                                         <span class="glyphicon glyphicon-plus"></span>
@@ -464,7 +464,7 @@
 
                                                             <div class="col-sm-4"> <label>BP (mmHg) :</label></div>
                                                             <div class="col-sm-8">
-                                                                <input type="text"  readonly class="form-control" value="{{ $prev_book->bp ?? '' }}" placeholder="Enter ..." required>
+                                                                <input type="text" readonly class="form-control" value="{{ $prev_book->bp ?? '' }}" placeholder="Enter ..." required>
                                                             </div>
 
 
@@ -472,13 +472,13 @@
                                                                 <label>Temperature:</label>
                                                             </div>
                                                             <div style="padding-top: 20px;" class="col-sm-8">
-                                                                <input type="text"  readonly class="form-control" value="{{ $prev_book->tempreture ?? '' }}" placeholder="Enter ..." required maxlength="40">
+                                                                <input type="text" readonly class="form-control" value="{{ $prev_book->tempreture ?? '' }}" placeholder="Enter ..." required maxlength="40">
                                                             </div>
 
                                                             <div style="padding-top: 20px;" class="col-sm-4"> <label>General State:
                                                                 </label></div>
                                                             <div style="padding-top: 20px;" class="col-sm-8">
-                                                                <textarea type="text"  readonly class="form-control" placeholder="പൊതു അവസ്ഥ " required>{{$prev_book->general_state ?? '' }}</textarea>
+                                                                <textarea type="text" readonly class="form-control" placeholder="പൊതു അവസ്ഥ " required>{{$prev_book->general_state ?? '' }}</textarea>
 
                                                             </div>
 
@@ -487,20 +487,20 @@
                                                                     :
                                                                 </label></div>
                                                             <div style="padding-top: 20px;" class="col-sm-8">
-                                                                <textarea type="text"  readonly class="form-control" placeholder="പരിസര ശുചിത്വം" required>{{ $prev_book->surroundings ?? '' }}</textarea>
+                                                                <textarea type="text" readonly class="form-control" placeholder="പരിസര ശുചിത്വം" required>{{ $prev_book->surroundings ?? '' }}</textarea>
 
                                                             </div>
                                                             <div style="padding-top: 20px;" class="col-sm-4"> <label>Skin/Nail :
                                                                 </label></div>
                                                             <div style="padding-top: 20px;" class="col-sm-8">
-                                                                <textarea type="text"  class="form-control" readonly placeholder="തൊലി / നഖം" required>{{ $prev_book->skin ?? '' }}</textarea>
+                                                                <textarea type="text" class="form-control" readonly placeholder="തൊലി / നഖം" required>{{ $prev_book->skin ?? '' }}</textarea>
 
                                                             </div>
                                                             <div style="padding-top: 20px;" class="col-sm-4"> <label>Head /Hair :
                                                                 </label>
                                                             </div>
                                                             <div style="padding-top: 20px;" class="col-sm-8">
-                                                                <textarea type="text"  class="form-control" readonly placeholder="തല /മുടി" required>{{ $prev_book->head ?? '' }}</textarea>
+                                                                <textarea type="text" class="form-control" readonly placeholder="തല /മുടി" required>{{ $prev_book->head ?? '' }}</textarea>
 
                                                             </div>
 
@@ -515,13 +515,13 @@
 
                                                             <div class="col-sm-4"> <label>Pulse (bpm):</label></div>
                                                             <div class="col-sm-8">
-                                                                <input type="text" readonly  class="form-control" value="{{ $prev_book->pulse ?? '' }}" placeholder="Enter ...">
+                                                                <input type="text" readonly class="form-control" value="{{ $prev_book->pulse ?? '' }}" placeholder="Enter ...">
                                                             </div>
 
                                                             <div style="padding-top: 20px;" class="col-sm-4"> <label>Hobbies
                                                                     :</label></div>
                                                             <div style="padding-top: 20px;" class="col-sm-8">
-                                                                <input type="text" readonly  class="form-control" value="{{ $prev_book->hobbies ?? '' }}" placeholder="സമയ വിനയോഗം " required maxlength="40">
+                                                                <input type="text" readonly class="form-control" value="{{ $prev_book->hobbies ?? '' }}" placeholder="സമയ വിനയോഗം " required maxlength="40">
                                                             </div>
 
 
@@ -529,7 +529,7 @@
                                                             <div style="padding-top: 20px;" class="col-sm-4"> <label>Mouth : </label>
                                                             </div>
                                                             <div style="padding-top: 20px;" class="col-sm-8">
-                                                                <textarea placeholder="വായ " readonly type="text"  class="form-control">{{ $prev_book->mouth ?? ''}}</textarea>
+                                                                <textarea placeholder="വായ " readonly type="text" class="form-control">{{ $prev_book->mouth ?? ''}}</textarea>
 
                                                             </div>
 
@@ -537,7 +537,7 @@
                                                                 </label>
                                                             </div>
                                                             <div style="padding-top: 20px;" class="col-sm-8">
-                                                                <textarea type="text"  readonly class="form-control" placeholder="പെരിനിയം" required>{{ $prev_book->sex ?? '' }}</textarea>
+                                                                <textarea type="text" readonly class="form-control" placeholder="പെരിനിയം" required>{{ $prev_book->sex ?? '' }}</textarea>
 
                                                             </div>
 
@@ -545,14 +545,14 @@
                                                                 </label>
                                                             </div>
                                                             <div style="padding-top: 20px;" class="col-sm-8">
-                                                                <textarea type="text" readonly  class="form-control" placeholder="ഹിഡൻ ഏരിയകൾ" required>{{ $prev_book->hidden_area ?? '' }}</textarea>
+                                                                <textarea type="text" readonly class="form-control" placeholder="ഹിഡൻ ഏരിയകൾ" required>{{ $prev_book->hidden_area ?? '' }}</textarea>
 
                                                             </div>
                                                             <div style="padding-top: 20px;" class="col-sm-4"> <label>Other Treatment
                                                                     : </label>
                                                             </div>
                                                             <div style="padding-top: 20px;" class="col-sm-8">
-                                                                <textarea type="text" readonly  class="form-control" placeholder="മറ്റ് ചികിത്സാ രീതികൾ" required>{{ $prev_book->other_treatment ?? '' }}</textarea>
+                                                                <textarea type="text" readonly class="form-control" placeholder="മറ്റ് ചികിത്സാ രീതികൾ" required>{{ $prev_book->other_treatment ?? '' }}</textarea>
 
                                                             </div>
 
@@ -579,11 +579,11 @@
                                                                 <div class="form-group">
                                                                     <div class="radio">
                                                                         <label>
-                                                                            <input type="radio" name="foods{{$prev_book->id}}" readonly  checked>
+                                                                            <input type="radio" name="foods{{$prev_book->id}}" readonly checked>
                                                                             കൃത്യമായി കഴിക്കുന്നുണ്ട്
                                                                         </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                         <label>
-                                                                            <input type="radio" name="foods{{$prev_book->id}}" readonly  @if($prev_book->food == 0) checked @endif >
+                                                                            <input type="radio" name="foods{{$prev_book->id}}" readonly @if($prev_book->food == 0) checked @endif >
                                                                             ഇല്ല </label>
                                                                     </div>
 
@@ -597,11 +597,11 @@
                                                                 <div class="form-group">
                                                                     <div class="radio">
                                                                         <label>
-                                                                            <input type="radio" name="waters{{$prev_book->id}}" readonly  checked>
+                                                                            <input type="radio" name="waters{{$prev_book->id}}" readonly checked>
                                                                             കൃത്യമായി കഴിക്കുന്നുണ്ട്
                                                                         </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                         <label>
-                                                                            <input type="radio" name="waters{{$prev_book->id}}" readonly  @if($prev_book->water == 0) checked @endif>
+                                                                            <input type="radio" name="waters{{$prev_book->id}}" readonly @if($prev_book->water == 0) checked @endif>
                                                                             ഇല്ല </label>
                                                                     </div>
 
@@ -615,7 +615,7 @@
                                                                 <div class="form-group">
                                                                     <div class="radio">
                                                                         <label>
-                                                                            <input type="radio" name="urines{{$prev_book->id}}" readonly  checked>
+                                                                            <input type="radio" name="urines{{$prev_book->id}}" readonly checked>
                                                                             കൃത്യമായി നടക്കുന്നുണ്ട്
                                                                         </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                         <label>
@@ -632,7 +632,7 @@
                                                                 <div class="form-group">
                                                                     <div class="radio">
                                                                         <label>
-                                                                            <input type="radio" name="constipations{{$prev_book->id}}"  checked>
+                                                                            <input type="radio" name="constipations{{$prev_book->id}}" checked>
                                                                             കൃത്യമായി നടക്കുന്നുണ്ട്
                                                                         </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                         <label>
@@ -697,11 +697,11 @@
                                                                 <div class="form-group">
                                                                     <div class="radio">
                                                                         <label>
-                                                                            <input type="radio" name="body_cleanings{{$prev_book->id}}"  checked>
+                                                                            <input type="radio" name="body_cleanings{{$prev_book->id}}" checked>
                                                                             കൃത്യമായി നടക്കുന്നുണ്ട്
                                                                         </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                                         <label>
-                                                                            <input type="radio" name="body_cleanings{{$prev_book->id}}"  @if($prev_book->body_cleaning == 0) checked @endif>
+                                                                            <input type="radio" name="body_cleanings{{$prev_book->id}}" @if($prev_book->body_cleaning == 0) checked @endif>
                                                                             ഇല്ല </label>
                                                                     </div>
 
@@ -737,7 +737,40 @@
 
 
 
+                    <div class="tab-pane" id="nursenote">
+                        <div class="col-md-6">
 
+
+                        </div>
+
+                        <div class="box-header with-border mailbox-controls">
+                            <h3 class="box-title">Nurse's Notes</h3>
+                            <div class="btn-group pull-right">
+                                <button type="button" class="btn btnPrevious btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
+                                <button type="button" class="btn btnNext btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                            </div>
+                            <br />
+
+                        </div>
+                        <div class="box-body no-padding">
+                            <div class="table-responsive mailbox-messages">
+                                <textarea id="editor5" name="nurse_note" rows="10" cols="80">{{$booking->nurse_note ?? ''}}
+                                </textarea>
+                            </div>
+                            <div class="mailbox-controls">
+                                <div class="pull-right">
+                                    <div class="btn-group pull-right">
+                                        <button type="button" class="btn btnPrevious btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
+                                        <button type="button" class="btn btnNext btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                                    </div>
+                                    <!-- /.btn-group -->
+                                </div>
+                                <!-- /.pull-right -->
+                            </div>
+                            <!-- /.mail-box-messages -->
+                        </div>
+
+                    </div>
 
 
 
@@ -827,7 +860,7 @@
 
                                                 <div class="col-sm-4"> <label>BP (mmHg) :</label></div>
                                                 <div class="col-sm-8">
-                                                    <input type="text" name="bp" class="form-control" value="{{ $booking->bp ?? '' }}" placeholder="Enter ..." >
+                                                    <input type="text" name="bp" class="form-control" value="{{ $booking->bp ?? '' }}" placeholder="Enter ...">
                                                 </div>
 
 
@@ -835,13 +868,13 @@
                                                     <label>Temperature:</label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <input type="text" name="tempreture" class="form-control" value="{{ $booking->tempreture ?? '' }}" placeholder="Enter ..."  maxlength="40">
+                                                    <input type="text" name="tempreture" class="form-control" value="{{ $booking->tempreture ?? '' }}" placeholder="Enter ..." maxlength="40">
                                                 </div>
 
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>General State:
                                                     </label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="general_state" class="form-control" placeholder="പൊതു അവസ്ഥ " >{{$booking->general_state ?? '' }}</textarea>
+                                                    <textarea type="text" name="general_state" class="form-control" placeholder="പൊതു അവസ്ഥ ">{{$booking->general_state ?? '' }}</textarea>
 
                                                 </div>
 
@@ -850,20 +883,20 @@
                                                         :
                                                     </label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="surroundings" class="form-control" placeholder="പരിസര ശുചിത്വം" >{{ $booking->surroundings ?? '' }}</textarea>
+                                                    <textarea type="text" name="surroundings" class="form-control" placeholder="പരിസര ശുചിത്വം">{{ $booking->surroundings ?? '' }}</textarea>
 
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>Skin/Nail :
                                                     </label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="skin" class="form-control" placeholder="തൊലി / നഖം" >{{ $booking->skin ?? '' }}</textarea>
+                                                    <textarea type="text" name="skin" class="form-control" placeholder="തൊലി / നഖം">{{ $booking->skin ?? '' }}</textarea>
 
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>Head /Hair :
                                                     </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="head" class="form-control" placeholder="തല /മുടി" >{{ $booking->head ?? '' }}</textarea>
+                                                    <textarea type="text" name="head" class="form-control" placeholder="തല /മുടി">{{ $booking->head ?? '' }}</textarea>
 
                                                 </div>
 
@@ -884,7 +917,7 @@
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>Hobbies
                                                         :</label></div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <input type="text" name="hobbies" class="form-control" value="{{ $booking->hobbies ?? '' }}" placeholder="സമയ വിനയോഗം "  maxlength="40">
+                                                    <input type="text" name="hobbies" class="form-control" value="{{ $booking->hobbies ?? '' }}" placeholder="സമയ വിനയോഗം " maxlength="40">
                                                 </div>
 
 
@@ -900,7 +933,7 @@
                                                     </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="sex" class="form-control" placeholder="പെരിനിയം" >{{ $booking->sex ?? '' }}</textarea>
+                                                    <textarea type="text" name="sex" class="form-control" placeholder="പെരിനിയം">{{ $booking->sex ?? '' }}</textarea>
 
                                                 </div>
 
@@ -908,14 +941,14 @@
                                                     </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="hidden_area" class="form-control" placeholder="ഹിഡൻ ഏരിയകൾ" >{{ $booking->hidden_area ?? '' }}</textarea>
+                                                    <textarea type="text" name="hidden_area" class="form-control" placeholder="ഹിഡൻ ഏരിയകൾ">{{ $booking->hidden_area ?? '' }}</textarea>
 
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-4"> <label>Other Treatment
                                                         : </label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <textarea type="text" name="other_treatment" class="form-control" placeholder="മറ്റ് ചികിത്സാ രീതികൾ" >{{ $booking->other_treatment ?? '' }}</textarea>
+                                                    <textarea type="text" name="other_treatment" class="form-control" placeholder="മറ്റ് ചികിത്സാ രീതികൾ">{{ $booking->other_treatment ?? '' }}</textarea>
 
                                                 </div>
 
@@ -954,23 +987,7 @@
                                         <div class="col-sm-6">
 
                                             <div class="row">
-                                                <div style="padding-top: 20px;" class="col-sm-4">
-                                                    <label>ആഹാരം :</label>
-                                                </div>
-                                                <div style="padding-top: 20px;" class="col-sm-8">
-                                                    <div class="form-group">
-                                                        <div class="radio">
-                                                            <label>
-                                                                <input type="radio" name="food" value="1" checked>
-                                                                കൃത്യമായി കഴിക്കുന്നുണ്ട്
-                                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                            <label>
-                                                                <input type="radio" name="food" value="0" @if($booking->food == 0) checked @endif >
-                                                                ഇല്ല </label>
-                                                        </div>
 
-                                                    </div>
-                                                </div>
 
                                                 <div style="padding-top: 20px;" class="col-sm-4">
                                                     <label>പാനിയം :</label>
@@ -991,22 +1008,23 @@
                                                 </div>
 
                                                 <div style="padding-top: 20px;" class="col-sm-4">
-                                                    <label>മൂത്രം :</label>
+                                                    <label>ശരീര ശുചീകരണം :</label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <div class="form-group">
                                                         <div class="radio">
                                                             <label>
-                                                                <input type="radio" name="urine" value="1" checked>
+                                                                <input type="radio" name="body_cleaning" value="1" checked>
                                                                 കൃത്യമായി നടക്കുന്നുണ്ട്
                                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                             <label>
-                                                                <input type="radio" name="urine" value="0" @if($booking->urine == 0) checked @endif>
+                                                                <input type="radio" name="body_cleaning" value="0" @if($booking->body_cleaning == 0) checked @endif>
                                                                 ഇല്ല </label>
                                                         </div>
 
                                                     </div>
                                                 </div>
+
                                                 <div style="padding-top: 20px;" class="col-sm-4">
                                                     <label>ശോധന &nbsp;:</label>
                                                 </div>
@@ -1025,7 +1043,35 @@
                                                     </div>
                                                 </div>
 
+                                                <div style="padding-top: 20px;" class="col-sm-4">
+                                                    <label>ആഹാരം :</label>
+                                                </div>
+                                                <div style="padding-top: 20px;" class="col-sm-8">
+                                                    <div class="form-group">
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" name="food" class="food" value="0" checked>
+                                                                സാധാരണയായി
+                                                            </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                            <label>
+                                                                <input type="radio" name="food" class="food" value="1" @if($booking->food == 1) checked @endif >
+                                                                ട്യൂബ് വഴി </label>
+                                                        </div>
 
+                                                    </div>
+                                                </div>
+                                                <div id="food_data">
+
+                                                    <div class="col-sm-4" style="padding-top: 20px;"> <label>അവസാനം മാറ്റിയത :</label></div>
+                                                    <div class="col-sm-6" style="padding-top: 20px;">
+                                                        <input type="date" name="bp" class="form-control input-sm" value="{{ $booking->bp ?? '' }}" placeholder="Enter ...">
+                                                    </div>
+                                                    <div class="col-sm-4" style="padding-top: 20px;"> <label>മാറ്റേണ്ട തീയതി  :</label></div>
+                                                    <div class="col-sm-6" style="padding-top: 20px;">
+                                                        <input type="date" name="bp" class="form-control input-sm" value="{{ $booking->bp ?? '' }}" placeholder="Enter ...">
+                                                    </div>
+
+                                                </div>
 
                                             </div>
                                         </div>
@@ -1073,21 +1119,36 @@
                                                 </div>
 
                                                 <div style="padding-top: 20px;" class="col-sm-4">
-                                                    <label>ശരീര ശുചീകരണം :</label>
+                                                    <label>മൂത്രം :</label>
                                                 </div>
                                                 <div style="padding-top: 20px;" class="col-sm-8">
                                                     <div class="form-group">
                                                         <div class="radio">
                                                             <label>
-                                                                <input type="radio" name="body_cleaning" value="1" checked>
-                                                                കൃത്യമായി നടക്കുന്നുണ്ട്
+                                                                <input type="radio" name="urine" class="urine" value="0" checked>
+                                                                സാധാരണയായി
                                                             </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                             <label>
-                                                                <input type="radio" name="body_cleaning" value="0" @if($booking->body_cleaning == 0) checked @endif>
-                                                                ഇല്ല </label>
+                                                                <input type="radio" name="urine" class="urine" value="1" @if($booking->urine == 1) checked @endif>
+                                                                കാതീറ്റർ വഴി </label>
                                                         </div>
 
                                                     </div>
+                                                </div>
+                                                <div id="urine_data">
+                                                    <div class="col-sm-4" style="padding-top: 20px;"> <label>Size :</label></div>
+                                                    <div class="col-sm-6" style="padding-top: 20px;">
+                                                        <input type="text" name="bp" class="form-control input-sm" value="{{ $booking->bp ?? '' }}" placeholder="Enter ...">
+                                                    </div>
+                                                    <div class="col-sm-4" style="padding-top: 20px;"> <label> അവസാനം മാറ്റിയത :</label></div>
+                                                    <div class="col-sm-6" style="padding-top: 20px;">
+                                                        <input type="date" name="bp" class="form-control input-sm" value="{{ $booking->bp ?? '' }}" placeholder="Enter ...">
+                                                    </div>
+                                                    <div class="col-sm-4" style="padding-top: 20px;"> <label>മാറ്റേണ്ട തീയതി :</label></div>
+                                                    <div class="col-sm-6" style="padding-top: 20px;">
+                                                        <input type="date" name="bp" class="form-control input-sm" value="{{ $booking->bp ?? '' }}" placeholder="Enter ...">
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -1153,9 +1214,41 @@
 <script>
     $(function() {
 
+        $('#urine_data').hide();
+        $('#food_data').hide();
+
+
+        $('.urine').change(function() {
+
+            var val = $(this).val();
+            if (val == 1) {
+                $('#urine_data').show();
+
+            } else {
+
+                $('#urine_data').hide();
+            }
+        })
+
+        $('.food').change(function() {
+
+            var val = $(this).val();
+            if (val == 1) {
+                $('#food_data').show();
+
+            } else {
+
+                $('#food_data').hide();
+            }
+        })
+
+        $('.urine').trigger('change');
+        $('.food').trigger('change');
+
+
         @foreach($prescription as $presc)
 
-        presc('{{$presc->medicine}}', '{{$presc->dose}}','{{$presc->period}}' ,'{{$presc->purpose}}')
+        presc('{{$presc->medicine}}', '{{$presc->dose}}', '{{$presc->period}}', '{{$presc->purpose}}')
 
         @endforeach
 
@@ -1169,6 +1262,8 @@
         CKEDITOR.replace('editor1');
         CKEDITOR.replace('editor2');
         CKEDITOR.replace('editor4');
+        CKEDITOR.replace('editor5');
+
 
         $('.btnNext').click(function() {
             $('.nav-pills > .active').next('li').find('a').trigger('click');
@@ -1185,12 +1280,16 @@
             var period = $('#period').val();
             if (medicine && dose && purpose && period) {
 
-                presc(medicine, dose,period, purpose);
+                presc(medicine, dose, period, purpose);
 
                 $('#medicine').val('');
                 $('#dose').val('');
                 $('#purpose').val('');
                 $('#period').val('');
+            } else {
+
+                swal("Warning", "Enter all fields", "info")
+
             }
 
         });
@@ -1205,13 +1304,15 @@
             var role = $('#role').val();
             var contact_no = $('#contact_no').val();
 
-            if (name && role && contact_no) {
+            if (name && role) {
 
                 addteam(name, role, contact_no);
 
                 $('#team_name').val('');
                 $('#role').val('');
                 $('#contact_no').val('');
+            } else {
+                swal("Warning", "Enter name & Role", "info")
             }
 
         });
@@ -1222,16 +1323,16 @@
         });
 
     })
-   
 
-    function presc(medicine, dose,period,purpose) {
+
+    function presc(medicine, dose, period, purpose) {
 
         var newrow =
-            '<tr id="add">'+
+            '<tr id="add">' +
             '<td class="col-lg-3"><input  type="text" class="form-control" name="medicine[]" placeholder="Medicine" value="' + medicine + '" /></td>' +
             '<td class="col-lg-1"><input  name="dose[]" value="' + dose + '"  class="form-control"/></td>' +
             '<td class="col-lg-2"><input name ="period[]" value="' + period + '"  class="form-control col-lg-1"></td>' +
-            '<td class="col-lg-3"><input id="qty" name="purpose[]" value="' + purpose +'"  type="text" class="form-control" placeholder="Purpose" /></td>' +
+            '<td class="col-lg-3"><input id="qty" name="purpose[]" value="' + purpose + '"  type="text" class="form-control" placeholder="Purpose" /></td>' +
             '<td><button data-toggle="tooltip" type="button" title="Remove" class="btn btn-danger remove" href="#"><span class="glyphicon glyphicon-remove"></span></button></td></tr>';
         $('#prescrow').append(newrow);
 
@@ -1249,4 +1350,3 @@
 
     }
 </script>
-

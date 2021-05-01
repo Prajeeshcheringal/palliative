@@ -43,9 +43,9 @@ class ReportController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
 
-                    $url =env('APP_URL');
-                    $btn = '<a   href="'.$url.'/patient/view/' . $data->id . '"  class="btn btn-info ajax-link" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
-                    return $btn;    
+                    $url = env('APP_URL');
+                    $btn = '<a   href="' . $url . '/patient/view/' . $data->id . '"  class="btn btn-info ajax-link" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
+                    return $btn;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -73,7 +73,7 @@ class ReportController extends Controller
     function treatmentReport(Request $request)
     {
         if ($request->isMethod('post')) {
-            $model = Booking::with('getPatientRelation');
+            $model = Booking::with('getPatientRelation')->where('status',1);
 
             if ($request->start_date) {
                 $model->where('date', '>=', $request->start_date);
@@ -88,11 +88,11 @@ class ReportController extends Controller
             $data = $model->latest()->get();
             return Datatables::of($data)
                 ->addIndexColumn()
-                 ->addColumn('action', function ($data) {
-                    
-                    $url =env('APP_URL');
-                    $btn = '<a   href="'.$url.'/patient/view/' . $data->getPatientRelation->id . '"  class="btn btn-info ajax-link" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
-                    return $btn;    
+                ->addColumn('action', function ($data) {
+
+                    $url = env('APP_URL');
+                    $btn = '<a   href="' . $url . '/patient/view/' . $data->getPatientRelation->id . '"  class="btn btn-info ajax-link" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
+                    return $btn;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -111,28 +111,26 @@ class ReportController extends Controller
             $qry = DB::table('equipment_reports as a')->join('patients as b', 'a.pat_id', '=', 'b.id')->join('equipment as c', 'a.equip_id', '=', 'c.id')
                 ->orderBy('a.id', 'desc');
 
-            if (isset($request->return_status)){
+            if (isset($request->return_status)) {
 
-                $date =Date('Y-m-d');
-                if($request->return_status == 3){
+                $date = Date('Y-m-d');
+                if ($request->return_status == 3) {
 
-                    $qry->where('a.return_status',1);
+                    $qry->where('a.return_status', 1);
                     $qry->where('a.end_date', '<', $date);
-
-                }
-                else{
-                $qry->where('a.return_status', $request->return_status);
+                } else {
+                    $qry->where('a.return_status', $request->return_status);
                 }
             }
 
             if ($request->usage_type)
                 $qry->where('a.type', $request->usage_type);
 
-                if ($request->equip_id)
+            if ($request->equip_id)
                 $qry->where('a.equip_id', $request->equip_id);
 
             $data = $qry->get(['a.id', 'b.name', 'b.reg_no', 'b.phone', 'c.equipment', 'a.nos', 'a.type', 'a.return_status', 'a.end_date', DB::raw('DATE(`donated_date`) as date')]);
-            $result=array();
+            $result = array();
             foreach ($data as $rows) {
                 $row = [];
                 $row['reg_no'] = $rows->reg_no;
@@ -148,9 +146,9 @@ class ReportController extends Controller
                     $message = "'Do you want to Return ?'";
                     if (Date('Y-m-d') >= $rows->end_date) {
 
-                        $row['action'] = '<a  href="equipments/return/' . $rows->id . '" onclick="return confirm(' . $message . ')" class="btn btn-danger">Out of Date</a>';
+                        $row['action'] = '<a onclick="showModal(' . $rows->id . ')" class="btn btn-danger">Out of Date</a>';
                     } else {
-                        $row['action'] = '<a  href="equipments/return/' . $rows->id . '" onclick="return confirm(' . $message . ')" class="btn btn-warning">Pending</a>';
+                        $row['action'] = '<a  onclick="showModal(' . $rows->id . ')" class="btn btn-warning">Pending</a>';
                     }
                 } elseif ($rows->return_status == 0) {
 
@@ -198,13 +196,18 @@ class ReportController extends Controller
             return redirect('reports/equipments/create/0')->with('Error', 'Oops Something Went Wrong');
     }
 
-    public function equipmentReturn($id)
+    public function equipmentReturn(Request $request)
     {
-        -$equip_id = DB::table('equipment_reports')->where('id', $id)->first()->equip_id;
+        $id = $request->id;
+        $equip_id = DB::table('equipment_reports')->where('id', $id)->first()->equip_id;
         $nos = DB::table('equipment_reports')->where('id', $id)->first()->nos;
 
         DB::table('equipment')->where('id', $equip_id)->increment('stock', $nos);
-        $response = DB::table('equipment_reports')->where('id', $id)->update(['return_status' => 2]);
+        $response = DB::table('equipment_reports')->where('id', $id)->update([
+            'return_status' => 2,
+            'return_date' => $request->return_date,
+            'return_remark' => $request->return_remark
+        ]);
 
         if ($response)
             return redirect('reports/equipments')->with('Success', 'Saved Successfully');

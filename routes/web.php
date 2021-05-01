@@ -78,7 +78,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::any('/reports/equipments/create/{id}','report\ReportController@equipmentCreate');
     
     Route::any('/reports/equipments/save','report\ReportController@equipmentSave');
-    Route::any('/reports/equipments/return/{id}','report\ReportController@equipmentReturn');
+    Route::any('/reports/equipments/return','report\ReportController@equipmentReturn');
 
 
     Route::any('/users','Auth\RegisterController@Users')->name('users');

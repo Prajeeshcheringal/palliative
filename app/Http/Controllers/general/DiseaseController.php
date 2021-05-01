@@ -14,7 +14,7 @@ class DiseaseController extends Controller
     {
         if ($request->isMethod('post')) {
 
-            $data = Disease::latest()->get();
+            $data = Disease::orderBy('disease', 'ASC')->get();
 
             return Datatables::of($data)
                 ->addIndexColumn()

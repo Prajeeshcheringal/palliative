@@ -25,14 +25,15 @@
                                         value="{{ $patient->id ?? '' }}">
                                     <input type="text" name="reg_no" id="reg_no" class=" form-control input-sm"
 
-                                    @if($view == 'create') value="{{$reg_no}}" @endif  value="{{ $patient->reg_no ?? '' }}" placeholder="Enter ..." required readonly>
+                                    @if($view == 'create') value="{{$reg_no}}" @else readonly @endif  value="{{ $patient->reg_no ?? '' }}" placeholder="Enter ..." required >
 
                                 </div>
                                 <div> <label class="col-sm-1"> Date</label></div>
                                 <div class="col-sm-4">
                                     <input type="date" name="date" id="date" class=" form-control input-sm"
                                     @if($view =='create')
-                                    value="{{date('Y-m-d')}}" @endif   value="{{ $patient->date ?? '' }}" placeholder="Enter ..." required>
+                                    value="" @endif   value="{{ $patient->date ?? '' }}"
+                                     placeholder="Enter ..." required>
                                 </div>
 
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Name :</label></div>
@@ -153,17 +154,17 @@
                                     <input type="number" name="pincode" id="pincode" value="{{ $patient->pincode ?? '' }}"
                                         class="form-control input-sm" placeholder="Enter ..." required>
                                 </div>
-                                <div style="padding-top: 20px;" class="col-sm-3"> <label>Volunteer :</label></div>
-                                <div style="padding-top: 20px;" class="col-sm-8">
-                                    <input type="text" name="volunteer" id="volunteer"
-                                        value="{{ $patient->volunteer ?? '' }}" class="form-control input-sm"
-                                        placeholder="Enter ...">
-                                </div>
-                                
                                 <div style="padding-top: 20px;" class="col-sm-3"> <label>Location :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-8">
-                                    <textarea type="text" name="location" id="location" class="form-control input-sm"
-                                        placeholder="Enter ..." required>{{ $patient->location ?? '' }}</textarea>
+                                    <input type="text" name="location" id="location"
+                                        value="{{ $patient->location ?? '' }}" class="form-control input-sm"
+                                        placeholder="Enter ..." required>
+                                </div>
+                                
+                                <div style="padding-top: 20px;" class="col-sm-3"> <label>Route :</label></div>
+                                <div style="padding-top: 20px;" class="col-sm-8">
+                                    <textarea type="text" name="route" id="route" class="form-control input-sm"
+                                        placeholder="Enter ..." required>{{ $patient->route ?? '' }}</textarea>
                                 </div>
 
                                 {{-- <div style="padding-top: 20px;" class="col-sm-3">
@@ -433,7 +434,7 @@
 
                                                 <option value="">Select</option>
                                                 <option value="Front-Left">Front-Left</option>
-                                                <option value="Front-Right">Front-Righ</option>
+                                                <option value="Front-Right">Front-Right</option>
                                                 <option value="Back-Left">Back-Left</option>
                                                 <option value="Back-Right">Back-Right</option>
 
@@ -460,7 +461,6 @@
 
                                 <thead>
                                     <tr>
-                                        <th class="col-sm-2">Sl no</th>
                                         <th>Name </th>
                                         <th>Relation</th>
                                         <th></th>
@@ -469,9 +469,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            <input type="text" class="form-control" placeholder="Sl No">
-                                        </td>
+                                       
                                         <td>
                                             <input type="text" class="form-control" id="family_tree_name" placeholder="Name">
 
@@ -601,23 +599,22 @@
                                 <div> <label>Patients assumption about disease and treatment :</label></div>
                                 <div style="margin-top: 10px;margin-bottom: 20px" class="col-sm-12">
                                     <textarea type="text" name="patient_assumptiom" class="form-control"
-                                        placeholder="Enter ...">{{ $patientotherdetail->patient_assumptiom ?? '' }}
-                                    </textarea>
+                                        placeholder="അസുഖത്തെപ്പറ്റിയും ചികിത്സയെപ്പറ്റിയും രോഗിക്കുള്ള ധാരണകള്‍">{{$patientotherdetail->patient_assumptiom ?? '' }}</textarea>
                                 </div><br>
 
                                 <div class=""> <label>Patients social/mental/sperictual problems :</label></div>
                                 <div style="margin-top: 10px;margin-bottom: 20px" class="col-sm-12">
                                     <textarea type="text" name="patient_social" class="form-control"
-                                        placeholder="Enter ...">{{ $patientotherdetail->patient_social ?? '' }} </textarea>
+                                        placeholder="രോഗിയുടെ മാനസിക – സാമൂഹിക – ആത്മീയ പ്രശ്നങ്ങള്‍">{{ $patientotherdetail->patient_social ?? '' }}</textarea>
                                 </div>
 
-                                {{-- <div class=""> <label>Relatives assumption about disease
-                                        an treatment :</label></div>
+                                 <div class=""> <label>Way of life of patient & family :</label></div>
                                 <div style="margin-top: 10px;margin-bottom: 20px" class="col-sm-12">
-                                    <textarea type="text" name="address" id="address" class="form-control"
-                                        placeholder="Enter ..."> </textarea>
+                                    <textarea type="text" name="way_of_life" id="way_of_life" class="form-control"
+                                        placeholder="രോഗിയുടെയും കുടുംബത്തിന്‍റെയും ജീവിത മാര്‍ഗ്ഗം">{{ $patientotherdetail->way_of_life ?? '' }}</textarea>
                                 </div>
 
+                                {{--
                                 <div class=""> <label>Report of person Interacted with patient :</label></div>
                                 <div style="margin-top: 10px;margin-bottom: 20px" class="col-sm-12">
                                     <textarea type="text" name="address" id="address" class="form-control"
@@ -636,23 +633,26 @@
                                 <div class=""> <label>Report of person Interacted with patient :</label></div>
                                 <div style="margin-top: 10px;margin-bottom: 20px" class="col-sm-12">
                                     <textarea type="text" name="report_of_person" class="form-control"
-                                        placeholder="Enter ...">{{ $patientotherdetail->report_of_person ?? '' }}
-                                    </textarea>
+                                        placeholder="രോഗിയുമായി സംസാരിച്ച വളണ്ടിയറുടെ റിപ്പോര്‍ട്ട്">{{ $patientotherdetail->report_of_person ?? '' }}</textarea>
                                 </div>
 
                                 <div class=""> <label>Relatives assumption about disease and treatment :</label></div>
                                 <div style="margin-top: 10px;margin-bottom: 20px" class="col-sm-12">
                                     <textarea type="text" name="relative_assumption" class="form-control"
-                                        placeholder="Enter ...">{{ $patientotherdetail->relative_assumption ?? '' }}
-                                    </textarea>
+                                        placeholder="അസുഖത്തെപ്പറ്റിയും ചികിത്സയെപ്പറ്റിയും ബന്ധുക്കള്‍ക്കുള്ള ധാരണകള്‍ ">{{ $patientotherdetail->relative_assumption ?? '' }}</textarea>
+                                </div>
+                               
+                                <div  class=""> <label>Need of resettlement :</label></div>
+                                <div style="margin-top: 10px;margin-bottom: 20px" class="col-sm-12">
+                                    <textarea type="text" name="resettlement" id="resettlement" class="form-control"
+                                        placeholder="പുനരധിവാസം ആവശ്യമെങ്കില്‍ രേഖപ്പെടുത്തുക">{{ $patientotherdetail->resettlement ?? '' }}</textarea>
+                                </div>
+                                <div  class=""> <label>Details  of volunteer Intracted with patient:</label></div>
+                                <div style="margin-top: 10px;margin-bottom: 20px" class="col-sm-12">
+                                    <textarea type="text" name="volunteer" id="volunteer" class="form-control"
+                                        placeholder="രോഗിയുമായി സംസാരിച്ച വളണ്ടിയറുടെ പേര്">{{ $patientotherdetail->volunteer ?? '' }}</textarea>
                                 </div>
                                 {{--
-                                <div style="padding-top: 20px;" class=""> <label>Address :</label></div>
-                                <div style="padding-top: 20px;" class="col-sm-12">
-                                    <textarea type="text" name="address" id="address" class="form-control"
-                                        placeholder="Enter ..."> </textarea>
-                                </div>
-
                                 <div style="padding-top: 20px;" class=""> <label>Address :</label></div>
                                 <div style="padding-top: 20px;" class="col-sm-12">
                                     <textarea type="text" name="address" id="address" class="form-control"
@@ -818,7 +818,7 @@
 
         function family_tree(name,relation) {
 
-            var new_row = '<tr><td><input type="text" class="form-control"></td>' +
+            var new_row = '<tr>' +
                 '<td><input type="text" class="form-control" value="'+name+'" name="tree_name[]"> </td><td> <input type="text"  class="form-control" value="'+relation+'" name="tree_relation[]"> </td>' +
                 ' <td><a id="" class="btn btn-danger form-control rmtree"><i class="fa fa-remove"></i></a></td> </tr>';
 
@@ -832,7 +832,7 @@
                     '<td><div><input type="text" value="'+relation+'" class="form-control" name="relation[]"/> </div></td>' +
                     '<td> <div><input type="number" value="'+age+'" class="form-control" name="relation_age[]"/> </div> </td>' +
                     '<td><div><input type="text" value="'+education+'" class="form-control" name="education[]" /></div> </td>' +
-                    ' <td><div><input type="text" value="'+married+'" class="form-control" name="marriage_status[]" disabled/> </div></td>' +
+                    ' <td><div><input type="text" value="'+married+'" class="form-control" name="marriage_status[]" readonly/> </div></td>' +
                     ' <td> <div><input type="text" value="'+job+'" class="form-control" name="job[]"/> </div></td>' +
                     '<td><div><input type="text" value="'+is_student+'" class="form-control"  name="is_student[]" readonly /></div></td>' +
                     // '<td><div><input type="text" value="'+remark+'" class="form-control" name="remark[]" /></div></td>' +

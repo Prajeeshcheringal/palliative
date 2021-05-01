@@ -45,7 +45,7 @@
                     <th>Reg No</th>
                     <th>Name</th>
                     <th>Phone</th>
-                    <th>Address</th>
+                    <th>Location</th>
                     <th>Care Of</th>
                     <th>Date</th>
                     <th>Purpose</th>
@@ -150,8 +150,8 @@
                 },
 
                 {
-                    data: 'get_patient_relation.address',
-                    name: 'address'
+                    data: 'get_patient_relation.location',
+                    name: 'location'
                 },
                 {
                     data: 'get_patient_relation.care_of',

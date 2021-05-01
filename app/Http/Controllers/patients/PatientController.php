@@ -64,24 +64,25 @@ class PatientController extends Controller
             }
         } else {
 
-            $last_reg_no = Patient::latest()->first();
-            if ($last_reg_no) {
+            // $last_reg_no = Patient::latest()->first();
+            // if ($last_reg_no) {
 
-                $year = substr($last_reg_no->reg_no, 4, 6);
+            //     $year = substr($last_reg_no->reg_no, 4, 6);
 
-                if ($year == date('y')) {
+            //     if ($year == date('y')) {
 
-                    $no = sprintf("%03d", substr($last_reg_no->reg_no, 0, 3) + 1);
-                    $data['reg_no'] = $no . '/' . $year;
-                } else {
+            //         $no = sprintf("%03d", substr($last_reg_no->reg_no, 0, 3) + 1);
+            //         $data['reg_no'] = $no . '/' . $year;
+            //     } else {
 
-                    $data['reg_no'] = '001/' . date('y');
-                }
-            } else {
+            //         $data['reg_no'] = '001/' . date('y');
+            //     }
+            // } else {
 
-                $data['reg_no'] = '001/' . date('y');
-            }
+            //     $data['reg_no'] = '001/' . date('y');
+            // }
         }
+        $data['reg_no'] = "";
         $data['difficulties'] = $difficulties;
         return view('patient.create', $data);
     }
@@ -100,7 +101,13 @@ class PatientController extends Controller
         $data['prev_bookings'] = Booking::where('pat_id', $id)->where('status', 1)->orderBy('date', 'desc')->get();
         $data['prev_prescriptions'] = DB::table('prescription')->where('pat_id', $id)->get();
         $data['prev_team_members'] = DB::table('team_members')->where('pat_id', $id)->get();
+        $pat_difficulties = PatientDifficulty::where('pat_id', $id)->get('dificulty');
+        foreach ($pat_difficulties as $dificulty) {
 
+            $difficulties[] = $dificulty->dificulty;
+        }
+
+        $data['difficulties'] = $difficulties;
 
         return view('patient.patient_history', $data);
     }
@@ -141,7 +148,7 @@ class PatientController extends Controller
             'ref_no' => $request->ref_no,
             'organization' => $request->organization,
             'pincode' => $request->pincode,
-            'volunteer' => $request->volunteer,
+            'route' => $request->route,
             'location' => $request->location,
             'disease' =>  $request->pat_disease,
             'financial_status' => $request->financial_status,
@@ -237,8 +244,10 @@ class PatientController extends Controller
             'report_of_person' => $request->report_of_person,
             'patient_assumptiom' => $request->patient_assumptiom,
             'relative_assumption' => $request->relative_assumption,
-            'patient_social' => $request->patient_social
-
+            'patient_social' => $request->patient_social,
+            'resettlement' => $request->resettlement,
+            'way_of_life' => $request->way_of_life,
+            'volunteer' => $request->volunteer,
         ];
 
         PatientOtherDetail::create($patient_other_details);
@@ -274,8 +283,10 @@ class PatientController extends Controller
 
         $search = $request->search;
 
-
+        if( $search)
         $items = Patient::orderby('name', 'asc')->select('id', 'name', 'reg_no')->where('name', 'like', '%' . $search . '%')->orWhere('reg_no', 'like', '%' . $search . '%')->limit(5)->get();
+        else
+        $items = Patient::orderby('name', 'asc')->select('id', 'name', 'reg_no')->limit(5)->get();
 
 
         $response = array();

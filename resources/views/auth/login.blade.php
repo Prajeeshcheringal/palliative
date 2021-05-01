@@ -10,8 +10,8 @@
     <!-- <meta name="keywords" content="admin template, Apex admin template, dashboard template, flat admin template, responsive admin template, web app"> -->
     <!-- <meta name="author" content="PIXINVENT"> -->
     <title>Palliative Care Login</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{ url('/public') }}/logo.jpeg">
-    <link rel="shortcut icon" type="image/png" href="{{ url('/public') }}/logo.jpeg">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url('/public') }}/logo1.png">
+    <link rel="shortcut icon" type="image/png" href="{{ url('/public') }}/logo1.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -84,12 +84,12 @@
                                             <div class="card-body auth-img">
                                                 <div class="row m-0">
                                                     <div class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center auth-img-bg p-3">
-                                                        <img src="{{ url('/public') }}/app-assets/img/gallery/login.png" alt="" class="img-fluid" width="300" height="230">
+                                                        <img src="{{ url('/public') }}/logo1.png" alt="" class="img-fluid" width="300" height="230">
                                                     </div>
                                                     <div class="col-lg-6 col-12 px-4 py-3">
 
-                                                        <h4 class="mb-2 card-title">Product Name</h4>
-                                                        <p style="margin-bottom:10px;">Vellamunda Pain & Palliative Care </p>
+                                                        <h3 class="mb-2 card-title">EasyCare V1.0</h4><br>
+                                                        <p style="margin-bottom:20px;">Vellamunda Pain & Palliative Care </p>
                                                         <input id="email" type="text" placeholder="Username" class="form-control mb-3 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                                       
                                                         <!-- <input type="password" class="form-control mb-2" placeholder="Password"> -->
@@ -131,7 +131,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div style="position: absolute; right: 20px; bottom:10px">
+                                <h5>EasyCare V1.0</h5>
+                                </div>
+
                             </div>
+
                         </section>
                         <!--Login Page Ends-->
                     </div>

@@ -17,7 +17,7 @@ class MedicineController extends Controller
     {
         if ($request->isMethod('post')) {
 
-            $data = Medicine::latest()->get();
+            $data = Medicine::orderBy('medicine', 'ASC')->get();
 
             return Datatables::of($data)
                 ->addIndexColumn()
@@ -116,7 +116,7 @@ class MedicineController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
                     $message = "'Do you want to delete'";
-                    $btn = '<a   href="prescription/view/' . $data->id . '/' . $data->pat_id . '"  class="btn btn-info" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
+                    $btn = '<a   href="prescription/view/' . $data->id . '/' . $data->pat_id . '"  class="btn btn-info ajax-link" style="margin:px">  <i class="fa fa-eye"></i></span></a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])

@@ -14,7 +14,7 @@ class VolunteerController extends Controller
 
         if ($request->isMethod('post')) {
 
-            $data = Volunteer::latest()->get();
+            $data = Volunteer::orderBy('name', 'ASC')->get();
 
             return Datatables::of($data)
                 ->addIndexColumn()

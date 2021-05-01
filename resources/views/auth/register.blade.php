@@ -6,7 +6,7 @@
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Create User</h3>
-            <a href="{{ url('/') }}/users" class="pull-right btn btn-success"> <i class="fa fa-arrow-left"></i></a>
+            <a href="{{ url('/') }}/users" class="pull-right btn btn-success ajax-link"> <i class="fa fa-arrow-left"></i></a>
 
         </div>
         <!-- /.box-header -->
@@ -43,7 +43,7 @@
                             <option value="Nurse">Nurse</option>
                             <option value="Pharmacist">Pharmacist</option>
                             <option value="Volunteer">Volunteer</option>
-                            <option value="Admin">Admin</option>
+                            <!-- <option value="Admin">Admin</option> -->
 
                         </select>
                     </div>
@@ -77,7 +77,7 @@
 
                     <div class="col-sm-3" style="padding-top: 20px;"> <label>Password :</label></div>
                     <div class="col-sm-9" style="padding-top: 20px;">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" minlength="8" required autocomplete="new-password">
 
                         @error('password')
                         <span class="error" role="alert">
@@ -109,7 +109,7 @@
 
                     <div class="col-sm-3" style="padding-top: 20px;"> <label>Confirm Password :</label></div>
                     <div class="col-sm-9" style="padding-top: 20px;">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" equalTo = "#password" minlength="8" required autocomplete="new-password">
                     </div>
                 </div>
 

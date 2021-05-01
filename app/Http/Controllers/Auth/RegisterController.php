@@ -88,7 +88,7 @@ class RegisterController extends Controller
 
         if ($request->isMethod('post')) {
 
-            $data = User::latest()->get();
+            $data = User::where('role','!=','Admin')->latest()->get();
 
             return Datatables::of($data)
                 ->addIndexColumn()

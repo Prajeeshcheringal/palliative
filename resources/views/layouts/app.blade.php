@@ -3,9 +3,10 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Palliative Care</title>
+   
+    <title>EacyCare</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="{{ url('/public') }}/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url('/public') }}/bower_components/font-awesome/css/font-awesome.min.css">
@@ -33,24 +34,23 @@
     <script src="{{ url('/public') }}/plugins/ckeditor/ckeditor.js"></script>
     <script src="{{ url('/public') }}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js">
     </script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+    <script src="{{ url('/public') }}/dist/sweetalert.min.js"></script>
+    <link href="{{ url('/public') }}/dist/jquery-ui.css" rel="Stylesheet">
     </link>
-    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-    <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.js"></script>
+    <script src="{{ url('/public') }}/dist/jquery-ui.js"></script>
+    <script src="{{ url('/public') }}/dist/jquery-migrate-3.0.0.min.js"></script>
+    <script src="{{ url('/public') }}/dist/jquery.validate.js"></script>
 
 
     <!-- Google Font -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <!-- <link rel="stylesheet" href="{{ url('/public') }}/dist/css.css"> -->
 
     <style>
         body {
             /* font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif; */
             font-size: 16px;
             /* background-color: #cccccc; */
+            
         }
 
         .bg {
@@ -76,7 +76,6 @@
         }
 
 
-        /* @import url("https://fonts.googleapis.com/css?family=Open+Sans"); */
 
         form .error {
             color: #ff0000;
@@ -126,6 +125,11 @@
             position: absolute;
             top: 50%;
         }
+
+        input,
+        td {
+            text-transform: capitalize
+        }
     </style>|
 
 </head>
@@ -160,12 +164,12 @@ desired effect
 
             <a href="{{ url('/home') }}/" id="load-home" class="logo ajax-link">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>C</b>are</span>
+                <span class="logo-mini"><b>E</b>Care</span>
                 <!-- logo for regular state and mobile devices -->
                 <span class="logo-lg"><b>
-                        <img src="{{ url('/public') }}/logo.jpeg" style="width: 45px; height:45px;  border-radius: 50%; margin-left:-30px;" class="user-image" alt="User Image">
+                        <!-- <img src="{{ url('/public') }}/logo.jpeg" style="width: 45px; height:45px;  border-radius: 50%; margin-left:-30px;" class="user-image" alt="User Image"> -->
 
-                        Palliative</b>Care</span>
+                        Easy</b>Care V1.0</span>
             </a>
 
             <!-- Header Navbar -->
@@ -217,29 +221,40 @@ desired effect
                             <!-- Menu toggle button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
-                                <span class="label label-danger">10</span>
+                                @if($pending_home_care || $pending_equipments)
+                                <span class="label label-danger"><i class="fa fa-star"></i></span>
+                                @endif
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header">You have 10 notifications</li>
+                                <li class="header">Your Notifications </li>
                                 <li>
                                     <!-- Inner Menu: contains the notifications -->
                                     <ul class="menu">
+                                        @if($pending_home_care)
                                         <li>
                                             <!-- start notification -->
                                             <a href="{{url('/bookings/pendings')}}" class="ajax-link">
-                                                <i class="fa fa-home text-danger"></i> 5 Home care pending
+                                                <i class="fa fa-home text-danger"></i> {{$pending_home_care}} Pending HomeCare
                                             </a>
                                         </li>
+                                        @endif
+                                        @if($pending_equipments)
+
                                         <li>
                                             <!-- start notification -->
                                             <a href="{{url('/reports/equipments')}}" class="ajax-link">
-                                                <i class="fa fa-anchor text-warning"></i> 5 Equipments out of date
+                                                <i class="ion ion-ios-stopwatch-outline text-danger"></i> {{$pending_equipments}}  Out of date Equipments
                                             </a>
                                         </li>
+                                        @endif
+
                                         <!-- end notification -->
                                     </ul>
                                 </li>
-                                <li class="footer"><a href="#">View all</a></li>
+
+                                <li class="footer"><a href="">
+                                        refresh
+                                    </a></li>
                             </ul>
                         </li>
 
@@ -361,10 +376,10 @@ desired effect
                             </span>
                         </a>
                         <ul class="treeview-menu" id="home_care_li">
-                            <li class="" id="home1"><a href="{{ url('/addvisit') }}" class="ajax-link"><i class="fa fa-circle-o"></i>
-                                    Home Care Booking</a></li>
-                            <li id="home2"><a href="{{ url('/bookings') }}" class="ajax-link"><i class="fa fa-circle-o"></i>Daily
-                                    Home Care</a></li>
+                            <!-- <li class="" id="home1"><a href="{{ url('/addvisit') }}" class="ajax-link"><i class="fa fa-circle-o"></i>
+                                    Home Care Booking</a></li> -->
+                            <li id="home2"><a href="{{ url('/bookings') }}" class="ajax-link"><i class="fa fa-circle-o"></i>
+                                    Home Care Bookings</a></li>
                             <li id="home20"><a href="{{ url('/bookings/pendings') }}" class="ajax-link"><i class="fa fa-circle-o"></i>Pending
                                     Home Care</a></li>
                         </ul>
@@ -377,8 +392,8 @@ desired effect
                             </span>
                         </a>
                         <ul class="treeview-menu" id="clinic_care_li">
-                            <li id="home3"><a href="{{ url('/addapoinments') }}" class="ajax-link"><i class="fa fa-circle-o"></i>Daily Registration</a></li>
-                            <li id="home4"><a href="{{ url('/dailypatients') }}" class="ajax-link"><i class="fa fa-circle-o"></i>New Registrations
+                            <!-- <li id="home3"><a href="{{ url('/addapoinments') }}" class="ajax-link"><i class="fa fa-circle-o"></i>Daily Registration</a></li> -->
+                            <li id="home4"><a href="{{ url('/dailypatients') }}" class="ajax-link"><i class="fa fa-circle-o"></i>Daily Registrations
                                 </a>
                             </li>
                         </ul>
@@ -386,14 +401,14 @@ desired effect
 
                     <li class="treeview" id="general_master">
                         <a href="#">
-                            <i class="fa fa-arrows"></i> <span>General Master</span>
+                            <i class="fa fa-user"></i> <span>Patients</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu" id="general_master_li">
                             <li id="home5"><a href="{{ url('/patients') }}" class="ajax-link"><i class="fa fa-circle-o"></i>Patients</a></li>
-                            <li id="home6"><a href="{{ url('/diseases') }}" class="ajax-link"><i class="fa fa-circle-o"></i>Diseases</a></li>
+                            <li id="home6"><a href="{{ url('/patient/create/0') }}" class="ajax-link"><i class="fa fa-circle-o"></i>New Registration</a></li>
 
                         </ul>
                     </li>
@@ -412,9 +427,23 @@ desired effect
 
                         </ul>
                     </li>
+
+                    <li class="treeview" id="disesaes">
+                        <a href="#">
+                            <i class="fa fa-codepen"></i> <span>Diseases</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" id="disesaes_li">
+                            <li id="home676"><a href="{{ url('/diseases') }}" class="ajax-link"><i class="fa fa-circle-o"></i>Diseases</a></li>
+                            <li id="home509"><a href="{{ url('/disease/create/0') }}" class="ajax-link"><i class="fa fa-circle-o"></i>Add Disease</a></li>
+
+                        </ul>
+                    </li>
                     <li class="treeview" id="Equipments">
                         <a href="#">
-                            <i class="fa  fa-anchor"></i> <span>Equipments</span>
+                            <i class="fa  fa-user-md"></i> <span>Equipments</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
@@ -428,7 +457,7 @@ desired effect
                     </li>
                     <li class="treeview" id="volunteers">
                         <a href="#">
-                            <i class="fa  fa-vimeo"></i> <span>Volunteers</span>
+                            <i class="fa  fa-users"></i> <span>Volunteers</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
@@ -472,6 +501,8 @@ desired effect
                         <ul class="treeview-menu" id="Settings_li">
 
                             <li id="home11"><a href="{{ url('/users') }}" class="ajax-link"><i class="fa fa-circle-o"></i>Users</a></li>
+                            <li id="home111"><a href="{{ url('/dbbackup') }}" class="ajax-link"><i class="fa fa-circle-o"></i>DB Backup</a></li>
+
 
                         </ul>
                     </li>
@@ -601,6 +632,7 @@ desired effect
 
     $(function() {
 
+
         $(document).on('click', '#save', function() {
 
             $("#form").validate({
@@ -630,6 +662,7 @@ desired effect
                             $("#pageloader").fadeOut();
                             swal("Error!!", "Oops Something Went Wrong!", "error");
 
+                            $('#save').prop('disabled', false);
 
                         }
 
@@ -641,6 +674,8 @@ desired effect
         $(document).on('click', 'a.ajax-link', function(e) {
 
             e.preventDefault();
+            $('li').removeClass("active");
+            $(this).closest('li').addClass("active");
             var url = $(this).attr('href');
             $("#pageloader").fadeIn();
             ajaxLoad(url);
@@ -760,6 +795,8 @@ desired effect
                 });
         })
 
+
+
     })
 
     function ajaxLoad(url) {
@@ -771,8 +808,15 @@ desired effect
                 $('#content_view').html(respose);
                 $('#refresh').attr('href', url);
                 $(".modal-backdrop").remove();
+                setTimeout(function() {
 
-                $("#pageloader").fadeOut();
+                    $("#pageloader").fadeOut();
+
+                }, 1000);
+
+                setTimeout(function() {
+                    swal.close()
+                }, 1500);
 
 
             },

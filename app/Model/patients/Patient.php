@@ -26,7 +26,8 @@ class Patient extends Model
         'care_of_relation',
         'current_status',
         'status_date',
-        'status_remark'
+        'status_remark',
+        'route'
     ];
 
     public function getDiseaseRelation(){

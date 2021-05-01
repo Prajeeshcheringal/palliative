@@ -9,7 +9,7 @@ class Booking extends Model
 {
     protected $fillable = [
         'pat_id', 'bok_note', 'date', 'disease_details', 'doctors_note', 'mental_note', 'bp', 'pulse', 'tempreture', 'general_state', 'mouth', 'hobbies', 'skin',
-        'head', 'hidden_area', 'sex', 'other_treatment', 'surroundings', 'constipation', 'sleep', 'body_cleaning', 'exercise', 'urine', 'water', 'food', 'bok_type','status'
+        'head', 'hidden_area', 'sex', 'other_treatment', 'surroundings', 'constipation', 'sleep', 'body_cleaning', 'exercise', 'urine', 'water', 'food', 'bok_type','status','nurse_note'
     ];
 
     function getPatientRelation()

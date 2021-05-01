@@ -15,7 +15,7 @@
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Age</th>
-                    <th>Address</th>
+                    <th>Location</th>
                     <th>Care Of</th>
                     <th>Action</th>
 
@@ -134,8 +134,8 @@
                     name: 'age'
                 },
                 {
-                    data: 'address',
-                    name: 'address'
+                    data: 'location',
+                    name: 'location'
                 },
                 {
                     data: 'care_of',

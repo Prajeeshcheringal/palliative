@@ -36,7 +36,7 @@
 
                 <div class="col-sm-6">
 
-                    <div style="padding-top: 20px;" class="col-sm-3"> <label> Role :</label></div>
+                    <div style="padding-top: 20px;" class="col-sm-3"> <label> Driving :</label></div>
                     <div class="col-sm-9" style="padding-top: 20px;">
                         <input name="role" id="role" class="form-control" placeholder="Enter ..." disabled required />
 

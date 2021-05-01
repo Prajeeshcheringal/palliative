@@ -1,4 +1,3 @@
-
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <form action="{{ url('/reports/equipments/save') }}" back="{{ url('/reports/equipments') }}" id="form" method="POST">
     <div class="box">
@@ -17,8 +16,8 @@
 
                     <div class="col-sm-3"> <label>Patient :</label></div>
                     <div class="col-sm-9">
-                    <input type="text" name="" id="patient" class="form-control" value="" placeholder="Enter ..." required maxlength="40">
-                    <input type="hidden" name="pat_id" id="pat_id" class="form-control" value="" placeholder="Enter ..." required maxlength="40">
+                        <input type="text" name="" id="patient" class="form-control" value="" placeholder="Enter ..." required maxlength="40">
+                        <input type="hidden" name="pat_id" id="pat_id" class="form-control" value="" placeholder="Enter ..." required maxlength="40">
                     </div>
                 </div>
 
@@ -150,7 +149,9 @@
                         response(data);
                     }
                 });
+
             },
+
             select: function(event, ui) {
                 // Set selection
                 $('#patient').val(ui.item.label); // display the selected text
@@ -158,6 +159,12 @@
                 return false;
             }
         });
+        $("#patient").click(function() {
+
+            $("#patient").autocomplete("search", " ");
+
+        })
+
 
 
     })

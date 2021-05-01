@@ -111,12 +111,12 @@
 }
 
 .skin-blue .sidebar-menu .treeview-menu>li>a {
-    color:#076187;
+    color:#00001a
 }
 
 .skin-blue .sidebar-menu .treeview-menu>li.active>a,
 .skin-blue .sidebar-menu .treeview-menu>li>a:hover {
-    color: #08212c
+    color: #133595
 }   
 
 .skin-blue .sidebar-form {

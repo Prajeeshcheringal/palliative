@@ -35,6 +35,7 @@ class HomeController extends Controller
             'daily_home_care' => DB::table('bookings')->where('bok_type', 'home')->whereDate('date', Carbon::today())->count(),
             'daily_clinic_care' => DB::table('bookings')->where('bok_type', 'clinic')->whereDate('date', Carbon::today())->count(),
             'pending_home_care' => DB::table('bookings')->where('bok_type', 'home')->where('status', 0)->whereDate('date', '<', Carbon::today())->count(),
+            'pending_equipments' =>DB::table('equipment_reports as a')->where('a.return_status',1)->whereDate('a.end_date', '<', Carbon::today())->count(),
 
 
 
@@ -47,11 +48,8 @@ class HomeController extends Controller
     {
         $data = [
 
-            'total_patients' => DB::table('patients')->count(),
-            'active_patients' => DB::table('patients')->where('current_status', 'Active')->count(),
-            'daily_home_care' => DB::table('bookings')->where('bok_type', 'home')->whereDate('date', Carbon::today())->count(),
-            'daily_clinic_care' => DB::table('bookings')->where('bok_type', 'clinic')->whereDate('date', Carbon::today())->count(),
             'pending_home_care' => DB::table('bookings')->where('bok_type', 'home')->where('status', 0)->whereDate('date', '<', Carbon::today())->count(),
+            'pending_equipments' =>DB::table('equipment_reports as a')->where('a.return_status',1)->whereDate('a.end_date', '<', Carbon::today())->count(),
 
         ];
         return view('layouts.app', $data);
