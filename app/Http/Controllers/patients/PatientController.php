@@ -107,7 +107,7 @@ class PatientController extends Controller
             $difficulties[] = $dificulty->dificulty;
         }
 
-        $data['difficulties'] = $difficulties;
+        $data['difficulties'] = isset($difficulties) ? $difficulties :[];
 
         return view('patient.patient_history', $data);
     }

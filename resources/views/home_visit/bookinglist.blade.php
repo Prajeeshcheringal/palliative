@@ -5,7 +5,7 @@
         <h3 class="box-title">Daily Home Care</h3>
         <!-- <a href="{{ url('/patient/create/0') }}" class="pull-right btn btn-success"> <i class="fa fa-plus "></i></a> -->
         <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">
-            <i class="fa fa-plus">&nbsp; New Registration</i> </button>
+            <i class="fa fa-plus">&nbsp; New Booking</i> </button>
     </div>
     <!-- /.box-header -->
     <div class="box-body" style="padding-left: 20px; padding-bottom: 15px">

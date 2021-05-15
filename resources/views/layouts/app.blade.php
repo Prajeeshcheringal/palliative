@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
-<html>
+<html style="height: auto; min-height: 100%;">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   
+
     <title>EacyCare</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="{{ url('/public') }}/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -50,7 +50,7 @@
             /* font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif; */
             font-size: 16px;
             /* background-color: #cccccc; */
-            
+
         }
 
         .bg {
@@ -169,7 +169,8 @@ desired effect
                 <span class="logo-lg"><b>
                         <!-- <img src="{{ url('/public') }}/logo.jpeg" style="width: 45px; height:45px;  border-radius: 50%; margin-left:-30px;" class="user-image" alt="User Image"> -->
 
-                        Easy</b>Care V1.0</span>
+                        Easy
+                    </b>Care V1.0</span>
             </a>
 
             <!-- Header Navbar -->
@@ -243,7 +244,7 @@ desired effect
                                         <li>
                                             <!-- start notification -->
                                             <a href="{{url('/reports/equipments')}}" class="ajax-link">
-                                                <i class="ion ion-ios-stopwatch-outline text-danger"></i> {{$pending_equipments}}  Out of date Equipments
+                                                <i class="ion ion-ios-stopwatch-outline text-danger"></i> {{$pending_equipments}} Out of date Equipments
                                             </a>
                                         </li>
                                         @endif
@@ -808,12 +809,13 @@ desired effect
                 $('#content_view').html(respose);
                 $('#refresh').attr('href', url);
                 $(".modal-backdrop").remove();
-                setTimeout(function() {
 
+
+                $(document).ready(function() {
                     $("#pageloader").fadeOut();
+                })
 
-                }, 1000);
-
+               
                 setTimeout(function() {
                     swal.close()
                 }, 1500);

@@ -148,8 +148,8 @@
     <!-- ////////////////////////////////////////////////////////////////////////////-->
 
     <!-- BEGIN VENDOR JS-->
-    <script src="{{ url('/public') }}/app-assets/vendors/js/vendors.min.js"></script>
-    <script src="{{ url('/public') }}/app-assets/vendors/js/switchery.min.js"></script>
+    <!-- <script src="{{ url('/public') }}/app-assets/vendors/js/vendors.min.js"></script>
+    <script src="{{ url('/public') }}/app-assets/vendors/js/switchery.min.js"></script> -->
     <!-- BEGIN VENDOR JS-->
     <!-- BEGIN PAGE VENDOR JS-->
     <!-- END PAGE VENDOR JS-->
